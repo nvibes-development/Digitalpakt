@@ -6,14 +6,17 @@ Eine Web-App zur strukturierten Vorprüfung von Digitalisierungsvorhaben im Kont
 
 ## Ziel der App
 
-Ziel des Produkts ist die Entwicklung einer benutzerfreundlichen Web-App, mit der **Schulen und Schulträger geplante Digitalisierungsvorhaben strukturiert erfassen und anhand definierter Kriterien vorprüfen können**.
+Schulleitungen können geplante oder bereits identifizierte Digitalisierungsmaßnahmen ihrer Schule erfassen und systematisch prüfen, ob und unter welchen Voraussetzungen diese grundsätzlich förderfähig sind.
 
-Die Anwendung soll frühzeitig sichtbar machen,
+Die Anwendung führt die Schulleitung durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung.
 
-- welche Voraussetzungen bereits erfüllt sind,
-- welche Angaben oder Nachweise noch fehlen,
-- wo offene Fragen oder mögliche Risiken bestehen,
-- und welche nächsten Schritte zur weiteren Vorbereitung des Vorhabens sinnvoll sind.
+Das System gibt nicht nur „Ja/Nein“ aus, sondern unterscheidet:
+
+- 🟢 **Grundsätzlich förderfähig**
+- 🟡 **Förderfähigkeit noch nicht abschließend prüfbar**
+- 🔴 **Nach den hinterlegten Kriterien derzeit nicht förderfähig**
+
+Dazu werden – soweit relevant – Begründung, erfüllte und fehlende Voraussetzungen, benötigte Nachweise, die zugrunde liegende Förderregel und empfohlene nächste Schritte dargestellt.
 
 Die App dient als **Orientierungs- und Vorbereitungshilfe**. Sie ersetzt keine rechtsverbindliche Prüfung, keine Förderberatung und keine Förderentscheidung durch die zuständigen Stellen.
 
@@ -32,7 +35,15 @@ Die Vorbereitung eines Digitalisierungsvorhabens kann für Schulen und Schulträ
 
 ## Product Goal
 
-> Wir entwickeln eine webbasierte Anwendung, mit der Schulen und Schulträger Digitalisierungsvorhaben im Kontext des DigitalPakts 2.0 strukturiert erfassen und anhand definierter Kriterien vorprüfen können. Die Anwendung soll fehlende Voraussetzungen, offene Punkte und mögliche Handlungsbedarfe frühzeitig aufzeigen und dadurch die Vorbereitung eines förderfähigen Vorhabens unterstützen.
+> Schulleitungen können geplante oder bereits identifizierte Digitalisierungsmaßnahmen ihrer Schule erfassen und systematisch prüfen, ob und unter welchen Voraussetzungen diese grundsätzlich förderfähig sind. Die Anwendung führt die Schulleitung dabei durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung.
+
+## Fachliche Projektdokumentation
+
+Die detaillierte, vom Team erarbeitete Produktdefinition und Backlog-Struktur ist zusätzlich in folgenden Dokumenten festgehalten:
+
+- [Produktdefinition](docs/PRODUCT_DEFINITION.md)
+- [Product Backlog](docs/PRODUCT_BACKLOG.md)
+- [Fachliche Akzeptanzkriterien & Definition of Done](docs/ACCEPTANCE_CRITERIA.md)
 
 ## Projekt-Kick-off
 
@@ -121,31 +132,21 @@ Verantwortlich für:
 
 > Die konkrete Rollenverteilung und die Namen der Teammitglieder werden im Kick-off ergänzt, damit die Verantwortlichkeiten gemeinsam vereinbart und nicht vorweggenommen werden.
 
-## Geplanter Nutzerablauf
+## Kernprozess
 
-1. **Vorhaben erfassen**
-   - Titel und Beschreibung
-   - Schule bzw. Schulträger
-   - Bundesland
-   - geplante Maßnahmen oder Anschaffungen
-   - geschätzter Kostenrahmen
+**Schulleitung → Maßnahme beschreiben → Fragen beantworten → Förderfähigkeit prüfen → Ergebnis erhalten → nächste Schritte erkennen**
 
-2. **Vorhaben prüfen**
-   - strukturierter Fragenkatalog
-   - fachliche und organisatorische Kriterien
-   - technische und pädagogische Aspekte
-   - offene Angaben und fehlende Nachweise
+Der MVP folgt dabei diesem Ablauf:
 
-3. **Ergebnis erhalten**
-   - erfüllte Kriterien
-   - offene Punkte
-   - mögliche Risiken
-   - empfohlene nächste Schritte
-
-4. **Vorhaben weiter vorbereiten**
-   - Maßnahmen priorisieren
-   - fehlende Informationen ergänzen
-   - Ergebnis als Grundlage für die weitere Abstimmung verwenden
+1. Schule erfassen
+2. Digitalisierungsmaßnahme beschreiben
+3. Förderbereich identifizieren
+4. Dynamischen Fragenkatalog beantworten
+5. Förderregeln anwenden
+6. Förderfähigkeit auswerten
+7. Ergebnis und Begründung anzeigen
+8. Fehlende Voraussetzungen / Nachweise anzeigen
+9. Ergebnis speichern / exportieren
 
 ## Geplante Kernfunktionen
 
