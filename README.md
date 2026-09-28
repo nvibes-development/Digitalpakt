@@ -15,7 +15,7 @@ Die Anwendung soll frühzeitig sichtbar machen,
 - wo offene Fragen oder mögliche Risiken bestehen,
 - und welche nächsten Schritte zur weiteren Vorbereitung des Vorhabens sinnvoll sind.
 
-Die App dient dabei als **Orientierungs- und Vorbereitungshilfe**. Sie ersetzt keine rechtsverbindliche Prüfung, keine Förderberatung und keine Förderentscheidung durch die zuständigen Stellen.
+Die App dient als **Orientierungs- und Vorbereitungshilfe**. Sie ersetzt keine rechtsverbindliche Prüfung, keine Förderberatung und keine Förderentscheidung durch die zuständigen Stellen.
 
 ## Problemstellung
 
@@ -33,6 +33,93 @@ Die Vorbereitung eines Digitalisierungsvorhabens kann für Schulen und Schulträ
 ## Product Goal
 
 > Wir entwickeln eine webbasierte Anwendung, mit der Schulen und Schulträger Digitalisierungsvorhaben im Kontext des DigitalPakts 2.0 strukturiert erfassen und anhand definierter Kriterien vorprüfen können. Die Anwendung soll fehlende Voraussetzungen, offene Punkte und mögliche Handlungsbedarfe frühzeitig aufzeigen und dadurch die Vorbereitung eines förderfähigen Vorhabens unterstützen.
+
+## Projekt-Kick-off
+
+### Ausgangslage
+
+Im Rahmen des DigitalPakts 2.0 soll eine Web-App entwickelt werden, mit der Schulen und Schulträger geplante Digitalisierungsvorhaben strukturiert erfassen und vorprüfen können.
+
+Das Projekt wird als Scrum-Abschlussprojekt innerhalb eines kurzen, fest vorgegebenen Zeitraums umgesetzt. Deshalb liegt der Schwerpunkt auf klaren Sprint-Zielen, nutzbaren Inkrementen, transparenter Zusammenarbeit und nachvollziehbarer Dokumentation.
+
+### Ziel
+
+Ziel ist eine PWA, die Nutzer von der Erfassung eines Vorhabens über eine erste Kriterienprüfung bis zu einer verständlichen Auswertung mit Handlungsempfehlungen führt.
+
+Die Anwendung soll unter folgender Adresse bereitgestellt werden:
+
+**https://digitalpakt.nvibes.de**
+
+### Stakeholder
+
+- Schulen
+- Schulträger
+- Projektteam
+- Trainer bzw. fachliche Ansprechpartner
+- potenzielle Anwender der Anwendung
+
+### Risiken
+
+- begrenzter Projektzeitraum
+- unklare oder sich ändernde fachliche Anforderungen
+- Abhängigkeiten von Azure, DNS und Cloudflare
+- mögliche Verzögerungen bei Infrastruktur oder Deployment
+- unterschiedliche Förderbedingungen und Richtlinien der Bundesländer
+- fachliche Kriterien dürfen nicht als verbindliche Förderentscheidung dargestellt werden
+- technische Abhängigkeiten zwischen Infrastruktur, Anwendung und Deployment
+
+### Vorgehensweise
+
+Das Projekt wird in **genau drei Sprints** umgesetzt:
+
+1. **Sprint 1 – Infrastruktur**
+2. **Sprint 2 – Erfassen & Prüfen**
+3. **Sprint 3 – Auswerten & Handeln**
+
+Jeder Sprint liefert ein funktionsfähiges und demonstrierbares Increment.
+
+## Scrum-Team und Accountabilities
+
+Die Scrum-Accountabilities werden zu Projektbeginn gemeinsam im Team festgelegt.
+
+### Product Owner
+
+**Name:** _wird im Kick-off eingetragen_
+
+Verantwortlich für:
+
+- Product Goal
+- Priorisierung des Product Backlogs
+- fachliche Anforderungen
+- Stakeholder-Abstimmung
+- Transparenz und Verständlichkeit der Product Backlog Items
+
+### Scrum Master
+
+**Name:** _wird im Kick-off eingetragen_
+
+Verantwortlich für:
+
+- Unterstützung des Scrum-Prozesses
+- Moderation und Unterstützung der Scrum Events
+- Sichtbarmachung und Beseitigung von Hindernissen
+- Förderung der Selbstorganisation des Teams
+- Unterstützung kontinuierlicher Verbesserung
+
+### Developers
+
+**Teammitglieder:** _werden im Kick-off eingetragen_
+
+Verantwortlich für:
+
+- Umsetzung der Sprint-Ziele
+- Planung des Sprint Backlogs
+- technische und fachliche Lösungsfindung
+- Qualität des Increments
+- gemeinsame Schätzung der Product Backlog Items
+- laufende Anpassung des Arbeitsplans innerhalb des Sprints
+
+> Die konkrete Rollenverteilung und die Namen der Teammitglieder werden im Kick-off ergänzt, damit die Verantwortlichkeiten gemeinsam vereinbart und nicht vorweggenommen werden.
 
 ## Geplanter Nutzerablauf
 
@@ -85,75 +172,141 @@ Aus den Prüfergebnissen werden konkrete nächste Schritte abgeleitet, damit die
 
 ### Prüfbericht
 
-Optional soll eine kompakte Zusammenfassung des Vorhabens und der Prüfergebnisse erzeugt werden können.
+Eine kompakte Zusammenfassung des Vorhabens und der Prüfergebnisse soll als druckbare Ansicht bzw. Prüfbericht bereitgestellt werden.
 
-## Scrum-Projekt
+## Scrum-Projekt und Sprint-Struktur
 
-Das Produkt wird im Rahmen eines agilen Scrum-Projekts entwickelt.
+### Sprint 1 – Infrastruktur
 
-### Sprint 1 – Vorhaben erfassen
+**Zeitraum:** 28.09.2026 – 29.09.2026
+
+**Epic:** Azure-App-Architektur bereitstellen
 
 **Sprint Goal:**  
-Ein Nutzer kann ein Digitalisierungsvorhaben vollständig erfassen und als strukturierten Datensatz anzeigen.
+Die technische Basis der Anwendung wird bereitgestellt, sodass die PWA öffentlich unter **https://digitalpakt.nvibes.de** erreichbar ist.
 
-**Geplantes Increment:**
+**Sprint-Increment:**
 
-- Startseite
-- Erfassungsformular
-- Stammdaten zum Vorhaben
-- Maßnahmenbeschreibung
+- Azure-Hosting-Basis
+- Linux-System
+- Nginx
+- Node.js-/React-PWA-Build-Umgebung
+- GitHub-Anbindung
+- DNS und Cloudflare
+- HTTPS/TLS
+- öffentlich erreichbare Landingpage **„DigitalPakt 2.0“**
+
+### Sprint 2 – Erfassen & Prüfen
+
+**Zeitraum:** 30.09.2026 – 02.10.2026
+
+**Epic:** Digitalisierungsvorhaben erfassen und vorprüfen
+
+**Sprint Goal:**  
+Schulen bzw. Schulträger können ein Digitalisierungsvorhaben vollständig erfassen und anhand erster definierter Kriterien vorprüfen.
+
+**Sprint-Increment:**
+
+- Projektdaten erfassen
+- Bundesland, Schule und Schulträger
+- geplante Maßnahmen
 - Kostenrahmen
-- Zusammenfassung des erfassten Vorhabens
-
-### Sprint 2 – Vorhaben prüfen
-
-**Sprint Goal:**  
-Ein Nutzer kann sein erfasstes Vorhaben anhand definierter Kriterien vorprüfen.
-
-**Geplantes Increment:**
-
-- Kriterienbasierter Fragenkatalog
+- Prüffragen
 - Status je Prüfkriterium
-- Erkennung offener Punkte
-- Ergebnisübersicht
-- erste Handlungshinweise
+- offene Punkte erkennen
+- strukturierte Vorprüfung anzeigen
 
-### Sprint 3 – Handlungsempfehlungen und Prüfbericht
+### Sprint 3 – Auswerten & Handeln
+
+**Zeitraum:** 03.10.2026 – 05.10.2026
+
+**Epic:** Auswertung, Handlungsempfehlungen und Prüfbericht bereitstellen
 
 **Sprint Goal:**  
-Ein Nutzer erhält aus der Vorprüfung konkrete nächste Schritte und eine nutzbare Zusammenfassung.
+Aus der Vorprüfung entsteht eine verständliche Auswertung mit konkreten nächsten Schritten.
 
-**Geplantes Increment:**
+**Sprint-Increment:**
 
-- priorisierte Handlungsbedarfe
-- nächste Schritte
-- Maßnahmenübersicht
+- Ergebnisübersicht
+- erfüllte, offene und kritische Punkte
+- Handlungsempfehlungen
+- priorisierte nächste Schritte
 - Prüfbericht bzw. Druckansicht
-- überarbeitete Benutzerführung auf Basis des Stakeholder-Feedbacks
+- UX-Feinschliff
+- Umsetzung relevanten Stakeholder-Feedbacks
 
 ## Inkrementelles Produktverständnis
 
-Jeder Sprint soll ein **funktionsfähiges und nutzbares Increment** liefern.
+Jeder Sprint liefert ein **funktionsfähiges und nutzbares Increment**.
 
 Der Produktfortschritt folgt dem Prinzip:
 
-**Erfassen → Prüfen → Handeln**
+**Infrastruktur → Erfassen & Prüfen → Auswerten & Handeln**
 
-Damit bleibt das Produkt nach jedem Sprint demonstrierbar und wird schrittweise erweitert.
+Am Ende von Sprint 3 ist der vollständige Nutzerfluss nutzbar:
+
+**Erfassen → Prüfen → Auswerten → Handeln**
 
 ## Definition of Done
 
-Ein Product Backlog Item gilt grundsätzlich als abgeschlossen, wenn:
+Die folgende Definition of Done gilt **zentral für das gesamte Projekt**.
 
-- die vereinbarte Funktion vollständig implementiert ist,
-- die Akzeptanzkriterien erfüllt sind,
-- die Funktion getestet wurde,
-- keine bekannten kritischen Fehler bestehen,
-- die Funktion in das bestehende Increment integriert ist,
-- das Ergebnis dokumentiert ist,
-- und die Funktion im Sprint Review demonstriert werden kann.
+Ein Product Backlog Item gilt als **Done**, wenn:
 
-Die Definition of Done kann im Projektverlauf durch Erkenntnisse aus den Retrospektiven weiterentwickelt werden.
+- [ ] alle vereinbarten Akzeptanzkriterien erfüllt sind,
+- [ ] die Umsetzung vollständig und funktionsfähig ist,
+- [ ] notwendige Tests durchgeführt wurden,
+- [ ] keine bekannten kritischen Fehler bestehen,
+- [ ] die Funktion in das aktuelle Increment integriert ist,
+- [ ] relevante Dokumentation aktualisiert wurde,
+- [ ] die Umsetzung im GitHub Project nachvollziehbar dokumentiert ist,
+- [ ] das Ergebnis im Sprint Review demonstriert werden kann.
+
+Für technische Änderungen gilt zusätzlich:
+
+- [ ] Secrets, Passwörter und private Schlüssel befinden sich nicht im Repository,
+- [ ] Änderungen sind versioniert und reproduzierbar,
+- [ ] die bestehende Anwendung wird durch die Änderung nicht erkennbar beschädigt.
+
+Die Definition of Done kann im Projektverlauf durch Erkenntnisse aus den Retrospektiven gemeinsam weiterentwickelt werden. Änderungen werden transparent dokumentiert.
+
+## Product Backlog und Refinement
+
+Das Product Backlog wird bewusst **nicht vollständig im Voraus festgelegt**.
+
+Product Backlog Items werden gemeinsam im Team:
+
+- vorgeschlagen,
+- diskutiert,
+- fachlich präzisiert,
+- priorisiert,
+- mit Akzeptanzkriterien versehen,
+- geschätzt,
+- und geeigneten Sprints zugeordnet.
+
+Damit bleibt ausreichend Raum für Team-Ownership, Stakeholder-Feedback und Erkenntnisse aus Reviews und Retrospektiven.
+
+## Scrum Events
+
+### Sprint Planning
+
+Zu Beginn jedes Sprints werden Sprint Goal, relevante Product Backlog Items und der geplante Arbeitsumfang gemeinsam festgelegt.
+
+### Daily Scrum
+
+Während der Sprints stimmt sich das Development Team regelmäßig über Fortschritt, nächste Schritte und Hindernisse ab.
+
+### Backlog Refinement
+
+Das Product Backlog wird während des Projekts kontinuierlich präzisiert und an neue Erkenntnisse angepasst.
+
+### Sprint Review
+
+Nach jedem Sprint wird das entstandene Increment demonstriert. Stakeholder-Feedback wird dokumentiert und bei Bedarf in das Product Backlog übernommen.
+
+### Sprint Retrospektive
+
+Nach jedem Sprint reflektiert das Team die Zusammenarbeit und legt mindestens eine konkrete Verbesserungsmaßnahme für den folgenden Sprint fest.
 
 ## Scrum-Artefakte und Dokumentation
 
@@ -163,20 +316,38 @@ Im Projekt werden unter anderem folgende Artefakte gepflegt:
 - Product Backlog
 - Sprint Backlogs
 - Sprint Goals
-- User Stories
+- Epics
+- User Stories und Tasks
 - Akzeptanzkriterien
 - Definition of Done
+- Story Points
+- Prioritäten
 - Sprint Reviews
 - Retrospektiven
 - Stakeholder-Feedback
 - Entscheidungen und Änderungen am Backlog
 - Screenshots der jeweiligen Inkremente
+- GitHub Project Board und Sprint-Visualisierung
 
-Die Dokumentation soll nachvollziehbar zeigen, **wie sich Produkt und Arbeitsweise über die Sprints entwickeln**.
+Die Dokumentation soll nachvollziehbar zeigen, **wie sich Produkt und Arbeitsweise über die drei Sprints entwickeln**.
+
+## KI-Nutzung und Quellen
+
+Der Einsatz von KI-Werkzeugen im Projekt ist zulässig und wird transparent dokumentiert.
+
+Dokumentiert werden insbesondere:
+
+- verwendetes KI-Werkzeug,
+- Zweck der Nutzung,
+- relevante Prompts bzw. Aufgabenstellungen,
+- wesentliche übernommene oder angepasste Ergebnisse,
+- fachliche Prüfung durch das Team.
+
+Fachliche Quellen zum DigitalPakt 2.0 werden ebenfalls nachvollziehbar dokumentiert.
 
 ## Projektzeitraum
 
-Geplanter Bearbeitungszeitraum der Abschlussarbeit:
+Bearbeitungszeitraum der Abschlussarbeit:
 
 **28.09.2026 – 05.10.2026**
 
