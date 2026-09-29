@@ -9,6 +9,19 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <main className="page-shell">
       <section className="hero" aria-labelledby="page-title">
+        <div className="hero-logos">
+          <img
+            className="hero-logo hero-logo-ministry"
+            src="/logo-bmbfsfj-weisser-hintergrund-data.svg"
+            alt="BMBFSFJ"
+          />
+          <img
+            className="hero-logo hero-logo-digitalpakt"
+            src="/digitalpaktschule.svg"
+            alt="DigitalPakt Schule"
+          />
+        </div>
+
         <p className="eyebrow">DigitalPakt 2.0 · Förderfähigkeit vorprüfen</p>
 
         <h1 id="page-title">

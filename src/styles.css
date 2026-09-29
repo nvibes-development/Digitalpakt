@@ -32,6 +32,26 @@ body { margin: 0; min-width: 320px; }
   width: 100%;
 }
 
+.hero-logos {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.hero-logo {
+  display: block;
+  height: auto;
+  max-height: 4rem;
+  max-width: calc(50% - .5rem);
+  object-fit: contain;
+}
+
+.hero-logo-ministry { width: min(14rem, 52%); }
+
+.hero-logo-digitalpakt { width: min(10rem, 42%); }
+
 .eyebrow {
   color: #14617a;
   font-size: .875rem;
@@ -160,6 +180,10 @@ h2 {
 
   .hero,
   .info-section { border-radius: 1rem; }
+
+  .hero-logos { align-items: center; }
+
+  .hero-logo { max-height: 3.25rem; }
 
   h1 { overflow-wrap: anywhere; }
 
