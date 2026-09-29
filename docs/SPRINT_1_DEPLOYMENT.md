@@ -64,7 +64,7 @@ Zusätzlich im Browser prüfen: sichtbares H1, Desktop- und schmale Darstellung,
 
 ### Bereitstellung und Bereinigung
 
-- GitHub `main` ist der Deployment-Input; der produktive Checkout unter `/srv/digitalpakt/app` und der aktive atomare Release unter `/srv/digitalpakt/current` stehen auf Commit `317530a9861f540100ae4fd10f9b68b1b35b7171`.
+- GitHub `main` ist der einzige Deployment-Input. Der produktive Checkout unter `/srv/digitalpakt/app` und der atomare Release unter `/srv/digitalpakt/current` werden bei jedem Release auf den jeweils aktuell verifizierten GitHub-`main`-Commit aktualisiert; der aktive Commit wird über den Release-Pfad nachvollziehbar.
 - Der vormals ausschließlich für MARS // ROOM verwendete Pfad `/var/www/mars-experience`, der Dienst `mars-session-hub.service`, die zugehörige Nginx-Site, das frühere Let’s-Encrypt-Zertifikat und der zugehörige Cloudflare-DNS-Record wurden entfernt. Es wurden keine anderen nVibes-Produktionsressourcen geändert.
 - Die bestehende Azure-VM wird als technische Basis weiterverwendet. Ihr Azure-Ressourcenname und Hostname sind historische Bezeichner und wurden nicht als vermeintlich umbenennbare Ressourcen verändert.
 
