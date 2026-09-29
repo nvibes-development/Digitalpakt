@@ -1,18 +1,51 @@
 # Product Backlog – Fachliche Struktur
 
-Diese Datei dokumentiert die vom Team definierte fachliche Backlog-Struktur. Die operative Planung, Sprint-Zuordnung und Story-Point-Schätzung erfolgt im GitHub Project durch das Team.
+Diese Datei dokumentiert die fachliche Backlog-Struktur nach der Überprüfung der User Stories durch UAT & QA. Es wurden **keine neuen Epics oder Product Items** angelegt; vorhandene Inhalte und Zuordnungen wurden fachlich präzisiert.
 
-## Fachliche Epics
+## Überarbeitete User Stories
+
+### US-01 – Angaben zur Schule erfassen
+
+Als Schulleitung möchte ich Angaben zu unserer Schule eingeben können, damit ich feststellen kann, ob unsere Schule zu einer förderfähigen Schulkategorie gehört.
+
+### US-02 – Antragsberechtigung prüfen
+
+Als Schulleitung möchte ich erfahren, ob meine Schule grundsätzlich antragsberechtigt ist, damit ich weiß, ob ich mit der Prüfung der geplanten Digitalisierungsmaßnahme fortfahren kann.
+
+### US-03 – Digitalisierungsmaßnahme und Rahmendaten erfassen
+
+Als Schulleitung möchte ich meine geplante Digitalisierungsmaßnahme und die dafür relevanten Rahmendaten unserer Schule erfassen, damit die Förderfähigkeit der Maßnahme geprüft werden kann.
+
+### US-04 – Förderbereich auswählen
+
+Als Schulleitung möchte ich meine Maßnahme einem Förderbereich zuordnen, damit die passenden Förderkriterien angewendet werden.
+
+### US-05 – Förderkriterien beantworten
+
+Als Schulleitung möchte ich gezielte Fragen zu meiner Maßnahme beantworten, damit die Anwendung deren Förderfähigkeit bewerten kann.
+
+### US-06 – Gesamtergebnis erhalten
+
+Als Schulleitung möchte ich ein Gesamtergebnis erhalten, damit ich erkenne, ob unsere Schule für die geplante Maßnahme grundsätzlich einen Förderantrag stellen kann.
+
+### US-07 – Ergebnis nachvollziehen
+
+Als Schulleitung möchte ich verstehen, wie das Ergebnis zustande gekommen ist, damit ich die Bewertung nachvollziehen kann.
+
+### US-08 – Nächste Schritte erkennen
+
+Als Schulleitung möchte ich empfohlene nächste Schritte erhalten, damit ich die weitere Vorbereitung des Förderantrags planen kann.
+
+## Fachliche Epics und Zuordnung
 
 ### Epic 1 – Einstieg für Schulleitungen
 
 GitHub: #13
 
-- US-01 (Must): Förderfähigkeitscheck starten
-- US-02 (Must): grundlegende Angaben zur Schule machen
-- US-03 (Must): zu prüfende Digitalisierungsmaßnahme angeben
-- US-04 (Should): Ablauf des Prüfprozesses erkennen
-- US-05 (Should): Check unterbrechen und später fortsetzen
+Schwerpunkt:
+
+- US-01 – Angaben zur Schule erfassen
+- US-02 – Antragsberechtigung prüfen
 
 Product Items: PI-01, PI-02, PI-06
 
@@ -20,12 +53,9 @@ Product Items: PI-01, PI-02, PI-06
 
 GitHub: #14
 
-- US-06 (Must): geplante Digitalisierungsmaßnahme beschreiben
-- US-07 (Must): Maßnahme einem Förderbereich zuordnen
-- US-08 (Should): Status geplant / beantragt / umgesetzt angeben
-- US-09 (Should): voraussichtliche Kosten angeben
-- US-10 (Should): Umsetzungszeitraum angeben
-- US-11 (Should): relevante Dokumente / Nachweise hinterlegen
+Schwerpunkt:
+
+- US-03 – Digitalisierungsmaßnahme und Rahmendaten erfassen
 
 Product Item: PI-03
 
@@ -33,7 +63,17 @@ Product Item: PI-03
 
 GitHub: #15
 
-Das System bestimmt aus der Maßnahme die relevanten Förderbereiche und vermeidet unnötige Fragen.
+Schwerpunkt:
+
+- US-04 – Förderbereich auswählen
+
+MVP-Förderbereiche:
+
+1. IT-Infrastruktur, Netzwerk und WLAN
+2. Digitale Endgeräte
+3. Bildungssoftware und digitale Lernplattformen
+
+Pro Prüfung wird genau ein Förderbereich ausgewählt.
 
 Product Item: PI-04
 
@@ -41,10 +81,9 @@ Product Item: PI-04
 
 GitHub: #16
 
-- US-12 bis US-19 bilden die zentrale fachliche Prüfung ab.
-- Der Nutzer beantwortet nur relevante Fragen.
-- Fehlende Angaben, Voraussetzungen und Nachweise werden sichtbar.
-- Das Prüfergebnis muss nachvollziehbar sein.
+Schwerpunkt:
+
+- US-05 – Förderkriterien beantworten
 
 Product Item: PI-05
 
@@ -52,7 +91,11 @@ Product Item: PI-05
 
 GitHub: #17
 
-Der technische und fachliche Kern wertet die Antworten anhand hinterlegter Förderregeln aus und bestimmt den Förderstatus.
+Schwerpunkte:
+
+- US-02 – Antragsberechtigung prüfen
+- US-05 – Förderkriterien beantworten
+- US-06 – Gesamtergebnis erhalten
 
 Product Items: PI-07, PI-08
 
@@ -60,7 +103,11 @@ Product Items: PI-07, PI-08
 
 GitHub: #18
 
-Das Ergebnis enthält Förderstatus, Begründung, erfüllte und fehlende Voraussetzungen, Nachweise, Regelgrundlage und nächste Schritte.
+Schwerpunkte:
+
+- US-06 – Gesamtergebnis erhalten
+- US-07 – Ergebnis nachvollziehen
+- US-08 – Nächste Schritte erkennen
 
 Product Items: PI-09 bis PI-13
 
@@ -68,8 +115,7 @@ Product Items: PI-09 bis PI-13
 
 GitHub: #19
 
-- US-20 bis US-24
-- Für den ersten Release bewusst schlank halten.
+Dieses Epic bleibt bestehen, liegt aber außerhalb der neuen Kern-User-Stories und wird für den ersten Release bewusst schlank behandelt.
 
 Product Items: PI-14 bis PI-16
 
@@ -77,37 +123,33 @@ Product Items: PI-14 bis PI-16
 
 GitHub: #20
 
-Erweiterung nach dem eigentlichen Förderfähigkeitscheck. Aus mehreren Einzelprüfungen entsteht ein Digitalisierungsbild der Schule.
+Erweiterung nach dem eigentlichen Förderfähigkeitscheck. Für dieses Epic wurden keine neuen Product Items angelegt.
 
-Im Teamkonzept wurden hierfür noch keine eigenen Product Items spezifiziert.
+## Product Items
 
-## Product Items für den MVP
-
-| ID | Product Item | Zugehörige US | Priorität | GitHub |
+| ID | Product Item | Bezug zu User Story | Priorität | GitHub |
 |---|---|---|---|---|
-| PI-01 | Förderfähigkeitscheck starten | US-01, US-04 | Must | #21 |
-| PI-02 | Förderrelevante Schuldaten erfassen | US-02 | Must | #22 |
-| PI-03 | Digitalisierungsmaßnahme erfassen | US-03, US-06, US-08–10 | Must | #23 |
-| PI-04 | Förderbereich zur Maßnahme bestimmen | US-07, US-13 | Must | #24 |
-| PI-05 | Dynamischen Fragenkatalog bereitstellen | US-12–14 | Must | #25 |
-| PI-06 | Antworten und Bearbeitungsstand speichern | US-05, US-14 | Must | #26 |
-| PI-07 | Förderregeln auf Antworten anwenden | US-12, US-15 | Must | #27 |
-| PI-08 | Förderstatus bestimmen | US-15, US-17 | Must | #28 |
-| PI-09 | Prüfergebnis nachvollziehbar begründen | US-16, US-17 | Must | #29 |
-| PI-10 | Fehlende Voraussetzungen und Nachweise anzeigen | US-14, US-18 | Must | #30 |
-| PI-11 | Zugrunde liegende Förderregeln anzeigen | US-19 | Must | #31 |
-| PI-12 | Nächste Schritte ausgeben | Ergebnis-Epic | Must | #32 |
-| PI-13 | Prüfergebnis speichern und exportieren | MVP-Schritt 9 | Should | #33 |
-| PI-14 | Weitere Maßnahme anlegen | US-20 | Must | #34 |
-| PI-15 | Maßnahmenübersicht bereitstellen | US-21, US-23 | Must | #35 |
-| PI-16 | Maßnahme erneut prüfen | US-24 | Should | #36 |
+| PI-01 | Förderfähigkeitscheck starten | unterstützt US-01 / US-02 | Must | #21 |
+| PI-02 | Förderrelevante Schuldaten erfassen | US-01 | Must | #22 |
+| PI-03 | Digitalisierungsmaßnahme erfassen | US-03 | Must | #23 |
+| PI-04 | Förderbereich zur Maßnahme bestimmen | US-04 | Must | #24 |
+| PI-05 | Dynamischen Fragenkatalog bereitstellen | US-05 | Must | #25 |
+| PI-06 | Antworten und Bearbeitungsstand speichern | unterstützend für US-01 bis US-05 | Must | #26 |
+| PI-07 | Förderregeln auf Antworten anwenden | US-02 / US-05 | Must | #27 |
+| PI-08 | Förderstatus bestimmen | US-02 / US-06 | Must | #28 |
+| PI-09 | Prüfergebnis nachvollziehbar begründen | US-07 | Must | #29 |
+| PI-10 | Fehlende Voraussetzungen und Nachweise anzeigen | US-07 / US-08 | Must | #30 |
+| PI-11 | Zugrunde liegende Förderregeln anzeigen | US-07 | Must | #31 |
+| PI-12 | Nächste Schritte ausgeben | US-08 | Must | #32 |
+| PI-13 | Prüfergebnis speichern und exportieren | unterstützend für US-06 bis US-08 | Should | #33 |
+| PI-14 | Weitere Maßnahme anlegen | außerhalb der neuen Kern-User-Stories | Must | #34 |
+| PI-15 | Maßnahmenübersicht bereitstellen | außerhalb der neuen Kern-User-Stories | Must | #35 |
+| PI-16 | Maßnahme erneut prüfen | außerhalb der neuen Kern-User-Stories | Should | #36 |
 
 ## Sprint-Rahmen
 
-Die fachlichen Epics und Product Items werden im Refinement durch das Team in den bestehenden Sprint-Rahmen eingeordnet:
-
 - **Sprint 1:** Infrastruktur
-- **Sprint 2:** Erfassen & Prüfen
-- **Sprint 3:** Auswerten & Handeln
+- **Sprint 2:** Antragsberechtigung & Maßnahmenprüfung
+- **Sprint 3:** Gesamtergebnis & nächste Schritte
 
-Die Zuordnung ist bewusst nicht vollständig vorweggenommen, damit das Team im Refinement und Sprint Planning priorisieren und schätzen kann.
+Die operative Priorisierung, Story-Point-Schätzung und Verantwortungszuordnung erfolgt weiterhin im GitHub Project durch das Team.
