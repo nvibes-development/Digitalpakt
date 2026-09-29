@@ -44,6 +44,7 @@ Die detaillierte, vom Team erarbeitete Produktdefinition und Backlog-Struktur is
 - [Produktdefinition](docs/PRODUCT_DEFINITION.md)
 - [Product Backlog](docs/PRODUCT_BACKLOG.md)
 - [Fachliche Akzeptanzkriterien & Definition of Done](docs/ACCEPTANCE_CRITERIA.md)
+- [Projektteam & Rollen](docs/TEAM.md)
 
 ## Projekt-Kick-off
 
@@ -91,11 +92,11 @@ Jeder Sprint liefert ein funktionsfähiges und demonstrierbares Increment.
 
 ## Scrum-Team und Accountabilities
 
-Die Scrum-Accountabilities werden zu Projektbeginn gemeinsam im Team festgelegt.
+Das Projektteam besteht aus vier Mitgliedern mit klar verteilten Scrum- und Fachverantwortlichkeiten.
 
-### Product Owner
+### Product Owner & Marketingspezialistin
 
-**Name:** _wird im Kick-off eingetragen_
+**Anelia Zhilisbayev**
 
 Verantwortlich für:
 
@@ -104,10 +105,12 @@ Verantwortlich für:
 - fachliche Anforderungen
 - Stakeholder-Abstimmung
 - Transparenz und Verständlichkeit der Product Backlog Items
+- Markt- und Zielgruppenperspektive
+- Kommunikation des Produktnutzens
 
-### Scrum Master
+### Scrum Master, Azure Architect & Developer
 
-**Name:** _wird im Kick-off eingetragen_
+**Christian Schreiber**
 
 Verantwortlich für:
 
@@ -116,21 +119,48 @@ Verantwortlich für:
 - Sichtbarmachung und Beseitigung von Hindernissen
 - Förderung der Selbstorganisation des Teams
 - Unterstützung kontinuierlicher Verbesserung
+- Azure-Architektur und technische Infrastruktur
+- Entwicklung und Integration des Produkts
 
-### Developers
+### Automatisierungsexperte & Developer
 
-**Teammitglieder:** _werden im Kick-off eingetragen_
+**Mohamad Feras Arman**
 
 Verantwortlich für:
 
-- Umsetzung der Sprint-Ziele
-- Planung des Sprint Backlogs
-- technische und fachliche Lösungsfindung
-- Qualität des Increments
-- gemeinsame Schätzung der Product Backlog Items
-- laufende Anpassung des Arbeitsplans innerhalb des Sprints
+- Automatisierung von Abläufen und technischen Prozessen
+- Entwicklung und technische Umsetzung
+- Unterstützung bei Integrationen und Workflows
+- Mitarbeit an Sprint-Zielen und Increments
+- technische Qualität der umgesetzten Funktionen
 
-> Die konkrete Rollenverteilung und die Namen der Teammitglieder werden im Kick-off ergänzt, damit die Verantwortlichkeiten gemeinsam vereinbart und nicht vorweggenommen werden.
+### UAT & QA
+
+**Viktoriia Iakobchuk**
+
+Verantwortlich für:
+
+- User Acceptance Testing (UAT)
+- Qualitätssicherung
+- Prüfung der Akzeptanzkriterien
+- funktionale Tests der Inkremente
+- Dokumentation von Fehlern und Abweichungen
+- Unterstützung bei Sprint Reviews und Abnahme der umgesetzten Funktionen
+
+### Gemeinsame Verantwortung des Teams
+
+Alle Teammitglieder wirken gemeinsam an:
+
+- Sprint Planning
+- Backlog Refinement
+- Aufwandsschätzung
+- Umsetzung der Sprint-Ziele
+- Qualität des jeweiligen Increments
+- Sprint Review
+- Retrospektive
+- kontinuierlicher Verbesserung
+
+Eine ausführlichere Rollenübersicht befindet sich in [docs/TEAM.md](docs/TEAM.md).
 
 ## Kernprozess
 
