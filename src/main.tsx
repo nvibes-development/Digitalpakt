@@ -55,6 +55,16 @@ createRoot(document.getElementById('root')!).render(
           Der DigitalPakt 2.0 verbindet digitale Infrastruktur mit Schul- und
           Unterrichtsentwicklung sowie der Qualifizierung von Lehrkräften.
         </p>
+
+        <video
+          className="info-video"
+          controls
+          preload="metadata"
+          aria-label="Video zum DigitalPakt 2.0"
+        >
+          <source src="/23863_8b714eb56486490_web.mp4" type="video/mp4" />
+          Ihr Browser unterstützt keine eingebetteten Videos.
+        </video>
       </section>
     </main>
   </StrictMode>,
