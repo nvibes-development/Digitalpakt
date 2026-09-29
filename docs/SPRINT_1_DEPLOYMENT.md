@@ -1,6 +1,6 @@
 # Sprint 1 – Deployment und Betrieb
 
-> **Status:** Deployment-Vorlage. Live-Werte und ausgeführte Schritte werden erst nach unabhängiger Prüfung der Azure-VM dokumentiert.
+> **Status:** Produktive Bereitstellung am 2026-09-29 verifiziert. Diese Datei enthält weiterhin den reproduzierbaren Ablauf und zusätzlich den nicht-sensitiven Produktionsnachweis.
 
 ## Architektur
 
@@ -59,3 +59,29 @@ curl --head http://digitalpakt.nvibes.de/
 ```
 
 Zusätzlich im Browser prüfen: sichtbares H1, Desktop- und schmale Darstellung, installierbares Manifest, Service-Worker-Registrierung sowie keine kritischen Konsolenfehler.
+
+## Produktionsnachweis – 2026-09-29
+
+### Bereitstellung und Bereinigung
+
+- GitHub `main` ist der Deployment-Input; der produktive Checkout unter `/srv/digitalpakt/app` und der aktive atomare Release unter `/srv/digitalpakt/current` stehen auf Commit `317530a9861f540100ae4fd10f9b68b1b35b7171`.
+- Der vormals ausschließlich für MARS // ROOM verwendete Pfad `/var/www/mars-experience`, der Dienst `mars-session-hub.service`, die zugehörige Nginx-Site, das frühere Let’s-Encrypt-Zertifikat und der zugehörige Cloudflare-DNS-Record wurden entfernt. Es wurden keine anderen nVibes-Produktionsressourcen geändert.
+- Die bestehende Azure-VM wird als technische Basis weiterverwendet. Ihr Azure-Ressourcenname und Hostname sind historische Bezeichner und wurden nicht als vermeintlich umbenennbare Ressourcen verändert.
+
+### Server-Basis
+
+- Debian 13 ist aktualisiert; der Cloud-Kernel `6.12.111+deb13-cloud-amd64` wurde installiert und nach einem kontrollierten Neustart verifiziert. Zum Prüfzeitpunkt waren keine Paketupdates und kein Neustart ausstehend.
+- Nginx `1.26.3`, Git `2.47.3`, Node.js `22.23.3` und npm `10.9.9` sind installiert.
+- UFW verwendet eingehend `deny` als Standard und erlaubt nur TCP 22, 80 und 443. Die abschließende Azure-NSG-Inventarisierung erfordert einen erneuerten Azure-MFA-Login und ist als verbleibender Infrastruktur-Nachweis offen.
+
+### DNS und TLS
+
+- Cloudflare Zone `nvibes.de`: `digitalpakt.nvibes.de` ist ein proxied A-Record mit der bestätigten VM-Origin-IP `20.113.176.159`; der Zonenmodus ist `Full (strict)`.
+- Ein Let’s-Encrypt-Zertifikat für `digitalpakt.nvibes.de` ist installiert. Certbot-Erneuerung wurde per Dry Run erfolgreich geprüft; Schlüssel verbleiben ausschließlich unter `/etc/letsencrypt/`.
+- Nginx erzwingt HTTP → HTTPS und liefert Sicherheitsheader. `nginx -t` wurde vor jedem Reload erfolgreich ausgeführt.
+
+### Validierung
+
+- Auf der VM bestanden `npm ci`, `npm run check`, `npm run build`, die PWA-Generierung sowie der versionierte atomare Deployment-Ablauf.
+- Origin- und öffentliche HTTPS-Requests lieferten HTTP 200 für `/`, `/manifest.webmanifest` und `/sw.js`; HTTP liefert einen HTTPS-Redirect.
+- Die finale Browser-Visual-/Konsole-Prüfung ist nicht automatisiert dokumentiert, weil der vorhandene Edge-Control-Controller in dieser Sitzung nicht erreichbar war. Die React-Quelle und das ausgelieferte Bundle enthalten das geforderte H1; die responsive Regel für schmale Breiten ist versioniert.
