@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
+      includeAssets: ['favicon.ico'],
       manifest: {
         name: 'DigitalPakt Check',
         short_name: 'DigitalPakt',
