@@ -6,17 +6,23 @@ Eine Web-App zur strukturierten Vorprüfung von Digitalisierungsvorhaben im Kont
 
 ## Ziel der App
 
-Schulleitungen können geplante oder bereits identifizierte Digitalisierungsmaßnahmen ihrer Schule erfassen und systematisch prüfen, ob und unter welchen Voraussetzungen diese grundsätzlich förderfähig sind.
+Der Prototyp prüft zunächst die **Antragsberechtigung der Schule** und anschließend die **Förderfähigkeit einer geplanten Digitalisierungsmaßnahme**.
 
-Die Anwendung führt die Schulleitung durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung.
+Die Anwendung führt die Schulleitung durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung. Die Ergebnisse dienen als **unverbindliche Ersteinschätzung**.
 
-Das System gibt nicht nur „Ja/Nein“ aus, sondern unterscheidet:
+Für die Schule wird unterschieden zwischen:
 
-- 🟢 **Grundsätzlich förderfähig**
-- 🟡 **Förderfähigkeit noch nicht abschließend prüfbar**
-- 🔴 **Nach den hinterlegten Kriterien derzeit nicht förderfähig**
+- **antragsberechtigt**
+- **nicht abschließend prüfbar**
+- **nicht antragsberechtigt**
 
-Dazu werden – soweit relevant – Begründung, erfüllte und fehlende Voraussetzungen, benötigte Nachweise, die zugrunde liegende Förderregel und empfohlene nächste Schritte dargestellt.
+Aus Antragsberechtigung und Maßnahmenprüfung entsteht anschließend ein Gesamtergebnis:
+
+- **Antrag grundsätzlich möglich**
+- **weitere Angaben oder Nachweise erforderlich**
+- **Antrag derzeit nicht möglich**
+
+Dazu werden Begründung, erfüllte und nicht erfüllte Voraussetzungen, fehlende Angaben, benötigte Nachweise, verwendete Förderkriterien und empfohlene nächste Schritte dargestellt.
 
 Die App dient als **Orientierungs- und Vorbereitungshilfe**. Sie ersetzt keine rechtsverbindliche Prüfung, keine Förderberatung und keine Förderentscheidung durch die zuständigen Stellen.
 
@@ -35,7 +41,7 @@ Die Vorbereitung eines Digitalisierungsvorhabens kann für Schulen und Schulträ
 
 ## Product Goal
 
-> Schulleitungen können geplante oder bereits identifizierte Digitalisierungsmaßnahmen ihrer Schule erfassen und systematisch prüfen, ob und unter welchen Voraussetzungen diese grundsätzlich förderfähig sind. Die Anwendung führt die Schulleitung dabei durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung.
+> Schulleitungen können Angaben zu ihrer Schule und zu einer geplanten Digitalisierungsmaßnahme erfassen und eine unverbindliche Ersteinschätzung erhalten, ob die Schule grundsätzlich antragsberechtigt ist und ob für die geplante Maßnahme nach den hinterlegten Kriterien grundsätzlich ein Förderantrag möglich sein könnte.
 
 ## Fachliche Projektdokumentation
 
@@ -164,19 +170,15 @@ Eine ausführlichere Rollenübersicht befindet sich in [docs/TEAM.md](docs/TEAM.
 
 ## Kernprozess
 
-**Schulleitung → Maßnahme beschreiben → Fragen beantworten → Förderfähigkeit prüfen → Ergebnis erhalten → nächste Schritte erkennen**
+**Schuldaten erfassen → Antragsberechtigung prüfen → Maßnahme erfassen → Förderbereich auswählen → Förderkriterien beantworten → Maßnahme auswerten → Gesamtergebnis erhalten → nächste Schritte erkennen**
 
-Der MVP folgt dabei diesem Ablauf:
+Der MVP unterstützt zunächst drei Förderbereiche:
 
-1. Schule erfassen
-2. Digitalisierungsmaßnahme beschreiben
-3. Förderbereich identifizieren
-4. Dynamischen Fragenkatalog beantworten
-5. Förderregeln anwenden
-6. Förderfähigkeit auswerten
-7. Ergebnis und Begründung anzeigen
-8. Fehlende Voraussetzungen / Nachweise anzeigen
-9. Ergebnis speichern / exportieren
+1. IT-Infrastruktur, Netzwerk und WLAN
+2. Digitale Endgeräte
+3. Bildungssoftware und digitale Lernplattformen
+
+Pro Prüfung wird genau ein Förderbereich ausgewählt. Weitere Förderbereiche werden als außerhalb des MVP gekennzeichnet.
 
 ## Geplante Kernfunktionen
 
@@ -234,18 +236,18 @@ Die technische Basis der Anwendung wird bereitgestellt, sodass die PWA öffentli
 **Epic:** Digitalisierungsvorhaben erfassen und vorprüfen
 
 **Sprint Goal:**  
-Schulen bzw. Schulträger können ein Digitalisierungsvorhaben vollständig erfassen und anhand erster definierter Kriterien vorprüfen.
+Die Schulleitung kann zunächst die grundsätzliche Antragsberechtigung der Schule prüfen und anschließend eine geplante Digitalisierungsmaßnahme anhand der MVP-Förderkriterien vorprüfen.
 
 **Sprint-Increment:**
 
-- Projektdaten erfassen
-- Bundesland, Schule und Schulträger
-- geplante Maßnahmen
-- Kostenrahmen
-- Prüffragen
-- Status je Prüfkriterium
-- offene Punkte erkennen
-- strukturierte Vorprüfung anzeigen
+- förderrelevante Schuldaten erfassen
+- Antragsberechtigung prüfen
+- Digitalisierungsmaßnahme und Rahmendaten erfassen
+- einen MVP-Förderbereich auswählen
+- Förderkriterien mit Ja / Nein / Nicht bekannt beantworten
+- fehlende Informationen erkennen
+- hinterlegte Förderregeln anwenden
+- vorläufiges Maßnahmenergebnis anzeigen
 
 ### Sprint 3 – Auswerten & Handeln
 
