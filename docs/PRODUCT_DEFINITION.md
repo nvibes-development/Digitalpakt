@@ -2,65 +2,62 @@
 
 ## Produktziel
 
-Schulleitungen können geplante oder bereits identifizierte Digitalisierungsmaßnahmen ihrer Schule erfassen und systematisch prüfen, ob und unter welchen Voraussetzungen diese grundsätzlich förderfähig sind.
+Der Prototyp prüft zunächst die **Antragsberechtigung der Schule** und anschließend die **Förderfähigkeit einer geplanten Digitalisierungsmaßnahme**.
 
-Die Anwendung führt die Schulleitung dabei durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung.
+Die Anwendung führt die Schulleitung durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung. Die Ergebnisse dienen als **unverbindliche Ersteinschätzung**.
 
 ## Kernprozess
 
-**Schulleitung → Maßnahme beschreiben → Fragen beantworten → Förderfähigkeit prüfen → Ergebnis erhalten → nächste Schritte erkennen**
+**Schuldaten erfassen → Antragsberechtigung prüfen → Maßnahme und Rahmendaten erfassen → Förderbereich auswählen → Förderkriterien beantworten → Maßnahme auswerten → Gesamtergebnis erhalten → nächste Schritte erkennen**
 
-Das System soll nicht nur ein einfaches Ja/Nein ausgeben, sondern genau einen der folgenden fachlichen Zustände:
+## Teilprüfung 1 – Antragsberechtigung der Schule
 
-- 🟢 **Grundsätzlich förderfähig**
-- 🟡 **Förderfähigkeit noch nicht abschließend prüfbar**
-- 🔴 **Nach den hinterlegten Kriterien derzeit nicht förderfähig**
+Mögliche Ergebnisse:
 
-Zu jedem Ergebnis sollen – soweit relevant – dargestellt werden:
+- **antragsberechtigt**
+- **nicht abschließend prüfbar**
+- **nicht antragsberechtigt**
 
-- Begründung
+Die Prüfung berücksichtigt insbesondere Bundesland, Schulart, allgemeinbildend/berufsbildend, Trägerschaft und – bei privaten Schulen – den Anerkennungsstatus.
+
+## Teilprüfung 2 – Förderfähigkeit der Maßnahme
+
+Die Schulleitung erfasst die geplante Digitalisierungsmaßnahme und die dafür relevanten Rahmendaten. Anschließend wird genau ein Förderbereich für die Prüfung ausgewählt.
+
+### Förderbereiche im MVP
+
+1. **IT-Infrastruktur, Netzwerk und WLAN**
+2. **Digitale Endgeräte**
+3. **Bildungssoftware und digitale Lernplattformen**
+
+Weitere Förderbereiche werden im Prototyp als **außerhalb des MVP** gekennzeichnet.
+
+Die Förderkriterien werden mit **Ja / Nein / Nicht bekannt** beantwortet.
+
+## Gesamtergebnis
+
+Beide Teilprüfungen werden zu einem Gesamtergebnis verknüpft:
+
+- **Antrag grundsätzlich möglich**
+- **weitere Angaben oder Nachweise erforderlich**
+- **Antrag derzeit nicht möglich**
+
+Zusätzlich werden dargestellt:
+
 - erfüllte Voraussetzungen
-- fehlende Voraussetzungen
-- benötigte Nachweise
-- zugrunde liegende Förderregel
+- nicht erfüllte Voraussetzungen
+- fehlende Angaben
+- erforderliche Nachweise
+- verwendete Förderkriterien
+- verständliche Begründung
 - empfohlene nächste Schritte
-
-## Förderbereiche
-
-Die fachliche Struktur berücksichtigt elf Förderbereiche:
-
-1. Internetversorgung / Breitband
-2. Medienentwicklungspläne
-3. Informationssicherheit und Datenschutz
-4. IT-Infrastruktur / Netzwerk / WLAN
-5. Anwendung und Nutzung von Endgeräten
-6. Räume und Logistik
-7. Lehrkräftefortbildung
-8. Beschaffung und Vergabeverfahren
-9. Projektmanagement in der Implementierungsphase
-10. Verwaltung und Management der Schul-IT
-11. Moderne Lernumgebungen / Bildungslandschaft der Zukunft
-
-Die Schulleitung soll nicht zwingend alle elf Bereiche bearbeiten müssen. Das System bestimmt aus den vorhandenen Angaben, welche Förderbereiche für die konkrete Maßnahme relevant sind, und stellt anschließend nur die dafür relevanten Fragen.
 
 ## MVP
 
 Der erste Produktkern lautet:
 
-> **„Ich bin Schulleitung. Ich habe eine Digitalisierungsmaßnahme. Ist diese grundsätzlich förderfähig und was muss ich dafür beachten?“**
-
-Der MVP-Prozess besteht aus:
-
-1. Schule erfassen
-2. Digitalisierungsmaßnahme beschreiben
-3. Förderbereich identifizieren
-4. Dynamischen Fragenkatalog beantworten
-5. Förderregeln anwenden
-6. Förderfähigkeit auswerten
-7. Ergebnis und Begründung anzeigen
-8. Fehlende Voraussetzungen / Nachweise anzeigen
-9. Ergebnis speichern / exportieren
+> **„Ich bin Schulleitung. Ist unsere Schule grundsätzlich antragsberechtigt und kann für unsere geplante Digitalisierungsmaßnahme nach den hinterlegten Kriterien grundsätzlich ein Förderantrag möglich sein?“**
 
 ## Abgrenzung
 
-Der DigitalPakt Check liefert eine strukturierte Vorprüfung der grundsätzlichen Förderfähigkeit. Das Ergebnis ist keine rechtsverbindliche Förderentscheidung oder Förderzusage.
+Der DigitalPakt Check liefert ausschließlich eine **unverbindliche Ersteinschätzung**. Das Ergebnis ist keine rechtsverbindliche Förderentscheidung oder Förderzusage.
