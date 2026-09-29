@@ -2,39 +2,81 @@
 
 ## Übergreifende fachliche Akzeptanzkriterien
 
-Die Förderlogik gilt nur dann als fachlich korrekt, wenn die folgenden Fälle reproduzierbar erfüllt werden.
+Die Förderlogik gilt nur dann als fachlich korrekt, wenn **Antragsberechtigung der Schule**, **Förderfähigkeit der Maßnahme** und **Gesamtergebnis** nachvollziehbar miteinander verknüpft werden.
 
-### 🟢 Grundsätzlich förderfähig
+## Teilprüfung 1 – Antragsberechtigung der Schule
 
-**Given** eine Maßnahme ist einem förderfähigen Bereich zugeordnet  
-**And** alle zwingenden Voraussetzungen sind erfüllt  
-**And** alle für die Entscheidung erforderlichen Informationen liegen vor  
-**When** die Förderfähigkeitsprüfung durchgeführt wird  
-**Then** lautet das Ergebnis 🟢 **„Grundsätzlich förderfähig“**.
+### Antragsberechtigt
 
-### 🟡 Förderfähigkeit noch nicht abschließend prüfbar
+**Given** alle für die Antragsberechtigung erforderlichen Pflichtangaben liegen vor  
+**And** die Schule erfüllt die hinterlegten Voraussetzungen  
+**When** die Antragsberechtigung geprüft wird  
+**Then** lautet das Ergebnis **„antragsberechtigt“**.
 
-**Given** mindestens eine entscheidungsrelevante Voraussetzung kann aufgrund fehlender Angaben oder Nachweise nicht geprüft werden  
-**And** es liegt keine bereits festgestellte Ausschlussbedingung vor  
-**When** die Prüfung durchgeführt wird  
-**Then** lautet das Ergebnis 🟡 **„Förderfähigkeit noch nicht abschließend prüfbar“**  
-**And** die fehlenden Angaben / Nachweise werden konkret benannt.
+### Nicht abschließend prüfbar
 
-### 🔴 Nach den hinterlegten Kriterien derzeit nicht förderfähig
+**Given** mindestens eine entscheidungsrelevante Angabe zur Schule fehlt oder ist nicht eindeutig  
+**When** die Antragsberechtigung geprüft wird  
+**Then** lautet das Ergebnis **„nicht abschließend prüfbar“**  
+**And** die fehlenden Angaben werden konkret benannt.
 
-**Given** mindestens eine zwingende Fördervoraussetzung ist nachweislich nicht erfüllt  
-**When** die Prüfung durchgeführt wird  
-**Then** lautet das Ergebnis 🔴 **„Nach den hinterlegten Kriterien derzeit nicht förderfähig“**  
-**And** die nicht erfüllte Voraussetzung wird benannt  
-**And** die zugrunde liegende Förderregel wird ausgewiesen.
+### Nicht antragsberechtigt
+
+**Given** mindestens eine zwingende Voraussetzung für die Antragsberechtigung ist nach den hinterlegten Kriterien nicht erfüllt  
+**When** die Antragsberechtigung geprüft wird  
+**Then** lautet das Ergebnis **„nicht antragsberechtigt“**  
+**And** das Ergebnis wird verständlich begründet.
+
+## Teilprüfung 2 – Förderfähigkeit der Maßnahme
+
+**Given** die Schule ist antragsberechtigt  
+**And** eine Maßnahme und die erforderlichen Rahmendaten wurden erfasst  
+**And** genau ein MVP-Förderbereich wurde ausgewählt  
+**When** die Förderkriterien beantwortet und ausgewertet werden  
+**Then** wird ein nachvollziehbares vorläufiges Ergebnis zur Förderfähigkeit der Maßnahme erzeugt.
+
+Die Antworten auf Förderkriterien sind:
+
+- **Ja**
+- **Nein**
+- **Nicht bekannt**
+
+Fehlende Informationen müssen von nachweislich nicht erfüllten Voraussetzungen unterschieden werden.
+
+## Gesamtergebnis
+
+### Antrag grundsätzlich möglich
+
+**Given** die Schule ist antragsberechtigt  
+**And** die Maßnahme erfüllt die für die Vorprüfung erforderlichen Kriterien  
+**And** alle entscheidungsrelevanten Angaben liegen vor  
+**When** das Gesamtergebnis gebildet wird  
+**Then** lautet das Ergebnis **„Antrag grundsätzlich möglich“**.
+
+### Weitere Angaben oder Nachweise erforderlich
+
+**Given** die Schule oder Maßnahme kann aufgrund fehlender Angaben oder Nachweise noch nicht abschließend bewertet werden  
+**And** es liegt keine festgestellte Ausschlussbedingung vor  
+**When** das Gesamtergebnis gebildet wird  
+**Then** lautet das Ergebnis **„weitere Angaben oder Nachweise erforderlich“**  
+**And** die fehlenden Angaben oder Nachweise werden konkret benannt.
+
+### Antrag derzeit nicht möglich
+
+**Given** die Schule ist nicht antragsberechtigt oder eine zwingende Voraussetzung der Maßnahme ist nachweislich nicht erfüllt  
+**When** das Gesamtergebnis gebildet wird  
+**Then** lautet das Ergebnis **„Antrag derzeit nicht möglich“**  
+**And** die maßgebliche Voraussetzung wird benannt  
+**And** die verwendeten Förderkriterien werden nachvollziehbar ausgewiesen.
 
 ## Fachliche Qualitätsprinzipien
 
-- Die Farbe wird nie ohne textliche Statusbezeichnung dargestellt.
+- Ergebnisse sind immer als **unverbindliche Ersteinschätzung** gekennzeichnet.
 - Fehlende Informationen werden von nicht erfüllten Voraussetzungen unterschieden.
-- Das Gesamtergebnis ist aus den Ergebnissen der Einzelregeln reproduzierbar.
+- Antragsberechtigung und Maßnahmenprüfung werden getrennt dargestellt.
+- Das Gesamtergebnis ist aus den beiden Teilprüfungen reproduzierbar.
 - Bei identischen Eingaben und identischem Regelstand entsteht dasselbe Prüfergebnis.
-- Historische Ergebnisse bleiben mit dem zum Prüfzeitpunkt verwendeten Regelstand nachvollziehbar.
+- Der verwendete Regelstand bleibt nachvollziehbar.
 - Eine spätere Änderung einer Förderregel verändert ein historisch gespeichertes Prüfergebnis nicht unbemerkt.
 
 ## Projektweite Definition of Done
