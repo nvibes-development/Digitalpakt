@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 type Eligibility = { status: 'needs_information' | 'eligible' | 'not_eligible'; reasons: string[]; missingFields: Field[]; evaluatedAt: string; ruleVersion: string };
 type Field = 'federalState' | 'educationType' | 'schoolType' | 'sponsorshipType' | 'recognitionStatus';
-type School = { id: string; name: string | null; federalState: string | null; educationType: string | null; schoolType: string | null; sponsorshipType: 'public' | 'private' | null; recognitionStatus: string | null; updatedAt: string };
+type School = { id: string; name: string | null; location: string | null; federalState: string | null; educationType: string | null; schoolType: string | null; sponsorshipType: 'public' | 'private' | null; recognitionStatus: string | null; updatedAt: string };
 type SchoolResponse = { school: School; eligibility: Eligibility };
 
 const labels: Record<Field, string> = { federalState: 'Bundesland', educationType: 'Schulform', schoolType: 'Schulart', sponsorshipType: 'Trägerschaft', recognitionStatus: 'Anerkennungsstatus' };
@@ -58,6 +58,7 @@ export function SchoolPage() {
     <p className={`save-status ${saveState}`} role="status">{saveState === 'saving' ? 'Speichert …' : saveState === 'saved' ? 'Alle Änderungen gespeichert.' : saveState === 'error' ? 'Speichern nicht möglich. Bitte versuchen Sie es erneut.' : 'Änderungen werden automatisch gespeichert.'}</p>
     <form className="school-form" onSubmit={(event) => event.preventDefault()}>
       <label>Schulname<input name="name" value={school.name ?? ''} onChange={change} maxLength={200} autoComplete="organization" /></label>
+      <label>Schulstandort<input name="location" value={school.location ?? ''} onChange={change} maxLength={200} autoComplete="address-level2" /></label>
       <label>Bundesland <strong aria-hidden="true">*</strong><Select name="federalState" value={school.federalState ?? ''} onChange={change} required><option value="">Bitte auswählen</option>{states.map(([value, text]) => <option key={value} value={value}>{text}</option>)}</Select></label>
       <fieldset><legend>Schulform <strong aria-hidden="true">*</strong></legend><label><input type="radio" name="educationType" value="general" checked={school.educationType === 'general'} onChange={change} required /> Allgemeinbildende Schule</label><label><input type="radio" name="educationType" value="vocational" checked={school.educationType === 'vocational'} onChange={change} /> Berufsbildende Schule</label></fieldset>
       <label>Schulart <strong aria-hidden="true">*</strong><input name="schoolType" value={school.schoolType ?? ''} onChange={change} required maxLength={200} placeholder="z. B. Gymnasium" /></label>
