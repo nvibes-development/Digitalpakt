@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSession } from '../auth/SessionContext';
+import { DashboardPage } from '../pages/DashboardPage';
+import { SchoolPage } from '../pages/SchoolPage';
 
 const navigation = [
   ['Übersicht', '/app'],
@@ -14,6 +16,7 @@ const navigation = [
 export function AppShell() {
   const { logout } = useSession();
   const navigate = useNavigate();
+  const location = useLocation();
   const [logoutError, setLogoutError] = useState('');
 
   async function handleLogout() {
@@ -52,10 +55,7 @@ export function AppShell() {
         {logoutError && <p className="form-error" role="alert">{logoutError}</p>}
       </aside>
       <main className="app-content">
-        <section className="app-placeholder" aria-labelledby="app-placeholder-title">
-          <h1 id="app-placeholder-title">KLARFÖRDERN App</h1>
-          <p>Der geschützte Arbeitsbereich wird schrittweise aufgebaut.</p>
-        </section>
+        {location.pathname === '/app/school' ? <SchoolPage /> : location.pathname === '/app' ? <DashboardPage /> : <section className="app-placeholder" aria-labelledby="app-placeholder-title"><h1 id="app-placeholder-title">KLARFÖRDERN App</h1><p>Dieser Arbeitsschritt wird im nächsten Product Item ergänzt.</p></section>}
       </main>
     </div>
   );
