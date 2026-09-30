@@ -34,6 +34,10 @@ Die Phase-1-Migration legt nur die technische Migrationsbasis und `application_m
 
 `DATABASE_URL` liegt ausschließlich außerhalb des Repositorys in `/etc/klarfoerdern/api.env`. Die Beispieldatei `api/.env.example` enthält keinen verwendbaren Wert.
 
+## School Eligibility Rule Set Pending
+
+**Fachlicher Blocker:** Für Kombinationen aus Bundesland, `educationType`, Schulart, Trägerschaft und Anerkennungsstatus liegt noch kein verbindliches, freigegebenes Regelwerk vor. Vor einer positiven oder negativen Entscheidung wird eine versionierte Regeldefinition mit Ergebnis (`eligible`, `needs_information`, `not_eligible`), Begründung und Regelreferenz benötigt. Bis dahin werden keine Regeln erfunden.
+
 ## School Eligibility – technische Vorbereitung ohne Fachregel
 
 Die Phase zur Erfassung der Schuldaten speichert `schools` und autorisierte `school_memberships` in PostgreSQL. Alle Zugriffe auf die aktuelle Schule werden serverseitig über die aktive Sitzung und diese Membership eingeschränkt; eine Anmeldung allein erlaubt keinen Zugriff auf fremde Schuldaten.
