@@ -20,8 +20,8 @@ Reguläre UI-Elemente verwenden keine zusätzlichen Markenfarben. Neutrale Text-
 
 Die UI verwendet die bestehende moderne Sans-Serif-Systemschriftfolge.
 
-- H1: 32–36 px, Gewicht 700
-- H2: 24–28 px, Gewicht 700
+- H1 (App-Marke): 32–36 px, Gewicht 700
+- H2: 24–28 px, Gewicht 700; die inhaltliche Hero-Frage darf als prominente Ausnahme größer sein.
 - Body: 16 px, Gewicht 400, Zeilenhöhe 1.45–1.6
 - Label/Eyebrow: 13–14 px, Gewicht 600
 
@@ -36,7 +36,7 @@ Die UI verwendet die bestehende moderne Sans-Serif-Systemschriftfolge.
 
 Produkt-Icons sind linear und konsistent; Primary oder Accent sind die Standardfarben. Support ist nur eine gezielte Sekundärfarbe.
 
-Das vorhandene farbige App-Icon/Favicon wird verwendet. PWA-SVG-Icons sind auf das Primary/Accent-Branding abgestimmt. Offizielle BMBFSFJ- und DigitalPakt-Schule-Logos bleiben als externe Markenassets in ihren bereitgestellten Originalfarben und sind keine dekorativen UI-Farben.
+`public/digitalpakt-check-icon.svg` ist die verbindliche und einzige Quelle für das KLARFÖRDERN-App-Icon. Es wird direkt als Favicon und Landingpage-Logo eingesetzt. Die PWA verwendet dieselbe SVG sowie ausschließlich daraus gerenderte PNG-Varianten in 192 px und 512 px (inklusive maskable 512 px) für Browser-Kompatibilität. Es werden keine alternativen Icon- oder Buchstabenformen verwendet. Offizielle BMBFSFJ- und DigitalPakt-Schule-Logos bleiben als externe Markenassets in ihren bereitgestellten Originalfarben und sind keine dekorativen UI-Farben.
 
 ## 6. Statusfarben
 

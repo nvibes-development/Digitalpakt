@@ -7,10 +7,15 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico'],
+      includeAssets: [
+        'digitalpakt-check-icon.svg',
+        'digitalpakt-check-icon-192.png',
+        'digitalpakt-check-icon-512.png',
+        'digitalpakt-check-icon-maskable-512.png',
+      ],
       manifest: {
-        name: 'DigitalPakt Check',
-        short_name: 'DigitalPakt',
+        name: 'KLARFÖRDERN',
+        short_name: 'KLARFÖRDERN',
         description:
           'Unverbindliche Vorprüfung von Digitalisierungsvorhaben im Kontext des DigitalPakts 2.0.',
         lang: 'de',
@@ -19,8 +24,10 @@ export default defineConfig({
         background_color: '#FFFFFF',
         theme_color: '#105B5C',
         icons: [
-          { src: 'pwa-192.svg', sizes: '192x192', type: 'image/svg+xml', purpose: 'any' },
-          { src: 'pwa-512.svg', sizes: '512x512', type: 'image/svg+xml', purpose: 'any' },
+          { src: 'digitalpakt-check-icon.svg', sizes: '1024x1024', type: 'image/svg+xml', purpose: 'any' },
+          { src: 'digitalpakt-check-icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'digitalpakt-check-icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'digitalpakt-check-icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
       workbox: {
