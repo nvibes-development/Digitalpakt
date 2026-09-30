@@ -39,7 +39,7 @@ cp -a dist/. "$release_dir/"
 ln -sfn "$release_dir" "${CURRENT_LINK}.next"
 mv -Tf "${CURRENT_LINK}.next" "$CURRENT_LINK"
 
-systemctl restart klarfoerdern-api
+sudo systemctl restart klarfoerdern-api
 for _ in {1..20}; do
   if curl --fail --silent --show-error http://127.0.0.1:3000/api/health >/dev/null; then
     break
@@ -47,6 +47,6 @@ for _ in {1..20}; do
   sleep 1
 done
 curl --fail --silent --show-error http://127.0.0.1:3000/api/health >/dev/null
-nginx -t
-systemctl reload nginx
+sudo nginx -t
+sudo systemctl reload nginx
 printf 'Deployed %s to %s\n' "$commit" "$release_dir"
