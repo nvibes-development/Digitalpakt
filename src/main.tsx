@@ -78,6 +78,7 @@ createRoot(document.getElementById('root')!).render(
           className="info-video"
           controls
           preload="metadata"
+          poster="/Wort-Bild-Marke_DPS_Laenderuebergreifende-Vorhaben.jpg"
           aria-label="Video zum DigitalPakt 2.0"
         >
           <source src="/23863_8b714eb56486490_web.mp4" type="video/mp4" />
