@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import { AppRoutes } from '../App';
+import { SessionProvider } from '../auth/SessionContext';
 import { LandingPage } from './LandingPage';
 
 describe('LandingPage', () => {
@@ -20,7 +21,9 @@ describe('LandingPage', () => {
   it('routes the check entry point to login before a check can begin', () => {
     render(
       <MemoryRouter initialEntries={['/check']}>
-        <AppRoutes />
+        <SessionProvider>
+          <AppRoutes />
+        </SessionProvider>
       </MemoryRouter>,
     );
 
