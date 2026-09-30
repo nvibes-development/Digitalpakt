@@ -8,7 +8,7 @@ registerSW({ immediate: true });
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <main className="page-shell">
-      <section className="hero" aria-labelledby="page-title">
+      <section className="hero" aria-labelledby="app-title">
         <div className="hero-logos">
           <img
             className="hero-logo hero-logo-ministry"
@@ -24,9 +24,14 @@ createRoot(document.getElementById('root')!).render(
 
         <p className="eyebrow">DigitalPakt 2.0 · Förderfähigkeit vorprüfen</p>
 
-        <h1 id="page-title">
+        <div className="app-brand">
+          <img src="/digitalpakt-check-icon.svg" alt="" />
+          <h1 id="app-title">KLARFÖRDERN</h1>
+        </div>
+
+        <h2 className="hero-question">
           Ist Ihr Digitalisierungsvorhaben grundsätzlich förderfähig?
-        </h1>
+        </h2>
 
         <p className="intro">
           Prüfen Sie Ihr geplantes Schul-Digitalisierungsprojekt strukturiert
