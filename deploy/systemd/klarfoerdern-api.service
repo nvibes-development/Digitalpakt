@@ -1,0 +1,22 @@
+[Unit]
+Description=KLARFÖRDERN REST API
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dev
+Group=dev
+WorkingDirectory=/srv/digitalpakt/app
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/klarfoerdern/api.env
+ExecStart=/usr/bin/node /srv/digitalpakt/app/api/dist/server.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

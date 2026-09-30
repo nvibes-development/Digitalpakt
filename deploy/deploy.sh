@@ -6,6 +6,7 @@ set -euo pipefail
 APP_DIR="/srv/digitalpakt/app"
 RELEASES_DIR="/srv/digitalpakt/releases"
 CURRENT_LINK="/srv/digitalpakt/current"
+API_ENV_FILE="/etc/klarfoerdern/api.env"
 
 cd "$APP_DIR"
 git diff --quiet
@@ -16,9 +17,18 @@ release_dir="$RELEASES_DIR/$commit"
 
 npm ci
 npm run check
+npm run test
 npm run build
 
+test -r "$API_ENV_FILE"
+set -a
+# The file is provisioned outside Git and contains production secrets.
+source "$API_ENV_FILE"
+set +a
+npm run db:migrate
+
 test -f dist/index.html
+test -f api/dist/server.js
 mkdir -p "$RELEASES_DIR"
 rm -rf "$release_dir"
 install -d -m 0755 "$release_dir"
@@ -26,6 +36,7 @@ cp -a dist/. "$release_dir/"
 ln -sfn "$release_dir" "${CURRENT_LINK}.next"
 mv -Tf "${CURRENT_LINK}.next" "$CURRENT_LINK"
 
+systemctl restart klarfoerdern-api
 nginx -t
 systemctl reload nginx
 printf 'Deployed %s to %s\n' "$commit" "$release_dir"

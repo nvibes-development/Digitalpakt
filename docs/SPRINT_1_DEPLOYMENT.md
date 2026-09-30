@@ -7,6 +7,8 @@
 - **Quelle:** GitHub-Repository `nvibes-development/Digitalpakt`, Branch `main`
 - **Anwendung:** React/Vite-PWA; statischer Build nach `dist/`
 - **Webserver:** Nginx
+- **API:** Node.js/Fastify auf `127.0.0.1:3000`, via Nginx ausschließlich unter `/api/*` erreichbar
+- **Datenbank:** lokales PostgreSQL; Zugang ausschließlich über die nicht versionierte `/etc/klarfoerdern/api.env`
 - **vorgesehener VM-Pfad:** `/srv/digitalpakt/app`
 - **Release-Pfad:** `/srv/digitalpakt/releases/<Git-Commit>`
 - **aktiver Release:** atomarer Symlink `/srv/digitalpakt/current`
@@ -36,7 +38,7 @@ git pull --ff-only origin main
 ./deploy/deploy.sh
 ```
 
-`deploy/deploy.sh` bricht bei lokal veränderten Dateien ab, führt `npm ci`, Typecheck und Produktionsbuild aus, aktiviert den Build atomar und validiert/reloadet Nginx. Jeder Release ist über den Commit-SHA im Release-Pfad nachvollziehbar.
+`deploy/deploy.sh` bricht bei lokal veränderten Dateien ab, führt `npm ci`, Typecheck, Tests, Frontend-/API-Produktionsbuild und versionierte Datenbankmigrationen aus. Danach aktiviert es den Frontend-Build atomar, startet `klarfoerdern-api.service` und validiert/reloadet Nginx. Die nicht versionierte API-Umgebungsdatei muss vor einem Release vorhanden und lesbar sein. Jeder Release ist über den Commit-SHA im Release-Pfad nachvollziehbar.
 
 ## Rollback
 
