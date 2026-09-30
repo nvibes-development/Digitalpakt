@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1024" height="1024" viewBox="0 0 1024 1024"
+     role="img" aria-labelledby="title desc">
+  <title id="title">DigitalPakt Check App Icon</title>
+  <desc id="desc">Stilisiertes K in Petrol und Türkis, entsprechend der gelieferten Designvorlage.</desc>
+
+  <defs>
+    <linearGradient id="verticalGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B948D"/>
+      <stop offset="100%" stop-color="#004E4B"/>
+    </linearGradient>
+
+    <linearGradient id="upperGradient" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10AFA3"/>
+      <stop offset="100%" stop-color="#50E0C7"/>
+    </linearGradient>
+
+    <linearGradient id="lowerGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00645F"/>
+      <stop offset="100%" stop-color="#003F3D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Linker Stamm -->
+  <rect x="250" y="205" width="150" height="575" rx="75"
+        fill="url(#verticalGradient)"/>
+
+  <!-- Oberer diagonaler Arm -->
+  <path d="M 382 520 L 660 242"
+        fill="none"
+        stroke="url(#upperGradient)"
+        stroke-width="154"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Unterer diagonaler Arm -->
+  <path d="M 592 596 L 735 739"
+        fill="none"
+        stroke="url(#lowerGradient)"
+        stroke-width="154"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>
