@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Releases and runtime dependencies must remain readable by the unprivileged
+# Nginx and API-service accounts even when the invoking shell has a restrictive umask.
+umask 022
 
 # Run on the VM after a clean fast-forward update of /srv/digitalpakt/app.
 # This script deliberately refuses to deploy local or uncommitted work.
