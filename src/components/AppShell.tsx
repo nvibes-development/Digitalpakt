@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSession } from '../auth/SessionContext';
 
 const navigation = [
   ['Übersicht', '/app'],
@@ -10,6 +12,20 @@ const navigation = [
 ] as const;
 
 export function AppShell() {
+  const { logout } = useSession();
+  const navigate = useNavigate();
+  const [logoutError, setLogoutError] = useState('');
+
+  async function handleLogout() {
+    setLogoutError('');
+    try {
+      await logout();
+      navigate('/login', { replace: true });
+    } catch {
+      setLogoutError('Die Abmeldung ist derzeit nicht möglich. Bitte versuchen Sie es erneut.');
+    }
+  }
+
   return (
     <div className="app-shell">
       <aside className="app-sidebar" aria-label="App-Navigation">
@@ -30,6 +46,10 @@ export function AppShell() {
           <Link to="/impressum">Impressum</Link>
           <Link to="/datenschutz">Datenschutz</Link>
         </div>
+        <button className="logout-button" type="button" onClick={() => void handleLogout()}>
+          Abmelden
+        </button>
+        {logoutError && <p className="form-error" role="alert">{logoutError}</p>}
       </aside>
       <main className="app-content">
         <section className="app-placeholder" aria-labelledby="app-placeholder-title">
