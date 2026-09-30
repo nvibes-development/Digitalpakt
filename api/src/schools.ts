@@ -14,6 +14,7 @@ const recognitionStatuses = ['state_recognized', 'state_approved', 'not_specifie
 const optionalText = z.string().trim().min(1).max(200).nullable().optional();
 export const schoolUpdateSchema = z.object({
   name: optionalText,
+  location: optionalText,
   federalState: z.enum(federalStates).nullable().optional(),
   educationType: z.enum(educationTypes).nullable().optional(),
   schoolType: optionalText,
@@ -25,14 +26,14 @@ export const schoolUpdateSchema = z.object({
   }
 });
 
-export type School = SchoolEligibilityInput & { id: string; name: string | null; updatedAt: string };
+export type School = SchoolEligibilityInput & { id: string; name: string | null; location: string | null; updatedAt: string };
 
 type SchoolRow = {
-  id: string; name: string | null; federalState: string | null; educationType: string | null; schoolType: string | null;
+  id: string; name: string | null; location: string | null; federalState: string | null; educationType: string | null; schoolType: string | null;
   sponsorshipType: string | null; recognitionStatus: string | null; updatedAt: string;
 };
 
-const schoolColumns = `s.id, s.name, s.federal_state AS "federalState", s.education_type AS "educationType", s.school_type AS "schoolType", s.sponsorship_type AS "sponsorshipType", s.recognition_status AS "recognitionStatus", s.updated_at::text AS "updatedAt"`;
+const schoolColumns = `s.id, s.name, s.location, s.federal_state AS "federalState", s.education_type AS "educationType", s.school_type AS "schoolType", s.sponsorship_type AS "sponsorshipType", s.recognition_status AS "recognitionStatus", s.updated_at::text AS "updatedAt"`;
 
 async function currentSchool(user: SafeUser): Promise<SchoolRow | null> {
   const result = await pool.query<SchoolRow>(`SELECT ${schoolColumns} FROM school_memberships sm JOIN schools s ON s.id = sm.school_id WHERE sm.user_id = $1 ORDER BY sm.created_at ASC LIMIT 1`, [user.id]);
@@ -72,14 +73,15 @@ export async function updateCurrentSchool(user: SafeUser, update: z.infer<typeof
   if (!school) return null;
   const next = {
     name: update.name === undefined ? school.name : update.name,
+    location: update.location === undefined ? school.location : update.location,
     federalState: update.federalState === undefined ? school.federalState : update.federalState,
     educationType: update.educationType === undefined ? school.educationType : update.educationType,
     schoolType: update.schoolType === undefined ? school.schoolType : update.schoolType,
     sponsorshipType: update.sponsorshipType === undefined ? school.sponsorshipType : update.sponsorshipType,
     recognitionStatus: update.sponsorshipType && update.sponsorshipType !== 'private' ? null : (update.recognitionStatus === undefined ? school.recognitionStatus : update.recognitionStatus),
   };
-  const result = await pool.query<SchoolRow>(`UPDATE schools SET name = $2, federal_state = $3, education_type = $4, school_type = $5, sponsorship_type = $6, recognition_status = $7, updated_at = now() WHERE id = $1 RETURNING ${schoolColumns.replaceAll('s.', '')}`,
-    [school.id, next.name, next.federalState, next.educationType, next.schoolType, next.sponsorshipType, next.recognitionStatus]);
+  const result = await pool.query<SchoolRow>(`UPDATE schools SET name = $2, location = $3, federal_state = $4, education_type = $5, school_type = $6, sponsorship_type = $7, recognition_status = $8, updated_at = now() WHERE id = $1 RETURNING ${schoolColumns.replaceAll('s.', '')}`,
+    [school.id, next.name, next.location, next.federalState, next.educationType, next.schoolType, next.sponsorshipType, next.recognitionStatus]);
   const updated = result.rows[0];
   return { school: updated, eligibility: evaluateSchoolEligibility(updated) };
 }

@@ -3,6 +3,7 @@ import rateLimit from '@fastify/rate-limit';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { currentUser, login, loginSchema, register, registerSchema, revoke } from './auth.js';
 import { getCurrentSchool, schoolUpdateSchema, startSchoolCheck, updateCurrentSchool } from './schools.js';
+import { createMeasure, getLatestMeasure, getMeasure, measureUpdateSchema, updateMeasure } from './measures.js';
 
 const cookieName = 'klarfoerdern_session';
 const cookieOptions = { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' as const, path: '/', maxAge: 60 * 60 * 24 * 7 };
@@ -73,6 +74,30 @@ export function buildApp(): FastifyInstance {
     if (!parsed.success) return reply.code(400).send({ error: { code: 'INVALID_SCHOOL_DATA', message: 'Bitte prüfen Sie die Schuldaten.', fields: parsed.error.flatten().fieldErrors } });
     const current = await updateCurrentSchool(user, parsed.data);
     return current ? current : reply.code(404).send({ error: { code: 'SCHOOL_NOT_STARTED', message: 'Starten Sie zuerst einen Förderfähigkeitscheck.' } });
+  });
+  app.get('/api/measures/current', async (request, reply) => {
+    const user = await requireUser(request, reply); if (!user) return;
+    const measure = await getLatestMeasure(user);
+    return measure ? { measure } : reply.code(404).send({ error: { code: 'MEASURE_NOT_STARTED', message: 'Es wurde noch keine Maßnahme angelegt.' } });
+  });
+  app.post('/api/measures', async (request, reply) => {
+    const user = await requireUser(request, reply); if (!user) return;
+    const measure = await createMeasure(user);
+    return measure ? reply.code(201).send({ measure }) : reply.code(404).send({ error: { code: 'SCHOOL_NOT_STARTED', message: 'Erfassen Sie zuerst die Schuldaten.' } });
+  });
+  app.get('/api/measures/:measureId', async (request, reply) => {
+    const user = await requireUser(request, reply); if (!user) return;
+    const { measureId } = request.params as { measureId: string };
+    const measure = await getMeasure(user, measureId);
+    return measure ? { measure } : reply.code(404).send({ error: { code: 'MEASURE_NOT_FOUND', message: 'Die Maßnahme wurde nicht gefunden.' } });
+  });
+  app.patch('/api/measures/:measureId', async (request, reply) => {
+    const user = await requireUser(request, reply); if (!user) return;
+    const parsed = measureUpdateSchema.safeParse(request.body);
+    if (!parsed.success) return reply.code(400).send({ error: { code: 'INVALID_MEASURE_DATA', message: 'Bitte prüfen Sie die Angaben zur Maßnahme.', fields: parsed.error.flatten().fieldErrors } });
+    const { measureId } = request.params as { measureId: string };
+    const measure = await updateMeasure(user, measureId, parsed.data);
+    return measure ? { measure } : reply.code(404).send({ error: { code: 'MEASURE_NOT_FOUND', message: 'Die Maßnahme wurde nicht gefunden.' } });
   });
   app.setNotFoundHandler((request, reply) => reply.code(404).send({ error: { code: 'NOT_FOUND', message: 'Die angeforderte API-Ressource wurde nicht gefunden.', requestId: request.id } }));
   app.setErrorHandler((error, request, reply) => { request.log.error({ err: error }, 'Unbehandelter API-Fehler'); reply.code(500).send({ error: { code: 'INTERNAL_SERVER_ERROR', message: 'Ein interner Fehler ist aufgetreten.', requestId: request.id } }); });
