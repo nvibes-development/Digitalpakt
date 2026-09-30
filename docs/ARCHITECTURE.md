@@ -34,6 +34,14 @@ Die Phase-1-Migration legt nur die technische Migrationsbasis und `application_m
 
 `DATABASE_URL` liegt ausschließlich außerhalb des Repositorys in `/etc/klarfoerdern/api.env`. Die Beispieldatei `api/.env.example` enthält keinen verwendbaren Wert.
 
+## School Eligibility – technische Vorbereitung ohne Fachregel
+
+Die Phase zur Erfassung der Schuldaten speichert `schools` und autorisierte `school_memberships` in PostgreSQL. Alle Zugriffe auf die aktuelle Schule werden serverseitig über die aktive Sitzung und diese Membership eingeschränkt; eine Anmeldung allein erlaubt keinen Zugriff auf fremde Schuldaten.
+
+`schoolEligibilityService` wertet aktuell ausschließlich Vollständigkeit, formale Eingabevalidität und die bedingte Relevanz des Anerkennungsstatus bei freier/privater Trägerschaft aus. Seine stabile Ausgabe enthält `status`, `reasons`, `missingFields`, `evaluatedAt` und `ruleVersion`. Der aktuelle technische Regelstand ist bewusst `school-eligibility-pending`.
+
+Solange kein verbindliches, fachlich freigegebenes Regelwerk dokumentiert ist, gibt der Service **ausschließlich** `needs_information` aus — auch bei vollständigen Schuldaten. Die technisch vorbereiteten Status `eligible` und `not_eligible` werden durch keinen aktuellen Codepfad ausgelöst. Es wurden ausdrücklich keine Förder- oder Eligibility-Regeln erfunden.
+
 ## Produktion
 
 `deploy/deploy.sh` führt Typecheck, Tests, beide Builds und die Migration aus, aktiviert den statischen Release atomar und startet anschließend `klarfoerdern-api.service` neu. Die Systemd-Unit und Nginx-Konfiguration sind versioniert unter `deploy/`; Secrets werden nicht versioniert.
