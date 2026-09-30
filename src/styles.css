@@ -1,6 +1,16 @@
 :root {
-  color: #11222c;
-  background: #eef5f7;
+  --color-primary: #105B5C;
+  --color-accent: #008D7B;
+  --color-support: #56D6C1;
+  --color-tint: #E9F9F5;
+  --color-surface: #FFFFFF;
+  --color-text: #173F40;
+  --color-muted-text: #496566;
+  --color-border: #BDE7DE;
+  --color-focus-ring: rgb(0 141 123 / 38%);
+
+  background: var(--color-surface);
+  color: var(--color-text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
 }
@@ -13,7 +23,7 @@ body { margin: 0; min-width: 320px; }
 
 .page-shell {
   align-items: center;
-  background: radial-gradient(circle at top right, #d2edf0 0, transparent 34%), #eef5f7;
+  background: var(--color-surface);
   display: flex;
   flex-direction: column;
   gap: clamp(1.5rem, 4vw, 3rem);
@@ -23,13 +33,19 @@ body { margin: 0; min-width: 320px; }
 
 .hero,
 .info-section {
-  background: #fff;
-  border: 1px solid #c8dde2;
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
-  box-shadow: 0 1.25rem 3.5rem rgb(17 34 44 / 12%);
+  box-shadow: 0 1.25rem 3.5rem rgb(16 91 92 / 10%);
   max-width: 54rem;
   padding: clamp(2rem, 8vw, 4.5rem);
   width: 100%;
+}
+
+.hero { background: var(--color-surface); }
+
+.info-section {
+  background: var(--color-tint);
+  scroll-margin-top: 1rem;
 }
 
 .hero-logos {
@@ -53,9 +69,9 @@ body { margin: 0; min-width: 320px; }
 .hero-logo-digitalpakt { width: min(10rem, 42%); }
 
 .eyebrow {
-  color: #14617a;
+  color: var(--color-primary);
   font-size: .875rem;
-  font-weight: 750;
+  font-weight: 600;
   letter-spacing: .09em;
   margin: 0 0 1rem;
   text-transform: uppercase;
@@ -63,26 +79,28 @@ body { margin: 0; min-width: 320px; }
 
 h1,
 h2 {
-  color: #123f57;
-  letter-spacing: -.045em;
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: -.03em;
   margin: 0;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 2.25rem);
   hyphens: auto;
-  line-height: 1.05;
+  line-height: 1.1;
   overflow-wrap: normal;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.15;
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
+  line-height: 1.2;
 }
 
 .intro,
 .info-section > p:not(.eyebrow) {
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.55;
   margin: 1.5rem 0 0;
 }
@@ -100,7 +118,7 @@ h2 {
   border: 1px solid transparent;
   border-radius: .75rem;
   display: inline-flex;
-  font-weight: 700;
+  font-weight: 600;
   justify-content: center;
   min-height: 2.875rem;
   padding: .75rem 1.125rem;
@@ -109,29 +127,28 @@ h2 {
 }
 
 .primary-button {
-  background: #14617a;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-surface);
 }
 
 .secondary-button {
-  background: #fff;
-  border-color: #14617a;
-  color: #123f57;
+  background: var(--color-surface);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .primary-button:hover,
 .primary-button:focus-visible {
-  background: #0d4b60;
+  background: var(--color-primary);
+  box-shadow: inset 0 0 0 2px var(--color-support);
 }
 
 .secondary-button:hover,
-.secondary-button:focus-visible {
-  background: #e7f4f6;
-}
+.secondary-button:focus-visible { background: var(--color-tint); }
 
 .primary-button:focus-visible,
 .secondary-button:focus-visible {
-  box-shadow: 0 0 0 3px rgb(20 97 122 / 35%);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
   outline: none;
 }
 
@@ -149,25 +166,25 @@ h2 {
 .benefits li {
   align-items: center;
   display: flex;
+  font-size: 1rem;
   font-weight: 600;
   gap: .5rem;
 }
 
-.benefits li::first-letter { color: #14617a; }
+.benefits li::first-letter { color: var(--color-accent); }
 
 .disclaimer {
-  border-left: .25rem solid #1a8394;
-  color: #38515c;
+  border-left: .25rem solid var(--color-accent);
+  color: var(--color-muted-text);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 2rem 0 0;
   padding-left: 1rem;
 }
 
-.info-section { scroll-margin-top: 1rem; }
-
 .info-video {
-  background: #11222c;
+  background: var(--color-primary);
+  border: 1px solid var(--color-support);
   border-radius: .75rem;
   display: block;
   margin-top: 2rem;
