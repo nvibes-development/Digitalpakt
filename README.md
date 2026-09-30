@@ -52,6 +52,7 @@ Die detaillierte, vom Team erarbeitete Produktdefinition und Backlog-Struktur is
 - [Fachliche Akzeptanzkriterien & Definition of Done](docs/ACCEPTANCE_CRITERIA.md)
 - [Projektteam & Rollen](docs/TEAM.md)
 - [Branding und Design-System](docs/BRANDING.md)
+- [Technische Architektur](docs/ARCHITECTURE.md)
 
 ## Projekt-Kick-off
 

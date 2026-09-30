@@ -8,20 +8,39 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "dev:api": "tsx watch api/src/server.ts",
+    "build": "npm run build:web && npm run build:api",
+    "build:web": "vite build",
+    "build:api": "tsc -p api/tsconfig.json",
     "preview": "vite preview",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit && tsc -p api/tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:migrate": "tsx api/src/scripts/migrate.ts"
   },
   "dependencies": {
+    "@fastify/cookie": "^11.0.2",
     "@vitejs/plugin-react": "6.1.1",
+    "fastify": "^5.12.5",
+    "pg": "^8.16.3",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "react-router-dom": "^7.18.4",
     "vite": "8.3.1",
-    "vite-plugin-pwa": "1.3.0"
+    "vite-plugin-pwa": "1.3.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.10.1",
+    "@types/pg": "^8.15.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "typescript": "5.9.3"
+    "jsdom": "^27.1.0",
+    "tsx": "^4.20.6",
+    "typescript": "5.9.3",
+    "vitest": "^5.0.3"
   }
 }
