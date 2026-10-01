@@ -3,7 +3,7 @@ import rateLimit from '@fastify/rate-limit';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { currentUser, login, loginSchema, register, registerSchema, revoke } from './auth.js';
 import { getCurrentSchool, schoolUpdateSchema, startSchoolCheck, updateCurrentSchool } from './schools.js';
-import { createMeasure, getLatestMeasure, getMeasure, measureUpdateSchema, updateMeasure } from './measures.js';
+import { createMeasure, getLatestMeasure, getMeasure, listMeasures, measureUpdateSchema, updateMeasure } from './measures.js';
 
 const cookieName = 'klarfoerdern_session';
 const cookieOptions = { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' as const, path: '/', maxAge: 60 * 60 * 24 * 7 };
@@ -80,9 +80,16 @@ export function buildApp(): FastifyInstance {
     const measure = await getLatestMeasure(user);
     return measure ? { measure } : reply.code(404).send({ error: { code: 'MEASURE_NOT_STARTED', message: 'Es wurde noch keine Maßnahme angelegt.' } });
   });
+  app.get('/api/measures', async (request, reply) => {
+    const user = await requireUser(request, reply); if (!user) return;
+    const measures = await listMeasures(user);
+    return measures ? { measures } : reply.code(404).send({ error: { code: 'SCHOOL_NOT_STARTED', message: 'Erfassen Sie zuerst die Schuldaten.' } });
+  });
   app.post('/api/measures', async (request, reply) => {
     const user = await requireUser(request, reply); if (!user) return;
-    const measure = await createMeasure(user);
+    const parsed = measureUpdateSchema.safeParse(request.body);
+    if (!parsed.success || !parsed.data.name) return reply.code(400).send({ error: { code: 'INVALID_MEASURE_DATA', message: 'Bitte geben Sie eine Bezeichnung für die Maßnahme an.', fields: parsed.success ? { name: ['Erforderlich'] } : parsed.error.flatten().fieldErrors } });
+    const measure = await createMeasure(user, parsed.data);
     return measure ? reply.code(201).send({ measure }) : reply.code(404).send({ error: { code: 'SCHOOL_NOT_STARTED', message: 'Erfassen Sie zuerst die Schuldaten.' } });
   });
   app.get('/api/measures/:measureId', async (request, reply) => {

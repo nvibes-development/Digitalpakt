@@ -44,11 +44,18 @@ export async function getLatestMeasure(user: SafeUser) {
   return result.rows[0] ?? null;
 }
 
-export async function createMeasure(user: SafeUser) {
+export async function listMeasures(user: SafeUser) {
+  const schoolId = await currentSchoolId(user);
+  if (!schoolId) return null;
+  const result = await pool.query<MeasureRow>(`SELECT ${columns} FROM measures m WHERE m.school_id = $1 ORDER BY m.updated_at DESC`, [schoolId]);
+  return result.rows;
+}
+
+export async function createMeasure(user: SafeUser, input: z.infer<typeof measureUpdateSchema>) {
   const schoolId = await currentSchoolId(user);
   if (!schoolId) return null;
   const result = await pool.query<MeasureRow>(`INSERT INTO measures (id, school_id, created_by) VALUES ($1, $2, $3) RETURNING ${columns.replaceAll('m.', '')}`,[randomUUID(), schoolId, user.id]);
-  return result.rows[0];
+  return updateMeasure(user, result.rows[0].id, input);
 }
 
 export async function getMeasure(user: SafeUser, measureId: string) {
