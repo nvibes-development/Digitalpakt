@@ -4,6 +4,7 @@ import { useSession } from '../auth/SessionContext';
 import { DashboardPage } from '../pages/DashboardPage';
 import { SchoolPage } from '../pages/SchoolPage';
 import { MeasurePage } from '../pages/MeasurePage';
+import { MeasuresPage } from '../pages/MeasuresPage';
 
 const navigation = [
   ['Übersicht', '/app'],
@@ -56,7 +57,7 @@ export function AppShell() {
         {logoutError && <p className="form-error" role="alert">{logoutError}</p>}
       </aside>
       <main className="app-content">
-        {location.pathname === '/app/school' ? <SchoolPage /> : location.pathname === '/app' ? <DashboardPage /> : location.pathname === '/app/measures/new' ? <MeasurePage /> : <section className="app-placeholder" aria-labelledby="app-placeholder-title"><h1 id="app-placeholder-title">KLARFÖRDERN App</h1><p>Dieser Arbeitsschritt wird im nächsten Product Item ergänzt.</p></section>}
+        {location.pathname === '/app/school' ? <SchoolPage /> : location.pathname === '/app' ? <DashboardPage /> : location.pathname === '/app/measures/new' ? <MeasurePage /> : location.pathname === '/app/measures' ? <MeasuresPage /> : location.pathname.startsWith('/app/measures/') ? <MeasurePage measureId={location.pathname.slice('/app/measures/'.length)} /> : <section className="app-placeholder" aria-labelledby="app-placeholder-title"><h1 id="app-placeholder-title">KLARFÖRDERN App</h1><p>Dieser Arbeitsschritt wird im nächsten Product Item ergänzt.</p></section>}
       </main>
     </div>
   );
