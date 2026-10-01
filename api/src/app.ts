@@ -1,9 +1,11 @@
 import cookie from '@fastify/cookie';
+import multipart from '@fastify/multipart';
 import rateLimit from '@fastify/rate-limit';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { currentUser, login, loginSchema, register, registerSchema, revoke } from './auth.js';
 import { getCurrentSchool, schoolUpdateSchema, startSchoolCheck, updateCurrentSchool } from './schools.js';
 import { createMeasure, getLatestMeasure, getMeasure, listMeasures, measureUpdateSchema, updateMeasure } from './measures.js';
+import { deleteDocument, getDocument, listDocuments, uploadDocument } from './documents.js';
 
 const cookieName = 'klarfoerdern_session';
 const cookieOptions = { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' as const, path: '/', maxAge: 60 * 60 * 24 * 7 };
@@ -11,6 +13,7 @@ const cookieOptions = { httpOnly: true, secure: process.env.NODE_ENV === 'produc
 export function buildApp(): FastifyInstance {
   const app = Fastify({ logger: { level: process.env.NODE_ENV === 'production' ? 'info' : 'warn', redact: ['req.headers.cookie', 'req.headers.authorization', 'req.body.password', 'req.body.confirmPassword'] } });
   app.register(cookie);
+  app.register(multipart, { limits: { fileSize: 10 * 1024 * 1024, files: 1 } });
   app.register(rateLimit, { global: false, max: 10, timeWindow: '15 minutes' });
   app.get('/api/health', async () => ({ status: 'ok' }));
 
@@ -106,6 +109,10 @@ export function buildApp(): FastifyInstance {
     const measure = await updateMeasure(user, measureId, parsed.data);
     return measure ? { measure } : reply.code(404).send({ error: { code: 'MEASURE_NOT_FOUND', message: 'Die Maßnahme wurde nicht gefunden.' } });
   });
+  app.get('/api/measures/:measureId/documents', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; const documents=await listDocuments(user,(request.params as {measureId:string}).measureId); return documents?{documents}:reply.code(404).send({error:{code:'MEASURE_NOT_FOUND',message:'Die Maßnahme wurde nicht gefunden.'}}); });
+  app.post('/api/measures/:measureId/documents', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; try { const file=await request.file(); if(!file)return reply.code(400).send({error:{code:'INVALID_DOCUMENT',message:'Bitte wählen Sie ein Dokument aus.'}}); const document=await uploadDocument(user,(request.params as {measureId:string}).measureId,file); return document?reply.code(201).send({document}):reply.code(404).send({error:{code:'MEASURE_NOT_FOUND',message:'Die Maßnahme wurde nicht gefunden.'}}); } catch { return reply.code(400).send({error:{code:'INVALID_DOCUMENT',message:'Erlaubt sind PDF-, Word- und Excel-Dateien bis 10 MB.'}}); } });
+  app.get('/api/documents/:documentId/download', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; const document=await getDocument(user,(request.params as {documentId:string}).documentId); if(!document)return reply.code(404).send({error:{code:'DOCUMENT_NOT_FOUND',message:'Dokument nicht gefunden.'}}); const { BlobServiceClient }=await import('@azure/storage-blob'); const { DefaultAzureCredential }=await import('@azure/identity'); const service=new BlobServiceClient(process.env.AZURE_STORAGE_ACCOUNT_URL!,new DefaultAzureCredential()); const response=await service.getContainerClient('digitalpakt').getBlobClient(document.blob_name).download(); reply.header('Content-Type',document.mime_type).header('Content-Disposition',`attachment; filename="${document.original_name.replaceAll('"','')}"`); return reply.send(response.readableStreamBody); });
+  app.delete('/api/documents/:documentId', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; const document=await deleteDocument(user,(request.params as {documentId:string}).documentId); return document?reply.code(204).send():reply.code(404).send({error:{code:'DOCUMENT_NOT_FOUND',message:'Dokument nicht gefunden.'}}); });
   app.setNotFoundHandler((request, reply) => reply.code(404).send({ error: { code: 'NOT_FOUND', message: 'Die angeforderte API-Ressource wurde nicht gefunden.', requestId: request.id } }));
   app.setErrorHandler((error, request, reply) => { request.log.error({ err: error }, 'Unbehandelter API-Fehler'); reply.code(500).send({ error: { code: 'INTERNAL_SERVER_ERROR', message: 'Ein interner Fehler ist aufgetreten.', requestId: request.id } }); });
   return app;
