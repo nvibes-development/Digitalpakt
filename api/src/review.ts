@@ -56,13 +56,23 @@ export async function listCases(user: SafeUser, status: ReviewStatus[]) {
 }
 
 export async function getCase(user: SafeUser, caseId: string) {
-  const result = await pool.query(`SELECT m.id AS "caseId",m.review_status AS status,m.assigned_at AS "assignedAt",ms.id AS "submissionId",ms.case_number AS "caseNumber",ms.submission_number AS "submissionNumber",ms.submitted_at AS "submittedAt",ms.school_snapshot AS school,ms.applicant_snapshot AS applicant,ms.measure_snapshot AS measure,ms.answers_snapshot AS answers,ms.documents_snapshot AS documents,jsonb_build_object('id',w.id,'firstName',w.first_name,'lastName',w.last_name,'email',w.email) AS assignment FROM measures m JOIN LATERAL (SELECT * FROM measure_submissions WHERE measure_id=m.id ORDER BY submission_number DESC LIMIT 1) ms ON true LEFT JOIN users w ON w.id=m.assigned_case_worker_id WHERE m.id=$1`, [caseId]);
-  if (!result.rows[0]) return null;
-  const item = result.rows[0];
-  const history = await pool.query('SELECT event_type AS "eventType",event_data AS "eventData",created_at AS "createdAt",actor_role AS "actorRole" FROM audit_events WHERE case_id=$1 ORDER BY created_at ASC', [caseId]);
-  const decision = await pool.query('SELECT decision,public_reason AS "publicReason",internal_note AS "internalNote",created_at AS "createdAt" FROM case_decisions WHERE submission_id=$1 ORDER BY created_at DESC LIMIT 1', [item.submissionId]);
-  await pool.query('INSERT INTO audit_events(id,case_id,submission_id,actor_user_id,actor_role,event_type) VALUES($1,$2,$3,$4,$5,$6)', [randomUUID(), caseId, item.submissionId, user.id, user.role, 'CASE_OPENED']);
-  return { ...item, decision: decision.rows[0] ?? null, history: history.rows };
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    const claimed = await client.query<{ submissionId: string }>(`UPDATE measures m SET assigned_case_worker_id=$1,assigned_at=now(),review_status='UNDER_REVIEW',updated_at=now() WHERE m.id=$2 AND m.assigned_case_worker_id IS NULL AND m.review_status IN ('SUBMITTED','RESUBMITTED') RETURNING (SELECT id FROM measure_submissions WHERE measure_id=m.id ORDER BY submission_number DESC LIMIT 1) AS "submissionId"`, [user.id, caseId]);
+    if (claimed.rows[0]) {
+      await client.query("UPDATE measure_submissions SET status='UNDER_REVIEW' WHERE id=$1", [claimed.rows[0].submissionId]);
+      await event(client, caseId, claimed.rows[0].submissionId, user, 'CASE_ASSIGNED', { source: 'case_opened' });
+    }
+    const result = await client.query(`SELECT m.id AS "caseId",m.review_status AS status,m.assigned_at AS "assignedAt",ms.id AS "submissionId",ms.case_number AS "caseNumber",ms.submission_number AS "submissionNumber",ms.submitted_at AS "submittedAt",ms.school_snapshot AS school,ms.applicant_snapshot AS applicant,ms.measure_snapshot AS measure,ms.answers_snapshot AS answers,ms.documents_snapshot AS documents,jsonb_build_object('id',w.id,'firstName',w.first_name,'lastName',w.last_name,'email',w.email) AS assignment FROM measures m JOIN LATERAL (SELECT * FROM measure_submissions WHERE measure_id=m.id ORDER BY submission_number DESC LIMIT 1) ms ON true LEFT JOIN users w ON w.id=m.assigned_case_worker_id WHERE m.id=$1`, [caseId]);
+    if (!result.rows[0]) { await client.query('ROLLBACK'); return null; }
+    const item = result.rows[0];
+    await event(client, caseId, item.submissionId, user, 'CASE_OPENED');
+    const history = await client.query('SELECT event_type AS "eventType",event_data AS "eventData",created_at AS "createdAt",actor_role AS "actorRole" FROM audit_events WHERE case_id=$1 ORDER BY created_at ASC', [caseId]);
+    const decision = await client.query('SELECT decision,public_reason AS "publicReason",internal_note AS "internalNote",created_at AS "createdAt" FROM case_decisions WHERE submission_id=$1 ORDER BY created_at DESC LIMIT 1', [item.submissionId]);
+    await client.query('COMMIT');
+    return { ...item, decision: decision.rows[0] ?? null, history: history.rows };
+  } catch (error) { await client.query('ROLLBACK'); throw error; } finally { client.release(); }
 }
 
 export async function assignCase(user: SafeUser, caseId: string) {
