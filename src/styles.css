@@ -510,3 +510,6 @@ h2 {
 .question-catalog { margin-top:1.5rem; }.question-row { align-items:center; border-top:1px solid var(--color-border); display:grid; gap:1rem; grid-template-columns:2.5rem minmax(12rem,1fr) auto; padding:1rem 0; }.question-row p { margin:0; }.question-number { align-items:center; background:var(--color-tint); border:1px solid var(--color-border); border-radius:50%; display:inline-flex; font-weight:700; height:2rem; justify-content:center; width:2rem; }.answer-button { background:transparent; border:1px solid var(--color-primary); border-radius:.375rem; color:var(--color-primary); cursor:pointer; font:inherit; margin-left:.4rem; padding:.5rem .625rem; }.answer-button.selected { background:var(--color-primary); color:#fff; } @media(max-width:760px){.question-row{align-items:start;grid-template-columns:2.5rem 1fr}.question-row>div{grid-column:2}.answer-button{margin:0 .35rem .35rem 0;}}
 
 .help-page h2 { margin-top: 2.5rem; }
+
+.documents-table { table-layout: fixed; }
+@media (max-width: 760px) { .documents-table th, .documents-table td { overflow-wrap: anywhere; } .document-actions { gap: .25rem; } .document-actions a, .document-actions button { min-height: 2rem; min-width: 2rem; padding: .3rem; } }
