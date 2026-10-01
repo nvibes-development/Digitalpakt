@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BsBuilding, BsClipboardCheck, BsFolder, BsHouseDoor, BsPlusCircle, BsQuestionCircle } from 'react-icons/bs';
+import { BsBuilding, BsClipboardCheck, BsFolder, BsHouseDoor, BsPersonCircle, BsPlusCircle, BsQuestionCircle } from 'react-icons/bs';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSession } from '../auth/SessionContext';
 import { PublicFooter } from './PublicFooter';
@@ -19,15 +19,17 @@ const navigation = [
 ] as const;
 
 export function AppShell() {
-  const { logout } = useSession();
+  const { logout, user } = useSession();
   const navigate = useNavigate();
   const location = useLocation();
   const [logoutError, setLogoutError] = useState('');
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
   async function handleLogout() {
     setLogoutError('');
     try {
       await logout();
+      setAccountMenuOpen(false);
       navigate('/login', { replace: true });
     } catch {
       setLogoutError('Die Abmeldung ist derzeit nicht möglich. Bitte versuchen Sie es erneut.');
@@ -37,10 +39,19 @@ export function AppShell() {
   return (
     <div className="app-shell">
       <aside className="app-sidebar" aria-label="App-Navigation">
-        <Link className="app-sidebar-brand" to="/app">
-          <img src="/digitalpakt-check-icon.svg" alt="" />
-          <span>KLARFÖRDERN</span>
-        </Link>
+        <div className="app-sidebar-header">
+          <Link className="app-sidebar-brand" to="/app">
+            <img src="/digitalpakt-check-icon.svg" alt="" />
+            <span>KLARFÖRDERN</span>
+          </Link>
+          <div className="account-menu">
+            <button className="account-trigger" type="button" aria-expanded={accountMenuOpen} aria-haspopup="menu" onClick={() => setAccountMenuOpen((open) => !open)}>
+              <BsPersonCircle aria-hidden="true" />
+              <span><small>Angemeldet als</small>{user?.email}</span>
+            </button>
+            {accountMenuOpen && <div className="account-menu-popover" role="menu"><button type="button" role="menuitem" onClick={() => void handleLogout()}>Abmelden</button></div>}
+          </div>
+        </div>
         <nav>
           <ul>
             {navigation.map(([label, to, Icon]) => (
@@ -50,9 +61,6 @@ export function AppShell() {
             ))}
           </ul>
         </nav>
-        <button className="logout-button" type="button" onClick={() => void handleLogout()}>
-          Abmelden
-        </button>
         {logoutError && <p className="form-error" role="alert">{logoutError}</p>}
       </aside>
       <div className="app-main">

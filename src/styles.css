@@ -308,6 +308,18 @@ h2 {
   padding: 1.5rem;
 }
 
+.app-sidebar-header { align-items: flex-start; display: flex; gap: .5rem; justify-content: space-between; position: relative; }
+
+.account-menu { position: relative; }
+.account-trigger { align-items: center; background: transparent; border: 0; color: var(--color-primary); cursor: pointer; display: flex; font: inherit; gap: .4rem; padding: .25rem; text-align: right; }
+.account-trigger svg { flex: 0 0 auto; font-size: 1.75rem; }
+.account-trigger span { display: grid; font-size: .75rem; max-width: 8.25rem; overflow-wrap: anywhere; }
+.account-trigger small { color: var(--color-muted); font-size: .6875rem; }
+.account-trigger:hover, .account-trigger:focus-visible { background: var(--color-tint); border-radius: .5rem; box-shadow: 0 0 0 3px var(--color-focus-ring); outline: none; }
+.account-menu-popover { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: .5rem; box-shadow: 0 .5rem 1.25rem rgb(0 0 0 / .15); min-width: 9rem; padding: .25rem; position: absolute; right: 0; top: calc(100% + .25rem); z-index: 10; }
+.account-menu-popover button { background: transparent; border: 0; border-radius: .375rem; color: var(--color-primary); cursor: pointer; font: inherit; font-weight: 600; padding: .625rem .75rem; text-align: left; width: 100%; }
+.account-menu-popover button:hover, .account-menu-popover button:focus-visible { background: var(--color-tint); outline: none; }
+
 .app-sidebar-brand {
   align-items: center;
   color: var(--color-primary);
@@ -434,6 +446,8 @@ h2 {
     border-right: 0;
     gap: 1rem;
   }
+
+  .app-sidebar-header { align-items: center; }
 
   .app-sidebar ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
