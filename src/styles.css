@@ -533,6 +533,7 @@ h2 {
 .case-section dd { margin: .25rem 0 0; overflow-wrap: anywhere; }
 .decision-panel { display: grid; gap: 1rem; }
 .decision-panel textarea { min-height: 6rem; resize: vertical; width: 100%; }
-.decision-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.decision-actions { align-items: stretch; display: flex; flex-wrap: wrap; gap: .75rem; }
+.decision-actions > button { align-items: center; display: inline-flex; font: inherit; justify-content: center; min-height: 2.875rem; padding: .75rem 1.125rem; }
 @media (max-width: 760px) { .case-section dl { grid-template-columns: 1fr; } .review-table { min-width: 42rem; } }
 @media (max-width: 420px) { .decision-actions .primary-button, .decision-actions .secondary-button, .decision-actions .danger-button { width: 100%; } }
