@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BsBuilding, BsClipboardCheck, BsFolder, BsHouseDoor, BsPlusCircle, BsQuestionCircle } from 'react-icons/bs';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSession } from '../auth/SessionContext';
 import { PublicFooter } from './PublicFooter';
@@ -9,12 +10,12 @@ import { MeasuresPage } from '../pages/MeasuresPage';
 import { DocumentsPage } from '../pages/DocumentsPage';
 
 const navigation = [
-  ['Übersicht', '/app'],
-  ['Schuldaten', '/app/school'],
-  ['Neue Maßnahme', '/app/measures/new'],
-  ['Meine Maßnahmen', '/app/measures'],
-  ['Dokumente', '/app/documents'],
-  ['Hilfe', '/app/help'],
+  ['Übersicht', '/app', BsHouseDoor],
+  ['Schuldaten', '/app/school', BsBuilding],
+  ['Neue Maßnahme', '/app/measures/new', BsPlusCircle],
+  ['Meine Maßnahmen', '/app/measures', BsClipboardCheck],
+  ['Dokumente', '/app/documents', BsFolder],
+  ['Hilfe', '/app/help', BsQuestionCircle],
 ] as const;
 
 export function AppShell() {
@@ -42,9 +43,9 @@ export function AppShell() {
         </Link>
         <nav>
           <ul>
-            {navigation.map(([label, to]) => (
+            {navigation.map(([label, to, Icon]) => (
               <li key={to}>
-                <Link to={to}>{label}</Link>
+                <Link to={to}><Icon aria-hidden="true" /> <span>{label}</span></Link>
               </li>
             ))}
           </ul>
