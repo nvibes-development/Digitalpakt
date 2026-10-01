@@ -393,7 +393,7 @@ h2 {
 }
 
 .app-panel > p { line-height: 1.55; }
-.app-panel h1 { overflow-wrap: anywhere; }
+.app-panel h1 { hyphens: auto; overflow-wrap: normal; }
 .app-loading { padding: 2rem; }
 .school-form { display: grid; gap: 1.25rem; margin-top: 2rem; }
 .school-form > label, .school-form fieldset { display: grid; font-weight: 600; gap: .45rem; }
