@@ -4,7 +4,7 @@ import rateLimit from '@fastify/rate-limit';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { currentUser, login, loginSchema, register, registerSchema, revoke } from './auth.js';
 import { getCurrentSchool, schoolUpdateSchema, startSchoolCheck, updateCurrentSchool } from './schools.js';
-import { createMeasure, getLatestMeasure, getMeasure, listMeasures, measureUpdateSchema, updateMeasure } from './measures.js';
+import { createMeasure, getLatestMeasure, getMeasure, listMeasures, measureUpdateSchema, submitMeasure, updateMeasure } from './measures.js';
 import { deleteDocument, getDocument, listDocuments, uploadDocument } from './documents.js';
 import { changePassword, deleteAccount, deleteAccountSchema, passwordSchema, profile, profileSchema, updateProfile } from './account.js';
 import { getAnswers, questionSchema, saveAnswers } from './questions.js';
@@ -115,6 +115,7 @@ export function buildApp(): FastifyInstance {
     const measure = await updateMeasure(user, measureId, parsed.data);
     return measure ? { measure } : reply.code(404).send({ error: { code: 'MEASURE_NOT_FOUND', message: 'Die Maßnahme wurde nicht gefunden.' } });
   });
+  app.post('/api/measures/:measureId/submit-review', async (request, reply) => { const user=await requireUser(request,reply);if(!user)return;try{const measure=await submitMeasure(user,(request.params as {measureId:string}).measureId);return measure?{measure}:reply.code(404).send({error:{code:'MEASURE_NOT_FOUND',message:'Die Maßnahme wurde nicht gefunden.'}})}catch(error){if(error instanceof Error&&error.message==='MEASURE_NOT_READY')return reply.code(400).send({error:{code:'MEASURE_NOT_READY',message:'Bitte beantworten Sie alle Fragen und laden Sie mindestens ein Dokument hoch.'}});throw error} });
   app.get('/api/measures/:measureId/questions', async (request, reply) => { const user=await requireUser(request,reply);if(!user)return;const answers=await getAnswers(user,(request.params as {measureId:string}).measureId);return answers?{answers}:reply.code(404).send({error:{code:'MEASURE_NOT_FOUND',message:'Die Maßnahme wurde nicht gefunden.'}}); });
   app.put('/api/measures/:measureId/questions', async (request, reply) => { const user=await requireUser(request,reply);if(!user)return;const parsed=questionSchema.safeParse(request.body);if(!parsed.success)return reply.code(400).send({error:{code:'ALL_ANSWERS_REQUIRED',message:'Bitte beantworten Sie alle Fragen.'}});const saved=await saveAnswers(user,(request.params as {measureId:string}).measureId,parsed.data.answers);return saved?reply.code(204).send():reply.code(404).send({error:{code:'MEASURE_NOT_FOUND',message:'Die Maßnahme wurde nicht gefunden.'}}); });
   app.get('/api/measures/:measureId/documents', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; const documents=await listDocuments(user,(request.params as {measureId:string}).measureId); return documents?{documents}:reply.code(404).send({error:{code:'MEASURE_NOT_FOUND',message:'Die Maßnahme wurde nicht gefunden.'}}); });
