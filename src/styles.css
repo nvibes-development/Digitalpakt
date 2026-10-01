@@ -395,8 +395,8 @@ h2 {
 .school-form textarea { min-height: 6rem; resize: vertical; }
 .school-form fieldset { border: 1px solid var(--color-border); border-radius: .5rem; padding: .9rem 1rem 1rem; }
 .school-form fieldset label { align-items: center; display: flex; font-weight: 400; gap: .5rem; }
-.implementation-date-range label { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); width: 100%; }
-.implementation-date-range input { min-width: 0; }
+.school-form .implementation-date-range label { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); width: 100%; }
+.school-form .implementation-date-range input { min-width: 0; }
 .school-form input:focus-visible, .school-form select:focus-visible, .school-form textarea:focus-visible { box-shadow: 0 0 0 3px var(--color-focus-ring); outline: none; }
 .save-status { color: var(--color-muted-text); font-size: .9rem; }
 .save-status.saving { color: var(--color-primary); }
@@ -429,7 +429,7 @@ h2 {
 
   .app-sidebar-legal { display: none; }
 
-  .implementation-date-range label { grid-template-columns: 1fr; }
+  .school-form .implementation-date-range label { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 420px) {
