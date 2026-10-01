@@ -531,6 +531,9 @@ h2 {
 .case-section dl div { border: 1px solid var(--color-border); border-radius: .5rem; padding: .625rem; }
 .case-section dt { color: var(--color-muted-text); font-size: .8125rem; font-weight: 700; overflow-wrap: anywhere; }
 .case-section dd { margin: .25rem 0 0; overflow-wrap: anywhere; }
+.review-questions { display: grid; gap: .75rem; padding-left: 1.5rem; }
+.review-questions li { display: grid; gap: .35rem; }
+.review-questions strong { color: var(--color-primary); }
 .decision-panel { display: grid; gap: 1rem; }
 .decision-panel textarea { min-height: 6rem; resize: vertical; width: 100%; }
 .decision-actions { align-items: stretch; display: flex; flex-wrap: wrap; gap: .75rem; }
