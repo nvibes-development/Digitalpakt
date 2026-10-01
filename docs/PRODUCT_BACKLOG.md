@@ -1,71 +1,113 @@
 # Product Backlog – Fachliche Struktur
 
-Diese Datei dokumentiert die fachliche Backlog-Struktur nach der Überprüfung der User Stories durch UAT & QA. Es wurden **keine neuen Epics oder Product Items** angelegt; vorhandene Inhalte und Zuordnungen wurden fachlich präzisiert.
+**Stand:** 1. Oktober 2026  
+**Product-Owner-Abgleich:** mit aktuellem GitHub-`main` durchgeführt
 
-## Überarbeitete User Stories
+## Aktuelles Produktmodell
 
-### US-01 – Angaben zur Schule erfassen
+KLARFÖRDERN verwendet im MVP einen **Human-in-the-Loop-Prüfprozess**.
 
-Als Schulleitung möchte ich Angaben zu unserer Schule eingeben können, damit ich feststellen kann, ob unsere Schule zu einer förderfähigen Schulkategorie gehört.
+Die Schule:
 
-### US-02 – Antragsberechtigung prüfen
+1. erfasst Schuldaten,
+2. legt eine Maßnahme an,
+3. wählt einen Förderbereich,
+4. beantwortet neun Förderfragen,
+5. lädt Dokumente hoch,
+6. reicht die Maßnahme ein.
 
-Als Schulleitung möchte ich erfahren, ob meine Schule grundsätzlich antragsberechtigt ist, damit ich weiß, ob ich mit der Prüfung der geplanten Digitalisierungsmaßnahme fortfahren kann.
+Danach prüft ein autorisierter Sachbearbeiter die digitale Akte und trifft die menschliche fachliche Ersteinschätzung.
 
-### US-03 – Digitalisierungsmaßnahme und Rahmendaten erfassen
+Das System erzeugt bewusst **keine automatische Förderentscheidung aus einem erfundenen Regelwerk**.
 
-Als Schulleitung möchte ich meine geplante Digitalisierungsmaßnahme und die dafür relevanten Rahmendaten unserer Schule erfassen, damit die Förderfähigkeit der Maßnahme geprüft werden kann.
+## Rollen
 
-### US-04 – Förderbereich auswählen
+### Schulportal
 
-Als Schulleitung möchte ich meine Maßnahme einem Förderbereich zuordnen, damit die passenden Förderkriterien angewendet werden.
+`school_admin`
 
-### US-05 – Förderkriterien beantworten
+### Sachbearbeiterportal
 
-Als Schulleitung möchte ich gezielte Fragen zu meiner Maßnahme beantworten, damit die Anwendung deren Förderfähigkeit bewerten kann.
+`case_worker`
 
-### US-06 – Gesamtergebnis erhalten
+Initialer produktiver Master-Sachbearbeiter:
 
-Als Schulleitung möchte ich ein Gesamtergebnis erhalten, damit ich erkenne, ob unsere Schule für die geplante Maßnahme grundsätzlich einen Förderantrag stellen kann.
+`sachbearbeiter@nvibes.de`
 
-### US-07 – Ergebnis nachvollziehen
+Öffentliche Registrierung erzeugt ausschließlich `school_admin`.
 
-Als Schulleitung möchte ich verstehen, wie das Ergebnis zustande gekommen ist, damit ich die Bewertung nachvollziehen kann.
+---
 
-### US-08 – Nächste Schritte erkennen
+# User Stories
 
-Als Schulleitung möchte ich empfohlene nächste Schritte erhalten, damit ich die weitere Vorbereitung des Förderantrags planen kann.
+## US-01 – Angaben zur Schule erfassen
 
-## Fachliche Epics und Zuordnung
+Als Schulleitung möchte ich Angaben zu unserer Schule eingeben können, damit die fachliche Prüfung auf einer vollständigen Datengrundlage erfolgen kann.
 
-### Epic 1 – Einstieg für Schulleitungen
+## US-02 – Prüfung vorbereiten
 
-GitHub: #13
+Als Schulleitung möchte ich die relevanten Schuldaten vollständig erfassen, damit ich mit einer konkreten Digitalisierungsmaßnahme fortfahren kann.
 
-Schwerpunkt:
+## US-03 – Digitalisierungsmaßnahme erfassen
 
-- US-01 – Angaben zur Schule erfassen
-- US-02 – Antragsberechtigung prüfen
+Als Schulleitung möchte ich meine geplante Digitalisierungsmaßnahme und relevante Rahmendaten erfassen, damit sie geprüft werden kann.
 
-Product Items: PI-01, PI-02, PI-06
+## US-04 – Förderbereich auswählen
 
-### Epic 2 – Digitalisierungsmaßnahme erfassen
+Als Schulleitung möchte ich meine Maßnahme einem MVP-Förderbereich zuordnen.
 
-GitHub: #14
+## US-05 – Förderfragen beantworten
 
-Schwerpunkt:
+Als Schulleitung möchte ich neun definierte Förderfragen mit Ja, Nein oder Nicht bekannt beantworten.
 
-- US-03 – Digitalisierungsmaßnahme und Rahmendaten erfassen
+## US-06 – Maßnahme einreichen
 
-Product Item: PI-03
+Als Schulleitung möchte ich meine vollständige Maßnahme mit Dokumenten zur Prüfung einreichen.
 
-### Epic 3 – Förderbereiche
+## US-07 – Ergebnis nachvollziehen
 
-GitHub: #15
+Als Schulleitung möchte ich Status und öffentliche Rückmeldung der Sachbearbeitung nachvollziehen können.
 
-Schwerpunkt:
+## US-08 – Nächste Schritte erkennen
 
-- US-04 – Förderbereich auswählen
+Als Schulleitung möchte ich bei einer Nachforderung erkennen, was ergänzt oder geändert werden muss.
+
+## US-09 – Sachbearbeitung
+
+Als autorisierter Sachbearbeiter möchte ich eingereichte Maßnahmen in einer digitalen Akte prüfen und eine menschliche Grün/Gelb/Rot-Entscheidung dokumentieren.
+
+---
+
+# Fachliche Epics
+
+## Epic 1 – Einstieg für Schulleitungen
+
+GitHub: #13  
+Status: **Done**
+
+Product Items:
+
+- #21 PI-01 – Done
+- #22 PI-02 – Done
+- #26 PI-06 – Done
+
+## Epic 2 – Digitalisierungsmaßnahme erfassen
+
+GitHub: #14  
+Status: **Done**
+
+Product Item:
+
+- #23 PI-03 – Done
+
+## Epic 3 – Förderbereiche
+
+GitHub: #15  
+Status: **Done**
+
+Product Item:
+
+- #24 PI-04 – Done
 
 MVP-Förderbereiche:
 
@@ -73,92 +115,203 @@ MVP-Förderbereiche:
 2. Digitale Endgeräte
 3. Bildungssoftware und digitale Lernplattformen
 
-Pro Prüfung wird genau ein Förderbereich ausgewählt.
+## Epic 4 – Förderfragen
 
-Product Item: PI-04
+GitHub: #16  
+Status: **Done**
 
-### Epic 4 – Förderfähigkeitsprüfung
+Product Item:
 
-GitHub: #16
+- #25 PI-05 – Done
 
-Schwerpunkt:
+Der MVP verwendet neun verbindliche Fragen statt eines dynamischen automatischen Regelkatalogs.
 
-- US-05 – Förderkriterien beantworten
+## Epic 5 – Automatische Förderfähigkeitslogik
 
-Product Item: PI-05
+GitHub: #17  
+Status: **nicht geplant / ersetzt**
 
-### Epic 5 – Förderfähigkeitslogik
+Product Items:
 
-GitHub: #17
+- #27 PI-07 – nicht geplant
+- #28 PI-08 – nicht geplant
 
-Schwerpunkte:
+Ersetzt durch:
 
-- US-02 – Antragsberechtigung prüfen
-- US-05 – Förderkriterien beantworten
-- US-06 – Gesamtergebnis erhalten
+- #105 Human-in-the-Loop-Prüfworkflow
+- #114–#119 Sachbearbeiterportal
 
-Product Items: PI-07, PI-08
+## Epic 6 – Ergebnis und Rückmeldung
 
-### Epic 6 – Ergebnis
+GitHub: #18  
+Status: **In Progress**
 
-GitHub: #18
+Product Items:
 
-Schwerpunkte:
+- #29 PI-09 – In Progress
+- #30 PI-10 – In Progress
+- #31 PI-11 – nicht geplant / ersetzt
+- #32 PI-12 – In Progress
+- #33 PI-13 – Open
 
-- US-06 – Gesamtergebnis erhalten
-- US-07 – Ergebnis nachvollziehen
-- US-08 – Nächste Schritte erkennen
+Offene Kernthemen:
 
-Product Items: PI-09 bis PI-13
+- öffentliche Sachbearbeiternachricht im Schulportal
+- Ergebnisexport / Prüfbericht
 
-### Epic 7 – Mehrere Maßnahmen
+## Epic 7 – Mehrere Maßnahmen
 
-GitHub: #19
+GitHub: #19  
+Status: **Done**
 
-Dieses Epic bleibt bestehen, liegt aber außerhalb der neuen Kern-User-Stories und wird für den ersten Release bewusst schlank behandelt.
+Product Items:
 
-Product Items: PI-14 bis PI-16
+- #34 PI-14 – Done
+- #35 PI-15 – Done
+- #36 PI-16 – Done
+- #80 PI-17 – Done
 
-### Epic 8 – Persönlicher Digitalisierungsüberblick
+## Epic 8 – Persönlicher Digitalisierungsüberblick
 
-GitHub: #20
+GitHub: #20  
+Status: **Done in MVP-Tiefe**
 
-Erweiterung nach dem eigentlichen Förderfähigkeitscheck. Für dieses Epic wurden keine neuen Product Items angelegt.
+Die Seite „Meine Maßnahmen“ stellt mehrere Maßnahmen mit Förderbereich und Bearbeitungs-/Förderstatus dar.
 
-## Product Items
+---
 
-| ID | Product Item | Bezug zu User Story | Priorität | GitHub |
-|---|---|---|---|---|
-| PI-01 | Förderfähigkeitscheck starten | unterstützt US-01 / US-02 | Must | #21 |
-| PI-02 | Förderrelevante Schuldaten erfassen | US-01 | Must | #22 |
-| PI-03 | Digitalisierungsmaßnahme erfassen | US-03 | Must | #23 |
-| PI-04 | Förderbereich zur Maßnahme bestimmen | US-04 | Must | #24 |
-| PI-05 | Dynamischen Fragenkatalog bereitstellen | US-05 | Must | #25 |
-| PI-06 | Antworten und Bearbeitungsstand speichern | unterstützend für US-01 bis US-05 | Must | #26 |
-| PI-07 | Förderregeln auf Antworten anwenden | US-02 / US-05 | Must | #27 |
-| PI-08 | Förderstatus bestimmen | US-02 / US-06 | Must | #28 |
-| PI-09 | Prüfergebnis nachvollziehbar begründen | US-07 | Must | #29 |
-| PI-10 | Fehlende Voraussetzungen und Nachweise anzeigen | US-07 / US-08 | Must | #30 |
-| PI-11 | Zugrunde liegende Förderregeln anzeigen | US-07 | Must | #31 |
-| PI-12 | Nächste Schritte ausgeben | US-08 | Must | #32 |
-| PI-13 | Prüfergebnis speichern und exportieren | unterstützend für US-06 bis US-08 | Should | #33 |
-| PI-14 | Weitere Maßnahme anlegen | außerhalb der neuen Kern-User-Stories | Must | #34 |
-| PI-15 | Maßnahmenübersicht bereitstellen | außerhalb der neuen Kern-User-Stories | Must | #35 |
-| PI-16 | Maßnahme erneut prüfen | außerhalb der neuen Kern-User-Stories | Should | #36 |
+# Weitere Product Items
 
-## Sachbearbeiterportal (Product-Owner-freigegeben)
+| ID | Product Item | GitHub | Status |
+|---|---|---:|---|
+| PI-01 | Förderfähigkeitscheck starten | #21 | Done |
+| PI-02 | Förderrelevante Schuldaten erfassen | #22 | Done |
+| PI-03 | Digitalisierungsmaßnahme erfassen | #23 | Done |
+| PI-04 | Förderbereich zur Maßnahme bestimmen | #24 | Done |
+| PI-05 | Förderfragenkatalog bereitstellen | #25 | Done |
+| PI-06 | Antworten und Bearbeitungsstand speichern | #26 | Done |
+| PI-07 | Automatische Förderregeln anwenden | #27 | Nicht geplant / ersetzt |
+| PI-08 | Automatischen Förderstatus bestimmen | #28 | Nicht geplant / ersetzt |
+| PI-09 | Prüfergebnis nachvollziehbar begründen | #29 | In Progress |
+| PI-10 | Fehlende Voraussetzungen / Nachweise kommunizieren | #30 | In Progress |
+| PI-11 | Automatische Förderregeln anzeigen | #31 | Nicht geplant / ersetzt |
+| PI-12 | Nächste Schritte kommunizieren | #32 | In Progress |
+| PI-13 | Prüfergebnis speichern und exportieren | #33 | Open |
+| PI-14 | Weitere Maßnahme anlegen | #34 | Done |
+| PI-15 | Maßnahmenübersicht bereitstellen | #35 | Done |
+| PI-16 | Maßnahme erneut prüfen / einreichen | #36 | Done |
+| PI-17 | Maßnahmendokumente verwalten | #80 | Done |
+| PI-18 | Benutzerprofil und sichere Kontolöschung | #102 | Done |
 
-- Sachbearbeiterrolle und geschützter Einstieg
-- Posteingang und digitale Akte
-- atomare Vorgangsübernahme
-- menschliche Grün/Gelb/Rot-Entscheidung mit öffentlicher Nachricht und internem Vermerk
-- Nachforderung, Wiedereinreichung und Submission-Versionierung
-- Audit-Verlauf und autorisierter Dokumentzugriff
+---
 
-## Sprint-Rahmen
+# Sachbearbeiterportal
 
-- **Sprint 1:** Infrastruktur
-- **Sprint 2:** Antragsberechtigung & Maßnahmenprüfung
-- **Sprint 3:** Gesamtergebnis & nächste Schritte
+## Hauptworkflow
 
-Die operative Priorisierung, Story-Point-Schätzung und Verantwortungszuordnung erfolgt weiterhin im GitHub Project durch das Team.
+GitHub: #105  
+Status: **Done**
+
+Umgesetzt:
+
+- case_worker-Rolle
+- Review-Shell
+- Posteingang
+- digitale Akte
+- atomare Übernahme
+- Grün / Gelb / Rot
+- Nachforderung
+- Wiedereinreichung
+- Submission-Snapshots
+- Audit-Verlauf
+- Dokumentzugriff
+
+## Teil-Issues
+
+| GitHub | Inhalt | Status |
+|---:|---|---|
+| #114 | Rollen, Zugang und Review-Shell | Done |
+| #115 | Posteingang und digitale Akte | Done |
+| #116 | Übernahme, Entscheidungen und Nachforderungen | Done |
+| #117 | Submission-Versionen, Rückkanal und Audit | **In Progress** |
+| #118 | Dokumentzugriff und UX-Polish | Done |
+| #119 | E2E-Abnahme und Sicherheitsnachweise | Done |
+
+### Restpunkt #117
+
+Die öffentliche Sachbearbeiternachricht wird technisch gespeichert, aber im aktuellen Schulportal noch nicht vollständig angezeigt.
+
+Noch erforderlich:
+
+- Gelb: Nachforderungstext sichtbar
+- Rot: Begründung sichtbar
+- Grün: optionale öffentliche Nachricht sichtbar
+
+Interne Vermerke dürfen nie an den Schulbenutzer ausgeliefert werden.
+
+---
+
+# Sprint-Rahmen
+
+## Sprint 1
+
+Infrastruktur  
+Status: abgeschlossen
+
+## Sprint 2
+
+Erfassen und Einreichen  
+Status: abgeschlossen
+
+## Sprint 3
+
+Auswertung und Handeln  
+Status: in Arbeit
+
+Bereits geliefert:
+
+- menschlicher Review-Prozess
+- Statusanzeige
+- Nachforderung
+- Wiedereinreichung
+- Historie
+
+Noch offen:
+
+- öffentliche Rückmeldung im Schulportal
+- Ergebnisexport / Prüfbericht
+
+---
+
+# Product-Owner-Scope-Entscheidung
+
+Die folgenden ursprünglichen Anforderungen sind bewusst aus dem aktuellen MVP entfernt worden:
+
+- automatische Förderregel-Engine
+- automatische positive/negative Förderentscheidung
+- automatischer Förderregelstand als Entscheidungsgrundlage
+
+Begründung:
+
+Die fachliche Entscheidung wird durch einen autorisierten Sachbearbeiter getroffen. Dadurch bleibt die Entscheidung nachvollziehbar menschlich und es werden keine unvollständigen oder erfundenen Förderregeln automatisiert angewendet.
+
+---
+
+# Definition of Done
+
+Ein Product Backlog Item gilt als Done, wenn:
+
+- alle freigegebenen Akzeptanzkriterien erfüllt sind,
+- die Umsetzung funktionsfähig ist,
+- die Funktion im aktuellen Hauptentwicklungsstand integriert ist,
+- notwendige Tests durchgeführt wurden,
+- keine bekannten kritischen Fehler bestehen,
+- relevante Dokumentation aktuell ist,
+- der Product Owner die Funktion abgenommen hat.
+
+Technische Änderungen zusätzlich:
+
+- keine Secrets im Repository,
+- versionierte Migrationen,
+- reproduzierbare Bereitstellung,
+- serverseitige Autorisierung für geschützte Funktionen.
