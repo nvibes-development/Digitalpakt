@@ -13,4 +13,9 @@ describe('measure and funding-area validation', () => {
     expect(measureUpdateSchema.safeParse({ fundingArea: 'teacher_training' }).success).toBe(false);
     expect(measureUpdateSchema.safeParse({ estimatedCostEur: -1 }).success).toBe(false);
   });
+
+  it('accepts ISO implementation dates and rejects an end before the start', () => {
+    expect(measureUpdateSchema.safeParse({ implementationStartDate: '2026-09-01', implementationEndDate: '2027-06-30' }).success).toBe(true);
+    expect(measureUpdateSchema.safeParse({ implementationStartDate: '2027-06-30', implementationEndDate: '2026-09-01' }).success).toBe(false);
+  });
 });
