@@ -513,3 +513,7 @@ h2 {
 
 .documents-table { table-layout: fixed; }
 @media (max-width: 760px) { .documents-table th, .documents-table td { overflow-wrap: anywhere; } .document-actions { gap: .25rem; } .document-actions a, .document-actions button { min-height: 2rem; min-width: 2rem; padding: .3rem; } }
+
+.documents-table td.document-actions { display: table-cell; }
+.document-actions a, .document-actions button { margin-right: .5rem; }
+.document-actions a:last-child, .document-actions button:last-child { margin-right: 0; }
