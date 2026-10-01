@@ -419,6 +419,7 @@ h2 {
 .measure-list li { border: 1px solid var(--color-border); border-radius: .75rem; padding: 1rem; }
 .measure-list h2 { font-size: 1.2rem; }
 .measure-list .secondary-button { margin-top: .5rem; }
+.upload-button { display:inline-flex; margin:1.5rem 0; } .documents-table { border-collapse:collapse; width:100%; } .documents-table th,.documents-table td { border:1px solid var(--color-border); padding:.75rem; text-align:left; } .documents-table button { margin-left:.5rem; } @media(max-width:760px){.documents-table{font-size:.8rem}.documents-table th,.documents-table td{padding:.4rem}}
 .sr-only { height: 1px; margin: -1px; overflow: hidden; position: absolute; width: 1px; clip: rect(0, 0, 0, 0); }
 
 @media (max-width: 760px) {

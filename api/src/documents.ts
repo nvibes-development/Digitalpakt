@@ -1,0 +1,16 @@
+import { randomUUID } from 'node:crypto';
+import { basename, extname } from 'node:path';
+import { DefaultAzureCredential } from '@azure/identity';
+import { BlobServiceClient } from '@azure/storage-blob';
+import { Pool } from 'pg';
+import { SafeUser } from './auth.js';
+const pool=new Pool({connectionString:process.env.DATABASE_URL});
+const accountUrl=process.env.AZURE_STORAGE_ACCOUNT_URL;
+const client=accountUrl?new BlobServiceClient(accountUrl,new DefaultAzureCredential()):null;
+const container=()=>{if(!client)throw new Error('DOCUMENT_STORAGE_UNAVAILABLE');return client.getContainerClient('digitalpakt')};
+const allowed=new Map([['.pdf','application/pdf'],['.doc','application/msword'],['.docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],['.xls','application/vnd.ms-excel'],['.xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']]);
+async function own(user:SafeUser,id:string){const r=await pool.query('SELECT m.id FROM measures m JOIN school_memberships sm ON sm.school_id=m.school_id WHERE m.id=$1 AND sm.user_id=$2',[id,user.id]);return !!r.rows[0]}
+export async function listDocuments(user:SafeUser,measureId:string){if(!await own(user,measureId))return null;return (await pool.query('SELECT id,original_name AS "originalName",mime_type AS "mimeType",size_bytes AS "sizeBytes",uploaded_at AS "uploadedAt",verified_at AS "verifiedAt" FROM measure_documents WHERE measure_id=$1 ORDER BY uploaded_at',[measureId])).rows}
+export async function getDocument(user:SafeUser,id:string){const r=await pool.query('SELECT d.*,m.id AS measure_id FROM measure_documents d JOIN measures m ON m.id=d.measure_id JOIN school_memberships sm ON sm.school_id=m.school_id WHERE d.id=$1 AND sm.user_id=$2',[id,user.id]);return r.rows[0]??null}
+export async function deleteDocument(user:SafeUser,id:string){const d=await getDocument(user,id);if(!d)return null;await container().getBlockBlobClient(d.blob_name).deleteIfExists();await pool.query('DELETE FROM measure_documents WHERE id=$1',[id]);return d}
+export async function uploadDocument(user:SafeUser,measureId:string,file:{filename:string;mimetype:string;toBuffer:()=>Promise<Buffer>}){if(!await own(user,measureId))return null;const name=basename(file.filename);const mime=allowed.get(extname(name).toLowerCase());const data=await file.toBuffer();if(!mime||file.mimetype!==mime||!data.length||data.length>10485760)throw new Error('INVALID_DOCUMENT');const id=randomUUID(),blob=`measures/${measureId}/${id}${extname(name).toLowerCase()}`;await container().getBlockBlobClient(blob).uploadData(data,{blobHTTPHeaders:{blobContentType:mime}});await pool.query('INSERT INTO measure_documents(id,measure_id,uploaded_by,original_name,blob_name,mime_type,size_bytes) VALUES($1,$2,$3,$4,$5,$6,$7)',[id,measureId,user.id,name,blob,mime,data.length]);return {id,originalName:name}}
