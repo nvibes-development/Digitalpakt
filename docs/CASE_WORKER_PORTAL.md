@@ -6,7 +6,11 @@ KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein au
 
 ## Rollen und Zugriff
 
-Öffentliche Registrierung erzeugt ausschließlich `school_admin`. Die neue Rolle `case_worker` wird nur über einen administrativen, sicheren Prozess vergeben. `/review/*` und `/api/review/*` verlangen serverseitig eine Sachbearbeiterrolle; Schuladministratoren erhalten keinen Review-Zugriff. Sachbearbeiter können keine Schuldaten, Maßnahmen, Antworten oder Dokumente der Schule verändern.
+Öffentliche Registrierung erzeugt ausschließlich `school_admin`. Die neue Rolle `case_worker` wird nur über einen administrativen, sicheren Prozess vergeben.
+
+### Initialer Sachbearbeiterzugang
+
+Für die erstmalige produktive Nutzung des Sachbearbeiterportals ist `sachbearbeiter@nvibes.de` als initialer Benutzer mit der Rolle `case_worker` angelegt. Dieser Zugang dient ausschließlich der Bearbeitung von Maßnahmen. Zugangsdaten werden nicht im Repository dokumentiert; Änderungen der Rolle oder Zugangsdaten erfolgen ausschließlich über den sicheren administrativen Prozess. `/review/*` und `/api/review/*` verlangen serverseitig eine Sachbearbeiterrolle; Schuladministratoren erhalten keinen Review-Zugriff. Sachbearbeiter können keine Schuldaten, Maßnahmen, Antworten oder Dokumente der Schule verändern.
 
 ## Workflow
 

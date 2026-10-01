@@ -6,7 +6,7 @@
 
 ## Sachbearbeiterportal – Implementierung in Review
 
-Der Branch `feat/case-worker-portal` ergänzt die gemeinsame App/API um die Rolle `case_worker`, geschützte `/review`-Routen, Inbox, digitale Akte, atomare Übernahme, menschliche Grün/Gelb/Rot-Entscheidungen, Submission-Snapshots, Nachforderungen, Wiedereinreichung und Audit-Historie. Der Produktionsstatus ist **nicht verifiziert**; Migration, Review-Autorisierung und vollständige E2E-Tests müssen vor produktiver Freigabe gegen den aktuellen GitHub-Merge und die Produktionsdaten validiert werden. Details: [CASE_WORKER_PORTAL.md](CASE_WORKER_PORTAL.md).
+Der Branch `feat/case-worker-portal` ergänzt die gemeinsame App/API um die Rolle `case_worker`, geschützte `/review`-Routen, Inbox, digitale Akte, atomare Übernahme, menschliche Grün/Gelb/Rot-Entscheidungen, Submission-Snapshots, Nachforderungen, Wiedereinreichung und Audit-Historie. Der Produktionsstatus ist **nicht verifiziert**; Migration, Review-Autorisierung und vollständige E2E-Tests müssen vor produktiver Freigabe gegen den aktuellen GitHub-Merge und die Produktionsdaten validiert werden. Für die initiale Sachbearbeitung ist `sachbearbeiter@nvibes.de` über den sicheren administrativen Prozess als `case_worker` eingerichtet; keine Zugangsdaten werden versioniert. Details: [CASE_WORKER_PORTAL.md](CASE_WORKER_PORTAL.md).
 
 ## Produktiver Funktionsumfang
 
