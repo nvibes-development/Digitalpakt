@@ -414,6 +414,7 @@ h2 {
 .check-flow li { align-items: center; display: flex; font-weight: 600; gap: .75rem; }
 .check-flow span { align-items: center; background: var(--color-tint); border: 1px solid var(--color-border); border-radius: 999px; display: inline-flex; height: 2rem; justify-content: center; width: 2rem; }
 .app-panel .disclaimer + .primary-button { margin-top: 1rem; }
+.eligibility-check-button { margin-top: 1rem; }
 .measure-list { display: grid; gap: 1rem; list-style: none; padding: 0; }
 .measure-list li { border: 1px solid var(--color-border); border-radius: .75rem; padding: 1rem; }
 .measure-list h2 { font-size: 1.2rem; }
