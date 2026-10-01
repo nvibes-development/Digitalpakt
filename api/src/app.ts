@@ -6,6 +6,7 @@ import { currentUser, login, loginSchema, register, registerSchema, revoke } fro
 import { getCurrentSchool, schoolUpdateSchema, startSchoolCheck, updateCurrentSchool } from './schools.js';
 import { createMeasure, getLatestMeasure, getMeasure, listMeasures, measureUpdateSchema, updateMeasure } from './measures.js';
 import { deleteDocument, getDocument, listDocuments, uploadDocument } from './documents.js';
+import { changePassword, deleteAccount, deleteAccountSchema, passwordSchema, profile, profileSchema, updateProfile } from './account.js';
 
 const cookieName = 'klarfoerdern_session';
 const cookieOptions = { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' as const, path: '/', maxAge: 60 * 60 * 24 * 7 };
@@ -62,6 +63,10 @@ export function buildApp(): FastifyInstance {
     return user;
   }
 
+  app.get('/api/account/profile', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; return {profile:await profile(user)}; });
+  app.patch('/api/account/profile', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; const parsed=profileSchema.safeParse(request.body); if(!parsed.success)return reply.code(400).send({error:{code:'INVALID_PROFILE',message:'Bitte prüfen Sie Ihre Profildaten.',fields:parsed.error.flatten().fieldErrors}}); try{return {profile:await updateProfile(user,parsed.data)}}catch(error){if(error instanceof Error&&error.message==='EMAIL_EXISTS')return reply.code(409).send({error:{code:'EMAIL_EXISTS',message:'Diese E-Mail-Adresse wird bereits verwendet.'}});throw error} });
+  app.post('/api/account/password', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; const parsed=passwordSchema.safeParse(request.body); if(!parsed.success)return reply.code(400).send({error:{code:'INVALID_PASSWORD',message:'Das neue Passwort muss mindestens 12 Zeichen lang sein.'}}); try{await changePassword(user,parsed.data);return reply.code(204).send()}catch(error){if(error instanceof Error&&error.message==='INVALID_CREDENTIALS')return reply.code(401).send({error:{code:'INVALID_CREDENTIALS',message:'Das aktuelle Passwort ist nicht korrekt.'}});throw error} });
+  app.delete('/api/account', async (request, reply) => { const user=await requireUser(request,reply); if(!user)return; const parsed=deleteAccountSchema.safeParse(request.body); if(!parsed.success)return reply.code(400).send({error:{code:'DELETE_CONFIRMATION_REQUIRED',message:'Bitte bestätigen Sie die Kontolöschung.'}}); try{await deleteAccount(user);reply.clearCookie(cookieName,{path:'/'});return reply.code(204).send()}catch(error){if(error instanceof Error&&error.message==='ACCOUNT_HAS_SHARED_SCHOOLS')return reply.code(409).send({error:{code:'ACCOUNT_HAS_SHARED_SCHOOLS',message:'Dieses Konto kann nicht automatisch gelöscht werden, weil es gemeinsame Schuldaten gibt.'}});throw error} });
   app.get('/api/schools/current', async (request, reply) => {
     const user = await requireUser(request, reply); if (!user) return;
     const current = await getCurrentSchool(user);
