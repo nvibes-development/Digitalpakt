@@ -1,30 +1,22 @@
-# DigitalPakt Check
+# KLARFÖRDERN
 
-Eine Web-App zur strukturierten Vorprüfung von Digitalisierungsvorhaben im Kontext des **DigitalPakts 2.0**.
+**KLARFÖRDERN – Förderfähigkeit. Einfach klar.** ist eine Web-App zur strukturierten Erfassung und menschlich verantworteten Vorprüfung von Digitalisierungsvorhaben im Kontext des **DigitalPakts 2.0**.
 
 > **Projektkontext:** Abschlussarbeit „Agiles Projekt mit Scrum“
 
 ## Ziel der App
 
-Der Prototyp prüft zunächst die **Antragsberechtigung der Schule** und anschließend die **Förderfähigkeit einer geplanten Digitalisierungsmaßnahme**.
+KLARFÖRDERN führt Schulen durch einen vollständigen digitalen Prozess von der Erfassung der Schuldaten über Maßnahme, Förderbereich, Förderfragen und Dokumente bis zur Einreichung.
 
-Die Anwendung führt die Schulleitung durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung. Die Ergebnisse dienen als **unverbindliche Ersteinschätzung**.
+Eingereichte Maßnahmen werden einem autorisierten Sachbearbeiter als versionierte digitale Akte bereitgestellt. Der Sachbearbeiter prüft die Angaben und trifft eine menschliche Ersteinschätzung:
 
-Für die Schule wird unterschieden zwischen:
+- **grundsätzlich förderfähig**
+- **Nachbearbeitung erforderlich**
+- **derzeit nicht grundsätzlich förderfähig**
 
-- **antragsberechtigt**
-- **nicht abschließend prüfbar**
-- **nicht antragsberechtigt**
+Bei einer Nachforderung kann die Schule Angaben und Dokumente ergänzen und die Maßnahme erneut einreichen. Historische Einreichungen bleiben nachvollziehbar.
 
-Aus Antragsberechtigung und Maßnahmenprüfung entsteht anschließend ein Gesamtergebnis:
-
-- **Antrag grundsätzlich möglich**
-- **weitere Angaben oder Nachweise erforderlich**
-- **Antrag derzeit nicht möglich**
-
-Dazu werden Begründung, erfüllte und nicht erfüllte Voraussetzungen, fehlende Angaben, benötigte Nachweise, verwendete Förderkriterien und empfohlene nächste Schritte dargestellt.
-
-Die App dient als **Orientierungs- und Vorbereitungshilfe**. Sie ersetzt keine rechtsverbindliche Prüfung, keine Förderberatung und keine Förderentscheidung durch die zuständigen Stellen.
+KLARFÖRDERN trifft **keine automatische verbindliche Förderentscheidung**. Die Anwendung dient als **Orientierungs- und Vorbereitungshilfe** und ersetzt keine rechtsverbindliche Förderentscheidung durch die zuständigen Stellen.
 
 ## Sachbearbeiterportal
 
@@ -34,7 +26,7 @@ Neben dem Schulportal gibt es einen geschützten Arbeitsbereich für autorisiert
 
 Die Vorbereitung eines Digitalisierungsvorhabens kann für Schulen und Schulträger komplex sein. Anforderungen, Zuständigkeiten, technische Rahmenbedingungen, pädagogische Zielsetzungen und Förderbedingungen müssen zusammengeführt werden.
 
-**DigitalPakt Check** soll diesen Prozess vereinfachen und Nutzer Schritt für Schritt durch eine strukturierte Vorprüfung führen.
+**KLARFÖRDERN** vereinfacht diesen Prozess und führt Nutzer Schritt für Schritt durch Erfassung, Einreichung, menschliche Prüfung und Rückmeldung.
 
 ## Zielgruppen
 
@@ -45,7 +37,7 @@ Die Vorbereitung eines Digitalisierungsvorhabens kann für Schulen und Schulträ
 
 ## Product Goal
 
-> Schulleitungen können Angaben zu ihrer Schule und zu einer geplanten Digitalisierungsmaßnahme erfassen und eine unverbindliche Ersteinschätzung erhalten, ob die Schule grundsätzlich antragsberechtigt ist und ob für die geplante Maßnahme nach den hinterlegten Kriterien grundsätzlich ein Förderantrag möglich sein könnte.
+> Schulen können Digitalisierungsvorhaben vollständig erfassen und zur Prüfung einreichen. Ein autorisierter Sachbearbeiter erhält eine strukturierte digitale Akte und dokumentiert eine nachvollziehbare menschliche Ersteinschätzung.
 
 ## Fachliche Projektdokumentation
 
@@ -57,6 +49,8 @@ Die detaillierte, vom Team erarbeitete Produktdefinition und Backlog-Struktur is
 - [Projektteam & Rollen](docs/TEAM.md)
 - [Branding und Design-System](docs/BRANDING.md)
 - [Technische Architektur](docs/ARCHITECTURE.md)
+- [Sachbearbeiterportal](docs/CASE_WORKER_PORTAL.md)
+- [Aktueller Entwicklungsstand](docs/DEVELOPMENT_STATUS.md)
 
 ## Projekt-Kick-off
 
