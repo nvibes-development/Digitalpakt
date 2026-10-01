@@ -10,6 +10,7 @@ import { MeasuresPage } from '../pages/MeasuresPage';
 import { DocumentsPage } from '../pages/DocumentsPage';
 import { ProfilePage } from '../pages/ProfilePage';
 import { QuestionsPage } from '../pages/QuestionsPage';
+import { HelpPage } from '../pages/HelpPage';
 
 const navigation = [
   ['Übersicht', '/app', BsHouseDoor],
@@ -65,7 +66,7 @@ export function AppShell() {
       </aside>
       <div className="app-main">
         <main className="app-content">
-          {location.pathname === '/app/school' ? <SchoolPage /> : location.pathname === '/app' ? <DashboardPage /> : location.pathname === '/app/measures/new' ? <MeasurePage /> : location.pathname === '/app/measures' ? <MeasuresPage /> : location.pathname === '/app/documents' ? <DocumentsPage /> : location.pathname === '/app/questions' ? <QuestionsPage /> : location.pathname === '/app/profile' ? <ProfilePage /> : location.pathname.startsWith('/app/measures/') ? <MeasurePage measureId={location.pathname.slice('/app/measures/'.length)} /> : <section className="app-placeholder" aria-labelledby="app-placeholder-title"><h1 id="app-placeholder-title">KLARFÖRDERN App</h1><p>Dieser Arbeitsschritt wird im nächsten Product Item ergänzt.</p></section>}
+          {location.pathname === '/app/school' ? <SchoolPage /> : location.pathname === '/app' ? <DashboardPage /> : location.pathname === '/app/measures/new' ? <MeasurePage /> : location.pathname === '/app/measures' ? <MeasuresPage /> : location.pathname === '/app/documents' ? <DocumentsPage /> : location.pathname === '/app/questions' ? <QuestionsPage /> : location.pathname === '/app/profile' ? <ProfilePage /> : location.pathname === '/app/help' ? <HelpPage /> : location.pathname.startsWith('/app/measures/') ? <MeasurePage measureId={location.pathname.slice('/app/measures/'.length)} /> : <section className="app-placeholder" aria-labelledby="app-placeholder-title"><h1 id="app-placeholder-title">KLARFÖRDERN App</h1><p>Dieser Arbeitsschritt wird im nächsten Product Item ergänzt.</p></section>}
         </main>
         <PublicFooter />
       </div>
