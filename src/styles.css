@@ -308,9 +308,10 @@ h2 {
   padding: 1.5rem;
 }
 
-.app-sidebar-header { align-items: flex-start; display: flex; gap: .5rem; justify-content: space-between; position: relative; }
+.app-sidebar-header { align-items: flex-start; display: flex; flex-wrap: wrap; gap: .5rem; justify-content: space-between; position: relative; }
 
-.account-menu { position: relative; }
+.account-menu { margin-left: auto; position: relative; }
+.account-trigger { flex: 0 0 auto; }
 .account-trigger { align-items: center; background: transparent; border: 0; color: var(--color-primary); cursor: pointer; display: flex; font: inherit; gap: .4rem; padding: .25rem; text-align: right; }
 .account-trigger svg { flex: 0 0 auto; font-size: 1.75rem; }
 .account-trigger span { display: grid; font-size: .75rem; max-width: 8.25rem; overflow-wrap: anywhere; }
