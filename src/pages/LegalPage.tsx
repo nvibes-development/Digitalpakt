@@ -1,29 +1,22 @@
 import { Link } from 'react-router-dom';
 import { PublicFooter } from '../components/PublicFooter';
-
-type LegalPageProps = {
-  type: 'impressum' | 'datenschutz';
-};
-
-export function LegalPage({ type }: LegalPageProps) {
-  const title = type === 'impressum' ? 'Impressum' : 'Datenschutz';
-
-  return (
-    <>
-      <main className="route-card page-shell">
-        <section className="route-panel" aria-labelledby="legal-title">
-          <Link className="back-link" to="/">
-            ← Zur Startseite
-          </Link>
-          <h1 id="legal-title">{title}</h1>
-          <p>
-            Die rechtlichen Inhalte werden durch die verantwortliche Redaktion
-            bereitgestellt. Bis dahin enthält diese technische Seite bewusst
-            keine erfundenen Betreiber- oder Datenschutzangaben.
-          </p>
-        </section>
-      </main>
-      <PublicFooter />
-    </>
-  );
-}
+type LegalPageProps={type:'impressum'|'datenschutz'};
+const privacySections:[string,string[]][]=[
+['1. Verantwortlicher',['Verantwortlich für die Verarbeitung personenbezogener Daten im Rahmen von KLARFÖRDERN ist:','nVibes UG (haftungsbeschränkt)','Dresden, Deutschland','E-Mail: [Datenschutz-E-Mail-Adresse ergänzen]','Die vollständigen Anbieterangaben finden Sie im Impressum.']],
+['2. Welche Daten werden verarbeitet?',['Bei der Nutzung von KLARFÖRDERN können insbesondere folgende Daten verarbeitet werden:','Benutzer- und Kontodaten: Vorname, Nachname, E-Mail-Adresse, verschlüsselter bzw. gehashter Passwortwert, Benutzerrolle, Zeitpunkt der Registrierung, Zeitpunkt der letzten Anmeldung und technische Sitzungsinformationen. Passwörter werden nicht im Klartext gespeichert.','Schuldaten: Name der Schule, Bundesland, Schulart, Schulform, Trägerschaft, Anerkennungsstatus, Standort, Anzahl der Schülerinnen und Schüler, Anzahl der Lehrkräfte, technische Ausstattung, Angaben zu bisherigen Digitalisierungsmaßnahmen und bereits genutzten Fördermitteln.','KLARFÖRDERN ist nicht dafür vorgesehen, personenbezogene Daten einzelner Schülerinnen oder Schüler zu erfassen. Insbesondere sollen keine Schülernamen, Gesundheitsdaten, Leistungsdaten oder vergleichbare personenbezogene Schülerdaten eingegeben werden.','Daten zu Digitalisierungsvorhaben: Bezeichnung und Beschreibung der Maßnahme, Förderbereich, geplante Kosten, vorgesehener Umsetzungszeitraum, Bearbeitungsstatus, Antworten auf Prüffragen und Ergebnisse durchgeführter Vorprüfungen. Diese Daten werden dem jeweiligen Benutzerkonto und der dazugehörigen Schule zugeordnet.']],
+['3. Zweck der Verarbeitung',['Die Verarbeitung erfolgt zur Bereitstellung und zum Betrieb von KLARFÖRDERN, zur Einrichtung und Verwaltung von Benutzerkonten, Authentifizierung, Speicherung und Wiederaufnahme begonnener Förderprüfungen, Verwaltung von Schuldaten und Maßnahmen, Durchführung der regelbasierten Förderfähigkeitsprüfung, Anzeige von Ergebnissen und nächsten Schritten sowie zur Gewährleistung technischer Sicherheit und Stabilität. Personenbezogene Daten werden nicht zu Werbezwecken verwendet.']],
+['4. Rechtsgrundlage',['Soweit die Verarbeitung zur Bereitstellung des Benutzerkontos und angeforderten Funktionen erforderlich ist, erfolgt sie auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO. Für den sicheren und zuverlässigen Betrieb erfolgt sie auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse besteht insbesondere im sicheren Betrieb, in der Fehleranalyse sowie im Schutz der Anwendung und ihrer Benutzer vor Missbrauch. Soweit für bestimmte zukünftige Funktionen eine Einwilligung erforderlich sein sollte, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO.']],
+['5. Speicherung und Hosting',['KLARFÖRDERN wird unter Nutzung von Cloud-Infrastruktur von Microsoft Azure betrieben. Anwendungs- und Datenbankdaten werden innerhalb der eingesetzten Azure-Infrastruktur gespeichert und verarbeitet. Microsoft wird als Auftragsverarbeiter eingesetzt. Eine Nutzung der Daten durch Microsoft zu eigenen Werbezwecken erfolgt nicht. Soweit möglich, werden Dienste und Speicherorte innerhalb der Europäischen Union genutzt.']],
+['6. Weitergabe von Daten',['Eine Weitergabe an Dritte zu Werbe-, Marketing- oder Verkaufszwecken findet nicht statt. Eine Übermittlung erfolgt nur, soweit sie für den technischen Betrieb erforderlich, gesetzlich verpflichtend oder ausdrücklich veranlasst ist. Dienstleister erhalten nur Zugriff, soweit dies für die jeweilige Leistung erforderlich ist.']],
+['7. Cookies und lokale Speicherung',['KLARFÖRDERN verwendet keine Werbe-, Marketing- oder Tracking-Cookies. Für die Anmeldung wird ein technisch notwendiges Session-Cookie verwendet. Es dient ausschließlich der sicheren Authentifizierung während der Sitzung und ist HttpOnly, Secure und SameSite konfiguriert. Es wird nicht für Werbung, Profilbildung oder Tracking verwendet.']],
+['8. Tracking und Analyse',['KLARFÖRDERN verwendet derzeit keine externen Analyse-, Werbe- oder Trackingdienste. Es werden keine Nutzerprofile für Werbezwecke, Trackingpixel oder vergleichbare Werbetechnologien eingesetzt.']],
+['9. Server- und Sicherheitsprotokolle',['Beim Zugriff können Zeitpunkt, aufgerufene Ressource, technische Fehler, HTTP-Status und technische Informationen zur Anfrage verarbeitet werden. Dies dient ausschließlich dem sicheren Betrieb, der Fehleranalyse und dem Schutz vor Missbrauch. Passwörter, Session-Geheimnisse und vergleichbare sensible Zugangsdaten werden nicht in Anwendungsprotokollen gespeichert.']],
+['10. Speicherdauer',['Personenbezogene Daten werden nur so lange gespeichert, wie dies für die Bereitstellung von KLARFÖRDERN und die Verarbeitungszwecke erforderlich ist. Kontodaten werden grundsätzlich gespeichert, solange das Benutzerkonto besteht. Nach dessen Löschung werden Daten gelöscht, soweit keine gesetzlichen Aufbewahrungspflichten oder andere rechtliche Gründe entgegenstehen. Sicherheits- und Fehlerprotokolle werden nur für einen angemessenen Zeitraum gespeichert.']],
+['11. Automatisierte Prüfung',['KLARFÖRDERN kann eingegebene Daten automatisiert anhand hinterlegter fachlicher Kriterien auswerten. Die Anwendung erteilt keine verbindliche Förderzusage und trifft keine behördliche Förderentscheidung. Ergebnisse dienen ausschließlich als unverbindliche Orientierung und Vorbereitung eines möglichen Förderantrags. Maßgeblich bleiben die geltenden Förderbedingungen und Verfahren der zuständigen Stellen.']],
+['12. Sicherheit',['KLARFÖRDERN verwendet technische und organisatorische Maßnahmen, insbesondere verschlüsselte HTTPS-Übertragung, sichere Benutzeranmeldung, gehashte Passwortspeicherung, serverseitige Sitzungsverwaltung, Zugriffskontrollen, Trennung der Daten verschiedener Benutzer bzw. Schulen, Beschränkung technischer Zugriffe und regelmäßige Aktualisierung eingesetzter Softwarekomponenten.']],
+['13. Rechte betroffener Personen',['Sie haben nach den gesetzlichen Voraussetzungen das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) und Widerspruch (Art. 21 DSGVO). Soweit die Verarbeitung auf Einwilligung beruht, kann diese jederzeit mit Wirkung für die Zukunft widerrufen werden.']],
+['14. Beschwerderecht',['Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren. Sie können sich insbesondere an die für den Verantwortlichen zuständige Datenschutzaufsichtsbehörde wenden.']],
+['15. Keine Nutzung für Werbung',['Die über KLARFÖRDERN erhobenen Daten werden nicht verkauft, nicht zur Erstellung von Werbeprofilen verwendet und nicht an Werbenetzwerke oder Datenhändler weitergegeben.']],
+['16. Änderungen dieser Datenschutzerklärung',['Diese Datenschutzerklärung kann angepasst werden, wenn sich KLARFÖRDERN, die eingesetzte technische Infrastruktur oder die gesetzlichen Anforderungen ändern. Es gilt die jeweils innerhalb von KLARFÖRDERN veröffentlichte Fassung.','Stand: Oktober 2026']],
+];
+export function LegalPage({type}:LegalPageProps){const privacy=type==='datenschutz';return <><main className="route-card page-shell"><section className="route-panel legal-content" aria-labelledby="legal-title"><Link className="back-link" to="/">← Zur Startseite</Link><h1 id="legal-title">{privacy?'Datenschutz':'Impressum'}</h1>{privacy?<><p>Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Nachfolgend informieren wir Sie darüber, welche personenbezogenen Daten bei der Nutzung von KLARFÖRDERN verarbeitet werden, zu welchen Zwecken dies geschieht und welche Rechte Ihnen zustehen.</p><p>KLARFÖRDERN dient der strukturierten und unverbindlichen Vorprüfung von Digitalisierungsvorhaben im Zusammenhang mit Fördermöglichkeiten für Schulen.</p>{privacySections.map(([heading,paragraphs])=><section key={heading}><h2>{heading}</h2>{paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</section>)}</>:<p>Die rechtlichen Inhalte werden durch die verantwortliche Redaktion bereitgestellt.</p>}</section></main><PublicFooter/></>}
