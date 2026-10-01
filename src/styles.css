@@ -534,6 +534,11 @@ h2 {
 .decision-panel { display: grid; gap: 1rem; }
 .decision-panel textarea { min-height: 6rem; resize: vertical; width: 100%; }
 .decision-actions { align-items: stretch; display: flex; flex-wrap: wrap; gap: .75rem; }
-.decision-actions > button { align-items: center; display: inline-flex; font: inherit; justify-content: center; min-height: 2.875rem; padding: .75rem 1.125rem; }
+.decision-button { align-items: center; border: 1px solid transparent; border-radius: .75rem; color: #fff; cursor: pointer; display: inline-flex; flex: 1 1 14rem; font: inherit; font-weight: 600; justify-content: center; margin: 0; min-height: 3rem; padding: .75rem 1.125rem; text-align: center; }
+.decision-button:focus-visible { box-shadow: 0 0 0 3px var(--color-focus-ring); outline: none; }
+.decision-button:disabled { cursor: not-allowed; opacity: .55; }
+.decision-button-eligible { background: #1f7a45; }
+.decision-button-request { background: #9a6700; }
+.decision-button-reject { background: #b3262d; }
 @media (max-width: 760px) { .case-section dl { grid-template-columns: 1fr; } .review-table { min-width: 42rem; } }
-@media (max-width: 420px) { .decision-actions .primary-button, .decision-actions .secondary-button, .decision-actions .danger-button { width: 100%; } }
+@media (max-width: 420px) { .decision-button { flex-basis: 100%; } }
