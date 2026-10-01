@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BsBuilding, BsClipboardCheck, BsFolder, BsHouseDoor, BsPersonCircle, BsPlusCircle, BsQuestionCircle } from 'react-icons/bs';
+import { BsBuilding, BsClipboardCheck, BsFolder, BsHouseDoor, BsPatchQuestion, BsPersonCircle, BsPlusCircle, BsQuestionCircle } from 'react-icons/bs';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSession } from '../auth/SessionContext';
 import { PublicFooter } from './PublicFooter';
@@ -9,12 +9,14 @@ import { MeasurePage } from '../pages/MeasurePage';
 import { MeasuresPage } from '../pages/MeasuresPage';
 import { DocumentsPage } from '../pages/DocumentsPage';
 import { ProfilePage } from '../pages/ProfilePage';
+import { QuestionsPage } from '../pages/QuestionsPage';
 
 const navigation = [
   ['Übersicht', '/app', BsHouseDoor],
   ['Schuldaten', '/app/school', BsBuilding],
   ['Neue Maßnahme', '/app/measures/new', BsPlusCircle],
   ['Meine Maßnahmen', '/app/measures', BsClipboardCheck],
+  ['Fragen', '/app/questions', BsPatchQuestion],
   ['Dokumente', '/app/documents', BsFolder],
   ['Hilfe', '/app/help', BsQuestionCircle],
 ] as const;
@@ -63,7 +65,7 @@ export function AppShell() {
       </aside>
       <div className="app-main">
         <main className="app-content">
-          {location.pathname === '/app/school' ? <SchoolPage /> : location.pathname === '/app' ? <DashboardPage /> : location.pathname === '/app/measures/new' ? <MeasurePage /> : location.pathname === '/app/measures' ? <MeasuresPage /> : location.pathname === '/app/documents' ? <DocumentsPage /> : location.pathname === '/app/profile' ? <ProfilePage /> : location.pathname.startsWith('/app/measures/') ? <MeasurePage measureId={location.pathname.slice('/app/measures/'.length)} /> : <section className="app-placeholder" aria-labelledby="app-placeholder-title"><h1 id="app-placeholder-title">KLARFÖRDERN App</h1><p>Dieser Arbeitsschritt wird im nächsten Product Item ergänzt.</p></section>}
+          {location.pathname === '/app/school' ? <SchoolPage /> : location.pathname === '/app' ? <DashboardPage /> : location.pathname === '/app/measures/new' ? <MeasurePage /> : location.pathname === '/app/measures' ? <MeasuresPage /> : location.pathname === '/app/documents' ? <DocumentsPage /> : location.pathname === '/app/questions' ? <QuestionsPage /> : location.pathname === '/app/profile' ? <ProfilePage /> : location.pathname.startsWith('/app/measures/') ? <MeasurePage measureId={location.pathname.slice('/app/measures/'.length)} /> : <section className="app-placeholder" aria-labelledby="app-placeholder-title"><h1 id="app-placeholder-title">KLARFÖRDERN App</h1><p>Dieser Arbeitsschritt wird im nächsten Product Item ergänzt.</p></section>}
         </main>
         <PublicFooter />
       </div>
