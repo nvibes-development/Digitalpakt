@@ -16,16 +16,21 @@ export const measureUpdateSchema = z.object({
   existingEquipment: optionalText,
   previousDigitalisationMeasures: optionalText,
   receivedFunding: optionalText,
-  implementationPeriod: z.string().trim().min(1).max(200).nullable().optional(),
+  implementationStartDate: z.iso.date().nullable().optional(),
+  implementationEndDate: z.iso.date().nullable().optional(),
   estimatedCostEur: optionalNonNegative,
   implementationStatus: z.enum(['planned', 'started', 'completed']).nullable().optional(),
   fundingArea: z.enum(['infrastructure_network_wlan', 'digital_devices', 'educational_software_platforms']).nullable().optional(),
-}).strict();
+}).strict().superRefine((value, context) => {
+  if (value.implementationStartDate && value.implementationEndDate && value.implementationEndDate < value.implementationStartDate) {
+    context.addIssue({ code: 'custom', path: ['implementationEndDate'], message: 'Das Ende der Umsetzung darf nicht vor dem Beginn liegen.' });
+  }
+});
 
-export type Measure = { id: string; schoolId: string; name: string | null; description: string | null; affectedAreaSqm: number | null; studentCount: number | null; teacherCount: number | null; existingEquipment: string | null; previousDigitalisationMeasures: string | null; receivedFunding: string | null; implementationPeriod: string | null; estimatedCostEur: number | null; implementationStatus: 'planned' | 'started' | 'completed' | null; fundingArea: 'infrastructure_network_wlan' | 'digital_devices' | 'educational_software_platforms' | null; updatedAt: string };
+export type Measure = { id: string; schoolId: string; name: string | null; description: string | null; affectedAreaSqm: number | null; studentCount: number | null; teacherCount: number | null; existingEquipment: string | null; previousDigitalisationMeasures: string | null; receivedFunding: string | null; implementationStartDate: string | null; implementationEndDate: string | null; estimatedCostEur: number | null; implementationStatus: 'planned' | 'started' | 'completed' | null; fundingArea: 'infrastructure_network_wlan' | 'digital_devices' | 'educational_software_platforms' | null; updatedAt: string };
 
 type MeasureRow = Measure;
-const columns = `m.id, m.school_id AS "schoolId", m.name, m.description, m.affected_area_sqm::float8 AS "affectedAreaSqm", m.student_count AS "studentCount", m.teacher_count AS "teacherCount", m.existing_equipment AS "existingEquipment", m.previous_digitalisation_measures AS "previousDigitalisationMeasures", m.received_funding AS "receivedFunding", m.implementation_period AS "implementationPeriod", m.estimated_cost_eur::float8 AS "estimatedCostEur", m.implementation_status AS "implementationStatus", m.funding_area AS "fundingArea", m.updated_at::text AS "updatedAt"`;
+const columns = `m.id, m.school_id AS "schoolId", m.name, m.description, m.affected_area_sqm::float8 AS "affectedAreaSqm", m.student_count AS "studentCount", m.teacher_count AS "teacherCount", m.existing_equipment AS "existingEquipment", m.previous_digitalisation_measures AS "previousDigitalisationMeasures", m.received_funding AS "receivedFunding", m.implementation_start_date::text AS "implementationStartDate", m.implementation_end_date::text AS "implementationEndDate", m.estimated_cost_eur::float8 AS "estimatedCostEur", m.implementation_status AS "implementationStatus", m.funding_area AS "fundingArea", m.updated_at::text AS "updatedAt"`;
 
 async function currentSchoolId(user: SafeUser) {
   const result = await pool.query<{ schoolId: string }>('SELECT school_id AS "schoolId" FROM school_memberships WHERE user_id = $1 ORDER BY created_at ASC LIMIT 1', [user.id]);
@@ -56,7 +61,7 @@ export async function updateMeasure(user: SafeUser, measureId: string, update: z
   if (!current) return null;
   const next = Object.fromEntries(Object.entries(update).filter(([, value]) => value !== undefined));
   if (!Object.keys(next).length) return current;
-  const map: Record<string, string> = { name: 'name', description: 'description', affectedAreaSqm: 'affected_area_sqm', studentCount: 'student_count', teacherCount: 'teacher_count', existingEquipment: 'existing_equipment', previousDigitalisationMeasures: 'previous_digitalisation_measures', receivedFunding: 'received_funding', implementationPeriod: 'implementation_period', estimatedCostEur: 'estimated_cost_eur', implementationStatus: 'implementation_status', fundingArea: 'funding_area' };
+  const map: Record<string, string> = { name: 'name', description: 'description', affectedAreaSqm: 'affected_area_sqm', studentCount: 'student_count', teacherCount: 'teacher_count', existingEquipment: 'existing_equipment', previousDigitalisationMeasures: 'previous_digitalisation_measures', receivedFunding: 'received_funding', implementationStartDate: 'implementation_start_date', implementationEndDate: 'implementation_end_date', estimatedCostEur: 'estimated_cost_eur', implementationStatus: 'implementation_status', fundingArea: 'funding_area' };
   const fields = Object.keys(next);
   const assignments = fields.map((field, index) => `${map[field]} = $${index + 2}`).join(', ');
   const result = await pool.query<MeasureRow>(`UPDATE measures m SET ${assignments}, updated_at = now() WHERE m.id = $1 AND EXISTS (SELECT 1 FROM school_memberships sm WHERE sm.school_id = m.school_id AND sm.user_id = $${fields.length + 2}) RETURNING ${columns.replaceAll('m.', '')}`,

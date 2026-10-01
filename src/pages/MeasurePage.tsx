@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-type Measure = { id:string; schoolId:string; updatedAt:string; name:string|null; description:string|null; affectedAreaSqm:number|null; studentCount:number|null; teacherCount:number|null; existingEquipment:string|null; previousDigitalisationMeasures:string|null; receivedFunding:string|null; implementationPeriod:string|null; estimatedCostEur:number|null; implementationStatus:'planned'|'started'|'completed'|null; fundingArea:'infrastructure_network_wlan'|'digital_devices'|'educational_software_platforms'|null };
+type Measure = { id:string; schoolId:string; updatedAt:string; name:string|null; description:string|null; affectedAreaSqm:number|null; studentCount:number|null; teacherCount:number|null; existingEquipment:string|null; previousDigitalisationMeasures:string|null; receivedFunding:string|null; implementationStartDate:string|null; implementationEndDate:string|null; estimatedCostEur:number|null; implementationStatus:'planned'|'started'|'completed'|null; fundingArea:'infrastructure_network_wlan'|'digital_devices'|'educational_software_platforms'|null };
 const areas = [
   ['infrastructure_network_wlan', 'IT-Infrastruktur, Netzwerk und WLAN'],
   ['digital_devices', 'Digitale Endgeräte'],
@@ -26,7 +26,7 @@ export function MeasurePage() {
       <label>Vorhandene technische Ausstattung<textarea name="existingEquipment" value={measure.existingEquipment ?? ''} onChange={change} maxLength={4000} /></label>
       <label>Frühere Digitalisierungsmaßnahmen<textarea name="previousDigitalisationMeasures" value={measure.previousDigitalisationMeasures ?? ''} onChange={change} maxLength={4000} /></label>
       <label>Bereits erhaltene Fördermittel<textarea name="receivedFunding" value={measure.receivedFunding ?? ''} onChange={change} maxLength={4000} /></label>
-      <label>Umsetzungszeitraum<input name="implementationPeriod" value={measure.implementationPeriod ?? ''} onChange={change} maxLength={200} placeholder="z. B. 09/2026–06/2027" /></label>
+      <fieldset><legend>Umsetzungszeitraum</legend><label>Beginn der Umsetzung<input name="implementationStartDate" type="date" value={measure.implementationStartDate ?? ''} onChange={change} /></label><label>Ende der Umsetzung<input name="implementationEndDate" type="date" min={measure.implementationStartDate ?? undefined} value={measure.implementationEndDate ?? ''} onChange={change} /></label></fieldset>
       <label>Voraussichtliche Kosten in EUR<input name="estimatedCostEur" type="number" min="0" step="0.01" value={measure.estimatedCostEur ?? ''} onChange={change} /></label>
       <label>Umsetzungsstatus<select name="implementationStatus" value={measure.implementationStatus ?? ''} onChange={change}><option value="">Bitte auswählen</option><option value="planned">Geplant</option><option value="started">Begonnen</option><option value="completed">Abgeschlossen</option></select></label>
       <fieldset><legend>Förderbereich <strong aria-hidden="true">*</strong></legend>{areas.map(([value,label]) => <label key={value}><input type="radio" name="fundingArea" value={value} checked={measure.fundingArea === value} onChange={change} /> {label}</label>)}</fieldset>
