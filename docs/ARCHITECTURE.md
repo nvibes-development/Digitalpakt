@@ -46,6 +46,10 @@ Die Phase zur Erfassung der Schuldaten speichert `schools` und autorisierte `sch
 
 Solange kein verbindliches, fachlich freigegebenes Regelwerk dokumentiert ist, gibt der Service **ausschließlich** `needs_information` aus — auch bei vollständigen Schuldaten. Die technisch vorbereiteten Status `eligible` und `not_eligible` werden durch keinen aktuellen Codepfad ausgelöst. Es wurden ausdrücklich keine Förder- oder Eligibility-Regeln erfunden.
 
+## Sachbearbeiterportal
+
+Die gemeinsame React-PWA enthält zusätzlich `/review/*`; die Fastify-API schützt `/api/review/*` serverseitig über die bestehende Sitzung und die Rolle `case_worker`. Neue Tabellen speichern versionierte Submission-Snapshots, Entscheidungen, Nachforderungen und unveränderbare Audit-Ereignisse. Private Blob-Dokumente bleiben über die bestehende Managed-Identity-Integration erreichbar; der Review-Download autorisiert den Zugriff serverseitig. Fachentscheidungen werden ausschließlich durch den zugewiesenen Sachbearbeiter gespeichert, nicht aus Antworten abgeleitet. Details: [CASE_WORKER_PORTAL.md](CASE_WORKER_PORTAL.md).
+
 ## Produktion
 
 `deploy/deploy.sh` führt Typecheck, Tests, beide Builds und die Migration aus, aktiviert den statischen Release atomar und startet anschließend `klarfoerdern-api.service` neu. Die Systemd-Unit und Nginx-Konfiguration sind versioniert unter `deploy/`; Secrets werden nicht versioniert.

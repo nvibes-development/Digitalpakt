@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react';
-export type User = { id:string; email:string; firstName:string; lastName:string; displayName:string|null; role:'school_admin' };
+export type User = { id:string; email:string; firstName:string; lastName:string; displayName:string|null; role:'school_admin'|'case_worker'|'case_worker_admin' };
 type Value={status:'loading'|'authenticated'|'unauthenticated';user:User|null; authenticate:(path:'/api/auth/login'|'/api/auth/register',body:Record<string,string>)=>Promise<string|null>;logout:()=>Promise<void>};
 const Context=createContext<Value|null>(null);
 export function SessionProvider({children}:{children:ReactNode}) { const [user,setUser]=useState<User|null>(null);const [status,setStatus]=useState<Value['status']>('loading');

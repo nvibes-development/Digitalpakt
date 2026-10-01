@@ -58,6 +58,10 @@ Der erste Produktkern lautet:
 
 > **„Ich bin Schulleitung. Ist unsere Schule grundsätzlich antragsberechtigt und kann für unsere geplante Digitalisierungsmaßnahme nach den hinterlegten Kriterien grundsätzlich ein Förderantrag möglich sein?“**
 
+## Sachbearbeitung
+
+KLARFÖRDERN erweitert den Schulbereich um ein rollenbasiertes Sachbearbeiterportal. Autorisierte Sachbearbeiter lesen eine versionierte digitale Akte, übernehmen Vorgänge, stellen Nachforderungen und dokumentieren eine menschliche positive, negative oder nachbearbeitungsbedürftige Ersteinschätzung. Die Anwendung trifft dabei keine automatische Fachentscheidung.
+
 ## Abgrenzung
 
 Der DigitalPakt Check liefert ausschließlich eine **unverbindliche Ersteinschätzung**. Das Ergebnis ist keine rechtsverbindliche Förderentscheidung oder Förderzusage.

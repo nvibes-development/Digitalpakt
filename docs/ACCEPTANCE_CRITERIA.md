@@ -79,6 +79,15 @@ Fehlende Informationen müssen von nachweislich nicht erfüllten Voraussetzungen
 - Der verwendete Regelstand bleibt nachvollziehbar.
 - Eine spätere Änderung einer Förderregel verändert ein historisch gespeichertes Prüfergebnis nicht unbemerkt.
 
+## Sachbearbeiterportal
+
+- Ein `case_worker` kann ausschließlich den geschützten Review-Bereich verwenden; `school_admin` erhält serverseitig keinen Review-API-Zugriff.
+- Jede Einreichung erzeugt eine unveränderliche Submission-Version; historische Snapshots bleiben erhalten.
+- Nur der atomar zugewiesene Sachbearbeiter kann bei `UNDER_REVIEW` entscheiden.
+- Nachforderung und negative Entscheidung erfordern eine öffentliche Begründung; interne Vermerke sind nicht über Schulportal-Endpunkte sichtbar.
+- Eine Nachforderung öffnet die Maßnahme für die Bearbeitung und eine erneute Einreichung erzeugt eine neue Version.
+- Das System dokumentiert die menschliche Entscheidung und leitet sie nicht aus Antworten ab.
+
 ## Projektweite Definition of Done
 
 Ein Product Backlog Item gilt als **Done**, wenn:
