@@ -6,7 +6,8 @@ import { z } from 'zod';
 const sessionDays = 7;
 export const registerSchema = z.object({ email: z.email(), password: z.string().min(12), firstName: z.string().trim().min(1), lastName: z.string().trim().min(1), displayName: z.string().trim().min(1).max(120).optional() });
 export const loginSchema = z.object({ email: z.email(), password: z.string().min(1) });
-export type SafeUser = { id: string; email: string; firstName: string; lastName: string; displayName: string | null; role: 'school_admin' };
+export type UserRole = 'school_admin' | 'case_worker' | 'case_worker_admin';
+export type SafeUser = { id: string; email: string; firstName: string; lastName: string; displayName: string | null; role: UserRole };
 export type UserRecord = SafeUser & { passwordHash: string; active: boolean };
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });

@@ -517,3 +517,22 @@ h2 {
 .documents-table td.document-actions { display: table-cell; }
 .document-actions a, .document-actions button { margin-right: .5rem; }
 .document-actions a:last-child, .document-actions button:last-child { margin-right: 0; }
+.review-panel { max-width: 76rem; }
+.review-controls { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0; }
+.review-controls label, .decision-panel label { display: grid; font-weight: 600; gap: .4rem; }
+.review-controls input, .review-controls select, .decision-panel textarea { border: 1px solid var(--color-border); border-radius: .5rem; color: var(--color-text); font: inherit; min-height: 2.75rem; padding: .625rem .75rem; }
+.review-table-wrap { overflow-x: auto; }
+.review-table { border-collapse: collapse; min-width: 52rem; width: 100%; }
+.review-table th, .review-table td { border-bottom: 1px solid var(--color-border); padding: .75rem; text-align: left; vertical-align: top; }
+.review-table a { color: var(--color-accent); font-weight: 700; }
+.case-section { border-top: 1px solid var(--color-border); margin-top: 2rem; padding-top: 1.5rem; }
+.case-section h2 { font-size: 1.3rem; }
+.case-section dl { display: grid; gap: .5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.case-section dl div { border: 1px solid var(--color-border); border-radius: .5rem; padding: .625rem; }
+.case-section dt { color: var(--color-muted-text); font-size: .8125rem; font-weight: 700; overflow-wrap: anywhere; }
+.case-section dd { margin: .25rem 0 0; overflow-wrap: anywhere; }
+.decision-panel { display: grid; gap: 1rem; }
+.decision-panel textarea { min-height: 6rem; resize: vertical; width: 100%; }
+.decision-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+@media (max-width: 760px) { .case-section dl { grid-template-columns: 1fr; } .review-table { min-width: 42rem; } }
+@media (max-width: 420px) { .decision-actions .primary-button, .decision-actions .secondary-button, .decision-actions .danger-button { width: 100%; } }

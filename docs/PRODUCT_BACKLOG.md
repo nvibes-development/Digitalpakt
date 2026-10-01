@@ -146,6 +146,15 @@ Erweiterung nach dem eigentlichen Förderfähigkeitscheck. Für dieses Epic wurd
 | PI-15 | Maßnahmenübersicht bereitstellen | außerhalb der neuen Kern-User-Stories | Must | #35 |
 | PI-16 | Maßnahme erneut prüfen | außerhalb der neuen Kern-User-Stories | Should | #36 |
 
+## Sachbearbeiterportal (Product-Owner-freigegeben)
+
+- Sachbearbeiterrolle und geschützter Einstieg
+- Posteingang und digitale Akte
+- atomare Vorgangsübernahme
+- menschliche Grün/Gelb/Rot-Entscheidung mit öffentlicher Nachricht und internem Vermerk
+- Nachforderung, Wiedereinreichung und Submission-Versionierung
+- Audit-Verlauf und autorisierter Dokumentzugriff
+
 ## Sprint-Rahmen
 
 - **Sprint 1:** Infrastruktur

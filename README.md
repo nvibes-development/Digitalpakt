@@ -26,6 +26,10 @@ Dazu werden Begründung, erfüllte und nicht erfüllte Voraussetzungen, fehlende
 
 Die App dient als **Orientierungs- und Vorbereitungshilfe**. Sie ersetzt keine rechtsverbindliche Prüfung, keine Förderberatung und keine Förderentscheidung durch die zuständigen Stellen.
 
+## Sachbearbeiterportal
+
+Neben dem Schulportal gibt es einen geschützten Arbeitsbereich für autorisierte Sachbearbeiter. Er stellt eingereichte Angaben, Antworten und Dokumente als digitale Akte zusammen, ermöglicht Nachforderungen und dokumentiert eine menschliche Ersteinschätzung. KLARFÖRDERN selbst trifft keine verbindliche Förderentscheidung.
+
 ## Problemstellung
 
 Die Vorbereitung eines Digitalisierungsvorhabens kann für Schulen und Schulträger komplex sein. Anforderungen, Zuständigkeiten, technische Rahmenbedingungen, pädagogische Zielsetzungen und Förderbedingungen müssen zusammengeführt werden.

@@ -4,6 +4,10 @@
 **Autoritative Quelle:** GitHub `main`  
 **Produktiv verifizierter Release:** `10270d4bdac7a0ec01bd7dd33df4b0e2a3c88148`
 
+## Sachbearbeiterportal – Implementierung in Review
+
+Der Branch `feat/case-worker-portal` ergänzt die gemeinsame App/API um die Rolle `case_worker`, geschützte `/review`-Routen, Inbox, digitale Akte, atomare Übernahme, menschliche Grün/Gelb/Rot-Entscheidungen, Submission-Snapshots, Nachforderungen, Wiedereinreichung und Audit-Historie. Der Produktionsstatus ist **nicht verifiziert**; Migration, Review-Autorisierung und vollständige E2E-Tests müssen vor produktiver Freigabe gegen den aktuellen GitHub-Merge und die Produktionsdaten validiert werden. Details: [CASE_WORKER_PORTAL.md](CASE_WORKER_PORTAL.md).
+
 ## Produktiver Funktionsumfang
 
 ### Zugang, Datenschutz und Rechtliches
@@ -41,7 +45,7 @@
 
 - Web: React/Vite/PWA.
 - API: Fastify/TypeScript/PostgreSQL.
-- Datenbankmigrationen: `001` bis `009`; `006` ergänzt Maßnahmendokumente, `007` Profildaten, `008` maßnahmenbezogene Antworten und `009` Einreichungsstatus/Bearbeitungsnummer.
+- Datenbankmigrationen: `001` bis `010`; `006` ergänzt Maßnahmendokumente, `007` Profildaten, `008` maßnahmenbezogene Antworten und `009` Einreichungsstatus/Bearbeitungsnummer.
 - Azure Blob SDK: `DefaultAzureCredential` nutzt auf Produktion die Managed Identity.
 - Dokumenten-API:
   - `GET /api/measures/:measureId/documents`

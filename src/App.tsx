@@ -5,9 +5,10 @@ import { AuthPage } from './pages/AuthPage';
 import { LandingPage } from './pages/LandingPage';
 import { LegalPage } from './pages/LegalPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { ReviewShell } from './components/ReviewShell';
 
 function ProtectedAppRoute() {
-  const { status } = useSession();
+  const { status, user } = useSession();
 
   if (status === 'loading') {
     return <main className="route-state">Sitzung wird geprüft …</main>;
@@ -17,7 +18,15 @@ function ProtectedAppRoute() {
     return <Navigate replace to="/login" />;
   }
 
-  return <AppShell />;
+  return user?.role === 'school_admin' ? <AppShell /> : <Navigate replace to="/review" />;
+}
+
+function ProtectedReviewRoute() {
+  const { status, user } = useSession();
+  if (status === 'loading') return <main className="route-state">Sitzung wird geprüft …</main>;
+  if (status === 'unauthenticated') return <Navigate replace to="/login" />;
+  if (user?.role === 'school_admin') return <Navigate replace to="/app" />;
+  return <ReviewShell />;
 }
 
 export function AppRoutes() {
@@ -30,6 +39,7 @@ export function AppRoutes() {
       <Route path="/impressum" element={<LegalPage type="impressum" />} />
       <Route path="/datenschutz" element={<LegalPage type="datenschutz" />} />
       <Route path="/app/*" element={<ProtectedAppRoute />} />
+      <Route path="/review/*" element={<ProtectedReviewRoute />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
