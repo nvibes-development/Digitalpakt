@@ -419,7 +419,7 @@ h2 {
 .measure-list li { border: 1px solid var(--color-border); border-radius: .75rem; padding: 1rem; }
 .measure-list h2 { font-size: 1.2rem; }
 .measure-list .secondary-button { margin-top: .5rem; }
-.upload-button { display:inline-flex; margin:1.5rem 0; } .documents-table { border-collapse:collapse; width:100%; } .documents-table th,.documents-table td { border:1px solid var(--color-border); padding:.75rem; text-align:left; } .documents-table button { margin-left:.5rem; } @media(max-width:760px){.documents-table{font-size:.8rem}.documents-table th,.documents-table td{padding:.4rem}}
+.upload-button { align-items:center; background:var(--color-primary); border:1px solid var(--color-primary); border-radius:.75rem; color:var(--color-surface); cursor:pointer; display:inline-flex; font-weight:600; margin:1.5rem 0; min-height:2.875rem; padding:.75rem 1.125rem; } .upload-button:hover,.upload-button:focus-within { box-shadow:0 0 0 3px var(--color-focus-ring); } .upload-button input { height:1px; opacity:0; overflow:hidden; position:absolute; width:1px; } .documents-table { border-collapse:collapse; width:100%; } .documents-table th,.documents-table td { border:1px solid var(--color-border); padding:.75rem; text-align:left; } .documents-table button { margin-left:.5rem; } @media(max-width:760px){.documents-table{font-size:.8rem}.documents-table th,.documents-table td{padding:.4rem}}
 .sr-only { height: 1px; margin: -1px; overflow: hidden; position: absolute; width: 1px; clip: rect(0, 0, 0, 0); }
 
 @media (max-width: 760px) {
