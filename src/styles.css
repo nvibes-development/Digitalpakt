@@ -504,3 +504,5 @@ h2 {
 @media (max-width: 350px) {
   .app-brand { flex-wrap: wrap; }
 }
+
+.profile-page h2 { margin-top: 2.5rem; }
