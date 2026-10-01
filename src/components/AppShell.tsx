@@ -8,9 +8,9 @@ import { MeasuresPage } from '../pages/MeasuresPage';
 
 const navigation = [
   ['Übersicht', '/app'],
+  ['Schuldaten', '/app/school'],
   ['Neue Maßnahme', '/app/measures/new'],
   ['Meine Maßnahmen', '/app/measures'],
-  ['Schuldaten', '/app/school'],
   ['Dokumente', '/app/documents'],
   ['Hilfe', '/app/help'],
 ] as const;
