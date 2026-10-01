@@ -16,7 +16,7 @@ Für die erstmalige produktive Nutzung des Sachbearbeiterportals ist `sachbearbe
 
 `DRAFT → SUBMITTED → UNDER_REVIEW → ELIGIBLE | NEEDS_CHANGES | NOT_ELIGIBLE`.
 
-Bei `NEEDS_CHANGES` wird die Maßnahme für die Schule wieder bearbeitbar. Die erneute Einreichung erzeugt `RESUBMITTED` und eine weitere unveränderliche Submission-Version. Entscheidungen dürfen nur vom atomar zugewiesenen Sachbearbeiter getroffen werden.
+Beim ersten Öffnen eines neuen oder erneut eingereichten Vorgangs übernimmt ihn der Sachbearbeiter atomar; der Status wird `UNDER_REVIEW` und die Schule sieht „In Bearbeitung – Vorgang geöffnet“ einschließlich des Bearbeitungszeitpunkts. Bei `NEEDS_CHANGES` wird die Maßnahme für die Schule wieder bearbeitbar. Die erneute Einreichung erzeugt `RESUBMITTED` und eine weitere unveränderliche Submission-Version. Entscheidungen dürfen nur vom atomar zugewiesenen Sachbearbeiter getroffen werden.
 
 ## Persistenz und Nachvollziehbarkeit
 
