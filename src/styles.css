@@ -534,6 +534,12 @@ h2 {
 .review-questions { display: grid; gap: .75rem; padding-left: 1.5rem; }
 .review-questions li { display: grid; gap: .35rem; }
 .review-questions strong { color: var(--color-primary); }
+.documents-table .document-number-column { width: 8%; }
+.documents-table .document-name-column { width: 34%; }
+.documents-table .document-date-column, .documents-table .document-verified-column { width: 19%; }
+.documents-table .document-actions-column { width: 20%; }
+.documents-table th, .documents-table td { overflow-wrap: anywhere; vertical-align: middle; }
+.documents-table td:nth-child(2) { min-width: 0; }
 .decision-panel { display: grid; gap: 1rem; }
 .decision-panel textarea { min-height: 6rem; resize: vertical; width: 100%; }
 .decision-actions { align-items: stretch; display: flex; flex-wrap: wrap; gap: .75rem; }
