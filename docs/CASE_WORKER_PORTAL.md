@@ -1,21 +1,21 @@
-# Sachbearbeiterportal
+# Sachbearbeiterportal – Abschlussdokumentation
 
-**Stand:** 1. Oktober 2026  
-**Status:** Kernworkflow produktiv umgesetzt und vom Product Owner getestet
+**Stand:** 02.10.2026  
+**Status:** ✅ vollständig umgesetzt und Product-Owner-abgenommen
 
 ## Human-in-the-Loop
 
-KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein autorisierter Sachbearbeiter.
+> KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein autorisierter Sachbearbeiter.
 
 Antworten, Dokumente und Vollständigkeitsprüfungen lösen keine automatische positive oder negative Förderentscheidung aus.
 
-## Rollen und Zugriff
+## Rollen
 
-Öffentliche Registrierung erzeugt ausschließlich:
+Öffentliche Registrierung:
 
 `school_admin`
 
-Sachbearbeiterrolle:
+Sachbearbeitung:
 
 `case_worker`
 
@@ -23,28 +23,20 @@ Optional technisch vorbereitet:
 
 `case_worker_admin`
 
-### Initialer Master-Sachbearbeiter
-
-Für die produktive Sachbearbeitung ist eingerichtet:
+Initialer produktiver Master-Sachbearbeiter:
 
 `sachbearbeiter@nvibes.de`
 
-Rolle:
-
-`case_worker`
-
-Dieser Zugang dient ausschließlich der Bearbeitung von Maßnahmen.
-
-Zugangsdaten werden nicht im Repository dokumentiert. Änderungen an Rolle oder Zugangsdaten erfolgen ausschließlich über einen sicheren administrativen Prozess.
+Zugangsdaten werden nicht im Repository dokumentiert.
 
 ## Zugriffsschutz
 
-- [x] `/review/*` verlangt Sachbearbeiterrolle.
-- [x] `/api/review/*` verlangt Sachbearbeiterrolle.
-- [x] Schuladministratoren erhalten keinen berechtigten Review-Zugriff.
-- [x] Sachbearbeiter können keine Schuldaten, Antworten oder Dokumente der Schule im Namen der Schule verändern.
-- [x] Normale Benutzer können ihre eigene Rolle nicht erhöhen.
-- [x] Dokumente bleiben im privaten Azure Blob Storage.
+- [x] `/review/*` rollenbasiert geschützt
+- [x] `/api/review/*` serverseitig geschützt
+- [x] Schuladministratoren ohne Review-Zugriff
+- [x] keine Self-Service-Rollenerhöhung
+- [x] Fachdaten der Schule in der Akte read-only
+- [x] Dokumente privat gespeichert
 
 ## Workflow
 
@@ -62,34 +54,40 @@ NEEDS_CHANGES
 → UNDER_REVIEW
 ```
 
-## Vorgangsübernahme
+## Navigation
 
-Beim Öffnen bzw. Übernehmen eines eingereichten Vorgangs wird der Sachbearbeiter atomar zugeordnet.
-
-Gespeichert werden:
-
-- Sachbearbeiter
-- Übernahmezeitpunkt
-- Review-Status
-
-Die Schule sieht den Bearbeitungsstatus und den Bearbeitungszeitpunkt.
+- Posteingang
+- In Bearbeitung
+- Nachforderungen
+- Abgeschlossen
+- Hilfe
 
 ## Digitale Akte
 
-Die Sachbearbeiterakte enthält:
+Enthält:
 
 - Vorgangsnummer
 - Submission-Version
 - Antragsteller
-- Schule
+- Schuldaten
 - Maßnahme
 - Förderbereich
-- Maßnahmendaten
-- neun Förderfragen und Antworten
+- neun Fragen und Antworten
 - Dokumente
+- Entscheidung
+- öffentliche Anmerkung
+- interner Vermerk
 - Verlauf
 
-Die Akte ist für die von der Schule eingereichten Fachdaten read-only.
+## Vorgangsübernahme
+
+Die Übernahme erfolgt atomar.
+
+Gespeichert werden:
+
+- Sachbearbeiter
+- Zeitpunkt
+- Review-Status
 
 ## Entscheidungen
 
@@ -97,56 +95,52 @@ Die Akte ist für die von der Schule eingereichten Fachdaten read-only.
 
 `ELIGIBLE`
 
-Darstellung:
-
 **Grundsätzlich förderfähig**
 
-Eine öffentliche Nachricht kann technisch gespeichert werden. Wenn sie hinterlegt ist, wird sie der Schule über den Button „Anmerkungen“ angezeigt.
+Öffentliche Nachricht optional.
 
 ### Gelb
 
 `NEEDS_CHANGES`
 
-Darstellung:
-
 **Nachbearbeitung erforderlich**
 
-Pflicht:
+Öffentliche Nachforderung Pflicht.
 
-öffentliche Nachforderung / Nachricht.
-
-Die Maßnahme wird anschließend für die Schule wieder bearbeitbar.
+Die Schule kann weiterbearbeiten und erneut einreichen.
 
 ### Rot
 
 `NOT_ELIGIBLE`
 
-Darstellung:
-
 **Derzeit nicht förderfähig**
 
-Pflicht:
-
-öffentliche Begründung.
+Öffentliche Begründung Pflicht.
 
 ## Öffentliche und interne Texte
 
-Technisch getrennt:
+- öffentlich: `public_reason`
+- intern: `internal_note`
 
-- öffentliche Nachricht / `public_reason`
-- interner Vermerk / `internal_note`
+Im Schulportal erscheint ausschließlich der öffentliche Text.
 
-Interne Vermerke werden ausschließlich im Sachbearbeiterkontext verarbeitet. In abgeschlossenen Akten werden Entscheidung, öffentliche Anmerkungen und interne Vermerke zur Nachvollziehbarkeit angezeigt.
+Der interne Vermerk bleibt im Sachbearbeiterportal.
 
-Sie dürfen niemals über Schulportal-Endpunkte oder in PDF-Prüfberichten ausgegeben werden.
+## Rückkanal – abgeschlossen
 
-## PDF-Prüfbericht
+Produktiv abgenommen:
 
-Abgeschlossene Vorgänge (`ELIGIBLE`, `NOT_ELIGIBLE`) können in „Abgeschlossen“ als PDF-Prüfbericht heruntergeladen werden. Der geschützte Endpunkt `GET /api/review/cases/:caseId/report.pdf` verwendet ausschließlich die gespeicherten Submission-Snapshots und die Entscheidung derselben Submission. Der Bericht enthält öffentliche Anmerkungen, aber niemals interne Vermerke, technische IDs oder Blob-Pfade.
+- [x] Gelb-Nachforderung sichtbar
+- [x] Rot-Begründung sichtbar
+- [x] optionale Grün-Anmerkung möglich
+- [x] interne Vermerke nicht im Schulportal
+- [x] Wiedereinreichung erzeugt neue Submission
+
+Tracking-Issues #117, #29, #30 und #32 sind Done.
 
 ## Submission-Versionierung
 
-`measure_submissions` speichert bei jeder Einreichung Snapshots von:
+`measure_submissions` speichert Snapshots von:
 
 - Schule
 - Antragsteller
@@ -154,26 +148,18 @@ Abgeschlossene Vorgänge (`ELIGIBLE`, `NOT_ELIGIBLE`) können in „Abgeschlosse
 - Antworten
 - Dokumentmetadaten
 
-Eine Wiedereinreichung erzeugt eine neue Submission-Version.
-
-Historische Einreichungen bleiben erhalten.
+Alte Versionen bleiben unverändert.
 
 ## Nachforderungen
 
 `case_requests` speichert:
 
+- Submission
 - Sachbearbeiter
 - Nachricht
 - betroffene Bereiche
 - Zeitpunkt
 - Erledigungsstatus
-
-Mögliche Bereiche:
-
-- Schuldaten
-- Maßnahmendaten
-- Antworten
-- Dokumente
 
 ## Entscheidungen
 
@@ -196,8 +182,58 @@ Mögliche Bereiche:
 - Nachforderung
 - Wiedereinreichung
 - Entscheidung
+- Dokumentdownload
 
-Audit-Events enthalten keine vollständigen Dokumentinhalte oder Zugangsdaten.
+Keine vollständigen Dokumentinhalte oder Zugangsdaten im Audit.
+
+## Dokumentzugriff
+
+Review-Dokumente:
+
+- serverseitig autorisiert
+- private Azure Blob Storage Ablage
+- Managed Identity
+- keine Storage Keys im Client
+
+## PDF-Prüfbericht
+
+Abgeschlossene grüne und rote Vorgänge können unter „Abgeschlossen“ als PDF exportiert werden.
+
+Endpunkt:
+
+`GET /api/review/cases/:caseId/report.pdf`
+
+Der Bericht verwendet ausschließlich die historisch geprüfte Submission und die dazugehörige Entscheidung.
+
+Enthalten:
+
+- Vorgangsnummer
+- Submission-Version
+- Prüfzeitpunkt
+- Antragsteller
+- Schule
+- Maßnahme
+- Förderbereich
+- Fragen / Antworten
+- Dokumentliste
+- Sachbearbeitung
+- Entscheidung
+- öffentliche Begründung
+- Human-in-the-Loop-Hinweis
+- Unverbindlichkeits-Hinweis
+
+Nicht enthalten:
+
+- interner Vermerk
+- Blob-Pfad
+- technische IDs
+
+Produktiv getestet:
+
+- [x] Grün
+- [x] Rot
+- [x] lange Texte
+- [x] mehrere Dokumente
 
 ## Review-API
 
@@ -209,73 +245,35 @@ Audit-Events enthalten keine vollständigen Dokumentinhalte oder Zugangsdaten.
 - `POST /api/review/cases/:caseId/approve`
 - `POST /api/review/cases/:caseId/reject`
 - `GET /api/review/documents/:documentId/download`
-
-Statusänderungen und fachliche Aktionen werden transaktional gespeichert.
-
-## Dokumentzugriff
-
-Sachbearbeiter können Dokumente aus der Akte lesen bzw. herunterladen.
-
-Dokumentzugriff:
-
-- serverseitig autorisiert,
-- private Blob-Ablage,
-- Managed Identity,
-- keine Storage Keys im Client,
-- keine öffentliche Blob-Freigabe.
+- `GET /api/review/cases/:caseId/report.pdf`
 
 ## Product-Owner-Abnahme
 
-Der im Repository vorhandene Kernworkflow wurde durch den Product Owner getestet:
-
 - [x] Sachbearbeiterzugang
-- [x] Review-Shell
 - [x] Posteingang
 - [x] digitale Akte
 - [x] Vorgangsübernahme
 - [x] Grün
 - [x] Gelb
 - [x] Rot
+- [x] Rückkanal
 - [x] Wiedereinreichung
 - [x] Submission-Versionen
 - [x] Dokumentzugriff
-- [x] Audit-Grundlage
+- [x] Audit
+- [x] PDF-Prüfbericht
 
-## Offener Restpunkt: textlicher Rückkanal zur Schule
+## Abgrenzung
 
-Die öffentliche Nachricht wird technisch gespeichert, ist im aktuellen Schulportal aber noch nicht vollständig sichtbar.
-
-Noch umzusetzen:
-
-- [ ] Gelb: Nachforderungstext bei „Meine Maßnahmen“ anzeigen.
-- [ ] Rot: Begründung anzeigen.
-- [ ] Grün: optionale öffentliche Nachricht anzeigen.
-- [ ] School-API darf dabei ausschließlich öffentliche Texte liefern, niemals interne Vermerke.
-
-Tracking:
-
-- #117
-- #29
-- #30
-- #32
-
-## Datenschutz und Sicherheit
-
-Die Datenschutzerklärung muss bei Änderungen am tatsächlichen Verarbeitungsumfang fortlaufend geprüft und aktualisiert werden.
-
-Besonders relevant:
-
-- Zugriff von Sachbearbeitern,
-- Speicherung von Entscheidungen,
-- interne Vermerke,
-- Audit-Historie,
-- Dokumente,
-- Aufbewahrungsdauer.
-
-## Nicht Bestandteil des aktuellen MVP
+Nicht Bestandteil des MVP:
 
 - automatische Förderentscheidung
 - automatische Regel-Engine
 - KI-Entscheidung
-- automatische Rechtsentscheidung
 - förmlicher Verwaltungsakt
+
+## Abschluss
+
+Der Sachbearbeiterworkflow ist abgeschlossen und für die Präsentation freigegeben.
+
+Siehe [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md).
