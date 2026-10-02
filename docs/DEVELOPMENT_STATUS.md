@@ -306,13 +306,15 @@ Issue:
 
 - #33
 
-Noch offen:
+Implementiert – produktive Grün-/Rot-UAT offen:
 
-- Ergebnisexport in geeignetem Format
-- Prüfzeitpunkt
-- menschliche Entscheidung
-- öffentliche Begründung
-- Hinweis auf unverbindliche Ersteinschätzung
+- serverseitiger PDF-Export für abgeschlossene Vorgänge über `GET /api/review/cases/:caseId/report.pdf`
+- historisch korrekter Submission-Snapshot einschließlich Förderbereich und Dokumentliste
+- Prüfzeitpunkt, menschliche Entscheidung und öffentliche Begründung
+- Hinweis auf unverbindliche Ersteinschätzung sowie Human-in-the-Loop-Verfahren
+- serverseitige Sachbearbeiterautorisierung und Ausschluss von `internal_note`
+
+Der Förderbereich in „Abgeschlossen“ wird aus `measure_snapshot.fundingArea` angezeigt.
 
 ## Bewusst nicht umgesetzt
 

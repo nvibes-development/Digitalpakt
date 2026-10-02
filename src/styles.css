@@ -531,6 +531,7 @@ h2 {
 .review-table { border-collapse: collapse; min-width: 52rem; width: 100%; }
 .review-table th, .review-table td { border-bottom: 1px solid var(--color-border); padding: .75rem; text-align: left; vertical-align: top; }
 .review-table a { color: var(--color-accent); font-weight: 700; }
+.report-download { align-items: center; background: none; border: 0; color: var(--color-accent); cursor: pointer; display: inline-flex; font: inherit; font-weight: 700; gap: .35rem; padding: 0; text-decoration: none; }
 .case-section { border-top: 1px solid var(--color-border); margin-top: 2rem; padding-top: 1.5rem; }
 .case-section h2 { font-size: 1.3rem; }
 .decision-history p { line-height: 1.55; overflow-wrap: anywhere; white-space: pre-wrap; }

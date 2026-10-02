@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
 import { SafeUser } from './auth.js';
+import type { ReportData } from './report.js';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 type ReviewStatus = 'DRAFT' | 'SUBMITTED' | 'UNDER_REVIEW' | 'NEEDS_CHANGES' | 'IN_REVISION' | 'RESUBMITTED' | 'ELIGIBLE' | 'NOT_ELIGIBLE';
@@ -51,8 +52,15 @@ export async function listInbox(user: SafeUser, query: { status?: string; sort?:
 }
 
 export async function listCases(user: SafeUser, status: ReviewStatus[]) {
-  const result = await pool.query(`SELECT m.id AS "caseId",ms.case_number AS "caseNumber",ms.school_snapshot->>'name' AS "schoolName",ms.measure_snapshot->>'name' AS "measureTitle",ms.status,ms.submitted_at AS "submittedAt" FROM measures m JOIN LATERAL (SELECT * FROM measure_submissions WHERE measure_id=m.id ORDER BY submission_number DESC LIMIT 1) ms ON true WHERE m.review_status=ANY($1::text[]) ${status.includes('UNDER_REVIEW') ? 'AND m.assigned_case_worker_id=$2' : ''} ORDER BY ms.submitted_at ASC`, status.includes('UNDER_REVIEW') ? [status, user.id] : [status]);
+  const result = await pool.query(`SELECT m.id AS "caseId",ms.case_number AS "caseNumber",ms.school_snapshot->>'name' AS "schoolName",ms.measure_snapshot->>'name' AS "measureTitle",ms.measure_snapshot->>'fundingArea' AS "fundingArea",ms.status,ms.submitted_at AS "submittedAt",ms.submission_number AS "submissionNumber" FROM measures m JOIN LATERAL (SELECT * FROM measure_submissions WHERE measure_id=m.id ORDER BY submission_number DESC LIMIT 1) ms ON true WHERE m.review_status=ANY($1::text[]) ${status.includes('UNDER_REVIEW') ? 'AND m.assigned_case_worker_id=$2' : ''} ORDER BY ms.submitted_at ASC`, status.includes('UNDER_REVIEW') ? [status, user.id] : [status]);
   return result.rows;
+}
+
+export async function reportStatus(caseId:string){const result=await pool.query<{status:ReviewStatus}>('SELECT review_status AS status FROM measures WHERE id=$1',[caseId]);return result.rows[0]?.status??null;}
+
+export async function reportData(caseId:string):Promise<ReportData|null>{
+  const result=await pool.query<ReportData>(`SELECT ms.case_number AS "caseNumber",ms.submission_number AS "submissionNumber",ms.submitted_at::text AS "submittedAt",m.review_status AS status,cd.decision,cd.created_at::text AS "decisionAt",cd.public_reason AS "publicReason",jsonb_build_object('firstName',w.first_name,'lastName',w.last_name,'role',w.role) AS "caseWorker",ms.applicant_snapshot AS applicant,ms.school_snapshot AS school,ms.measure_snapshot AS measure,ms.answers_snapshot AS answers,ms.documents_snapshot AS documents FROM measures m JOIN LATERAL (SELECT * FROM measure_submissions WHERE measure_id=m.id ORDER BY submission_number DESC LIMIT 1) ms ON true JOIN LATERAL (SELECT * FROM case_decisions WHERE submission_id=ms.id ORDER BY created_at DESC LIMIT 1) cd ON true JOIN users w ON w.id=cd.case_worker_user_id WHERE m.id=$1`,[caseId]);
+  return result.rows[0]??null;
 }
 
 export async function getCase(user: SafeUser, caseId: string) {
