@@ -87,3 +87,18 @@ Zusätzlich im Browser prüfen: sichtbares H1, Desktop- und schmale Darstellung,
 - Auf der VM bestanden `npm ci`, `npm run check`, `npm run build`, die PWA-Generierung sowie der versionierte atomare Deployment-Ablauf.
 - Origin- und öffentliche HTTPS-Requests lieferten HTTP 200 für `/`, `/manifest.webmanifest` und `/sw.js`; HTTP liefert einen HTTPS-Redirect.
 - Die finale Browser-Visual-/Konsole-Prüfung ist nicht automatisiert dokumentiert, weil der vorhandene Edge-Control-Controller in dieser Sitzung nicht erreichbar war. Die React-Quelle und das ausgelieferte Bundle enthalten das geforderte H1; die responsive Regel für schmale Breiten ist versioniert.
+
+
+## Projektabschluss – 02.10.2026
+
+Der in diesem Dokument beschriebene Sprint-1-Infrastrukturstand bildet weiterhin die reproduzierbare Produktionsbasis des abgeschlossenen KLARFÖRDERN-MVP.
+
+Zum Gesamtabschluss wurden zusätzlich bestätigt:
+
+- [x] produktive Anwendung weiterhin unter `https://digitalpakt.nvibes.de` erreichbar
+- [x] Nginx/API/PWA-Architektur weiterhin Grundlage des finalen MVP
+- [x] versionierter Deployment- und Migrationsprozess weiterhin verwendet
+- [x] Sachbearbeiterportal und PDF-Prüfbericht auf derselben Produktionsarchitektur integriert
+- [x] keine Secrets oder privaten Schlüssel in der Repository-Dokumentation ergänzt
+
+Der fachliche und technische Gesamtabschluss ist in [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md) dokumentiert.
