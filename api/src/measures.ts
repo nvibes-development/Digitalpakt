@@ -32,6 +32,7 @@ export type Measure = { id: string; schoolId: string; name: string | null; descr
 
 type MeasureRow = Measure;
 const columns = `m.id, m.school_id AS "schoolId", m.name, m.description, m.affected_area_sqm::float8 AS "affectedAreaSqm", m.student_count AS "studentCount", m.teacher_count AS "teacherCount", m.existing_equipment AS "existingEquipment", m.previous_digitalisation_measures AS "previousDigitalisationMeasures", m.received_funding AS "receivedFunding", m.implementation_start_date::text AS "implementationStartDate", m.implementation_end_date::text AS "implementationEndDate", m.estimated_cost_eur::float8 AS "estimatedCostEur", m.implementation_status AS "implementationStatus", m.funding_area AS "fundingArea", m.submitted_at::text AS "submittedAt", m.review_reference AS "reviewReference", m.review_status AS "reviewStatus", NULL::text AS "publicMessage", m.assigned_at::text AS "reviewOpenedAt", m.updated_at::text AS "updatedAt"`;
+const schoolFacingColumns = columns.replace('NULL::text AS "publicMessage"', `(SELECT cd.public_reason FROM case_decisions cd JOIN measure_submissions ms ON ms.id=cd.submission_id WHERE ms.measure_id=m.id AND cd.decision IN ('NEEDS_CHANGES','NOT_ELIGIBLE') ORDER BY cd.created_at DESC LIMIT 1) AS "publicMessage"`);
 
 async function currentSchoolId(user: SafeUser) {
   const result = await pool.query<{ schoolId: string }>('SELECT school_id AS "schoolId" FROM school_memberships WHERE user_id = $1 ORDER BY created_at ASC LIMIT 1', [user.id]);
@@ -41,15 +42,14 @@ async function currentSchoolId(user: SafeUser) {
 export async function getLatestMeasure(user: SafeUser) {
   const schoolId = await currentSchoolId(user);
   if (!schoolId) return null;
-  const result = await pool.query<MeasureRow>(`SELECT ${columns} FROM measures m WHERE m.school_id = $1 ORDER BY m.created_at DESC LIMIT 1`, [schoolId]);
+  const result = await pool.query<MeasureRow>(`SELECT ${schoolFacingColumns} FROM measures m WHERE m.school_id = $1 ORDER BY m.created_at DESC LIMIT 1`, [schoolId]);
   return result.rows[0] ?? null;
 }
 
 export async function listMeasures(user: SafeUser) {
   const schoolId = await currentSchoolId(user);
   if (!schoolId) return null;
-  const listColumns = columns.replace('NULL::text AS "publicMessage"', `(SELECT cd.public_reason FROM case_decisions cd JOIN measure_submissions ms ON ms.id=cd.submission_id WHERE ms.measure_id=m.id AND cd.decision IN ('NEEDS_CHANGES','NOT_ELIGIBLE') ORDER BY cd.created_at DESC LIMIT 1) AS "publicMessage"`);
-  const result = await pool.query<MeasureRow>(`SELECT ${listColumns} FROM measures m WHERE m.school_id = $1 ORDER BY m.updated_at DESC`, [schoolId]);
+  const result = await pool.query<MeasureRow>(`SELECT ${schoolFacingColumns} FROM measures m WHERE m.school_id = $1 ORDER BY m.updated_at DESC`, [schoolId]);
   return result.rows;
 }
 
@@ -61,7 +61,7 @@ export async function createMeasure(user: SafeUser, input: z.infer<typeof measur
 }
 
 export async function getMeasure(user: SafeUser, measureId: string) {
-  const result = await pool.query<MeasureRow>(`SELECT ${columns} FROM measures m JOIN school_memberships sm ON sm.school_id = m.school_id WHERE m.id = $1 AND sm.user_id = $2`, [measureId, user.id]);
+  const result = await pool.query<MeasureRow>(`SELECT ${schoolFacingColumns} FROM measures m JOIN school_memberships sm ON sm.school_id = m.school_id WHERE m.id = $1 AND sm.user_id = $2`, [measureId, user.id]);
   return result.rows[0] ?? null;
 }
 
