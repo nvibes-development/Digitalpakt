@@ -48,7 +48,8 @@ export async function getLatestMeasure(user: SafeUser) {
 export async function listMeasures(user: SafeUser) {
   const schoolId = await currentSchoolId(user);
   if (!schoolId) return null;
-  const result = await pool.query<MeasureRow>(`SELECT ${columns} FROM measures m WHERE m.school_id = $1 ORDER BY m.updated_at DESC`, [schoolId]);
+  const listColumns = columns.replace('NULL::text AS "publicMessage"', `(SELECT cd.public_reason FROM case_decisions cd JOIN measure_submissions ms ON ms.id=cd.submission_id WHERE ms.measure_id=m.id AND cd.decision IN ('NEEDS_CHANGES','NOT_ELIGIBLE') ORDER BY cd.created_at DESC LIMIT 1) AS "publicMessage"`);
+  const result = await pool.query<MeasureRow>(`SELECT ${listColumns} FROM measures m WHERE m.school_id = $1 ORDER BY m.updated_at DESC`, [schoolId]);
   return result.rows;
 }
 
