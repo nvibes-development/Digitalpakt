@@ -507,7 +507,8 @@ h2 {
 
 .profile-page h2 { margin-top: 2.5rem; }
 .measure-actions { align-items:center; display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }.measure-actions .primary-button,.measure-actions .secondary-button { margin:0; min-height:2.875rem; width:auto; }
-.review-comment-button { margin-top: .75rem; }
+.measure-actions .secondary-button { flex: 0 1 13.5rem; }
+.review-comment-button { font: inherit; }
 .review-comment-backdrop { align-items: center; background: rgb(0 0 0 / .45); display: flex; inset: 0; justify-content: center; padding: 1rem; position: fixed; z-index: 20; }
 .review-comment-dialog { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 1rem; box-shadow: 0 1rem 3rem rgb(0 0 0 / .25); max-width: 38rem; padding: 1.5rem; width: 100%; }
 .review-comment-dialog p { line-height: 1.55; white-space: pre-wrap; }
