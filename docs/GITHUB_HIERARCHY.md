@@ -1,76 +1,124 @@
-# GitHub-Struktur und Scrum-Hierarchie
+# GitHub-Struktur und Scrum-Hierarchie – Abschlussstand
+
+**Stand:** 02.10.2026
 
 ## Sprint 1 – Infrastruktur
 
 ### Sprint-Epic
-- #2 – Azure-App-Architektur bereitstellen – digitalpakt.nvibes.de
 
-### Product Items / technische Arbeitspakete
-- #3 – Azure VM bereitstellen
-- #4 – Linux-System aktualisieren und absichern
-- #5 – Nginx installieren und konfigurieren
-- #6 – Node.js- und React/PWA-Build-Umgebung vorbereiten
-- #7 – GitHub-Repository auf Azure VM anbinden
-- #8 – DNS, öffentliche IP und Cloudflare konfigurieren
-- #9 – HTTPS/TLS aktivieren
-- #10 – Landingpage „DigitalPakt 2.0“ deployen und End-to-End prüfen
+- [x] #2 – Azure-App-Architektur bereitstellen
 
-## Sprint 2 – Erfassen & Prüfen
+### Technische Arbeitspakete
+
+- [x] #3 – Azure VM
+- [x] #4 – Linux aktualisieren und absichern
+- [x] #5 – Nginx
+- [x] #6 – Node.js / React / PWA Build
+- [x] #7 – GitHub Deployment
+- [x] #8 – DNS / Cloudflare
+- [x] #9 – HTTPS/TLS
+- [x] #10 – Landingpage / E2E
+
+**Sprint-Status:** Done
+
+## Sprint 2 – Erfassen & Einreichen
 
 ### Sprint-Epic
-- #11 – Digitalisierungsvorhaben erfassen und vorprüfen
 
-### Fachliche Sub-Epics
-- #13 – Einstieg für Schulleitungen
-- #14 – Digitalisierungsmaßnahme erfassen
-- #15 – Förderbereiche bestimmen
-- #16 – Förderfähigkeitsprüfung
-- #17 – Förderfähigkeitslogik
+- [x] #11 – Digitalisierungsvorhaben erfassen und vorprüfen
+
+### Fachliche Epics
+
+- [x] #13 – Einstieg für Schulleitungen
+- [x] #14 – Digitalisierungsmaßnahme erfassen
+- [x] #15 – Förderbereiche bestimmen
+- [x] #16 – Förderfragen
+- [x] #17 – ursprüngliche automatische Förderlogik → **Not planned / ersetzt**
 
 ### Product Items
-- #21 – PI-01 Förderfähigkeitscheck starten
-- #22 – PI-02 Förderrelevante Schuldaten erfassen
-- #23 – PI-03 Digitalisierungsmaßnahme erfassen
-- #24 – PI-04 Förderbereich zur Maßnahme bestimmen
-- #25 – PI-05 Dynamischen Fragenkatalog bereitstellen
-- #26 – PI-06 Antworten und Bearbeitungsstand speichern
-- #27 – PI-07 Förderregeln auf Antworten anwenden
-- #28 – PI-08 Förderstatus bestimmen
+
+- [x] #21 – PI-01 Förderfähigkeitscheck starten
+- [x] #22 – PI-02 Schuldaten erfassen
+- [x] #23 – PI-03 Maßnahme erfassen
+- [x] #24 – PI-04 Förderbereich bestimmen
+- [x] #25 – PI-05 Förderfragenkatalog
+- [x] #26 – PI-06 Antworten und Bearbeitungsstand
+- [x] #27 – PI-07 automatische Förderregeln → **Not planned / ersetzt**
+- [x] #28 – PI-08 automatischer Förderstatus → **Not planned / ersetzt**
+- [x] #80 – PI-17 Dokumente
+- [x] #102 – PI-18 Profil / Kontolöschung
+
+**Sprint-Status:** Done im freigegebenen Scope
 
 ## Sprint 3 – Auswerten & Handeln
 
 ### Sprint-Epic
-- #12 – Auswertung, Handlungsempfehlungen und Prüfbericht bereitstellen
 
-### Fachliche Sub-Epics
-- #18 – Ergebnis der Förderfähigkeitsprüfung
-- #19 – Mehrere Maßnahmen verwalten *(für den ersten Release bewusst schlank; Umfang im Refinement bestätigen)*
+- [x] #12 – Auswertung, Handlungsempfehlungen und Prüfbericht
+
+### Fachliche Epics
+
+- [x] #18 – Ergebnis der Förderfähigkeitsprüfung
+- [x] #19 – Mehrere Maßnahmen verwalten
+- [x] #20 – Persönlicher Digitalisierungsüberblick
 
 ### Product Items
-- #29 – PI-09 Prüfergebnis nachvollziehbar begründen
-- #30 – PI-10 Fehlende Voraussetzungen und Nachweise anzeigen
-- #31 – PI-11 Zugrunde liegende Förderregeln anzeigen
-- #32 – PI-12 Nächste Schritte ausgeben
-- #33 – PI-13 Prüfergebnis speichern und exportieren
-- #34 – PI-14 Weitere Maßnahme anlegen
-- #35 – PI-15 Maßnahmenübersicht bereitstellen
-- #36 – PI-16 Maßnahme erneut prüfen
 
-## Product Backlog / nach MVP
+- [x] #29 – PI-09 Ergebnis begründen
+- [x] #30 – PI-10 fehlende Voraussetzungen / Nachweise
+- [x] #31 – PI-11 automatische Regelanzeige → **Not planned / ersetzt**
+- [x] #32 – PI-12 nächste Schritte
+- [x] #33 – PI-13 speichern und PDF exportieren
+- [x] #34 – PI-14 weitere Maßnahme
+- [x] #35 – PI-15 Maßnahmenübersicht
+- [x] #36 – PI-16 erneut prüfen / einreichen
 
-- #20 – Persönlicher Digitalisierungsüberblick
+### Sachbearbeiterportal
 
-Im Teamkonzept wurden für dieses Epic noch keine eigenen Product Items spezifiziert.
+- [x] #105 – Human-in-the-Loop-Prüfworkflow
+- [x] #114 – Rollen, Zugang und Review-Shell
+- [x] #115 – Posteingang und digitale Akte
+- [x] #116 – Übernahme, Entscheidungen und Nachforderungen
+- [x] #117 – Submission-Versionen, Rückkanal und Audit
+- [x] #118 – Dokumentzugriff und UX-Polish
+- [x] #119 – E2E-Abnahme und Sicherheitsnachweise
 
-## Empfohlene Parent/Sub-Issue-Struktur in GitHub
+**Sprint-Status:** Done im freigegebenen MVP-Scope
 
-Die fachliche Hierarchie sollte im GitHub Project nach Möglichkeit zusätzlich über echte Parent/Sub-Issue-Beziehungen abgebildet werden:
+## Parent-/Sub-Issue-Logik
 
-- Sprint-Epic → fachliches Epic
-- fachliches Epic → Product Item
+Die fachliche Struktur lautet:
 
-Die Issue-Beschreibungen enthalten bereits die jeweilige Zuordnung und verlinkte Checklisten. Die tatsächlichen GitHub-Parent/Sub-Issue-Beziehungen können beim Einpflegen in das Project gesetzt werden.
+```text
+Sprint-Epic
+→ fachliches Epic
+→ Product Item
+→ technische Umsetzung / PR
+```
 
-## Planungshinweis
+Der Human-in-the-Loop-Workflow ergänzt Sprint 3 als freigegebene Scope-Weiterentwicklung.
 
-Priorität, Story Points, Verantwortliche und konkrete Sprint-Zuordnung der einzelnen Product Items werden im Refinement bzw. Sprint Planning gemeinsam durch das Team festgelegt. Dadurch bleibt die Teamarbeit sichtbar und wird nicht vorweggenommen.
+## Bewusste Scope-Änderung
+
+Die automatische Förderregel-Engine wurde während des Refinements durch die menschliche Sachbearbeiterprüfung ersetzt.
+
+Betroffen:
+
+- #17
+- #27
+- #28
+- #31
+
+Diese Einträge sind nicht „unerledigt“, sondern fachlich korrekt als **Not planned / ersetzt** abgeschlossen.
+
+## Abschlussaudit
+
+Am 02.10.2026:
+
+- [x] alle Epics geprüft
+- [x] alle Product Items geprüft
+- [x] alle Done-Issues ohne offene Checkboxen
+- [x] Not-planned-Issues nachvollziehbar dokumentiert
+- [x] alle drei Sprint-Epics abgeschlossen
+
+Siehe [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md).
