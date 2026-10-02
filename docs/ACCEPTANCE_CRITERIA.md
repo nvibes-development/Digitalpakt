@@ -233,12 +233,15 @@ Siehe #117, #29, #30, #32.
 - [x] Entscheidung und Zeitpunkt werden gespeichert.
 - [x] Submission-Daten bleiben historisch erhalten.
 
-## Noch offen
+## Implementiert – produktive Abnahme offen
 
-- [ ] Exportformat.
-- [ ] Prüfzeitpunkt im Export.
-- [ ] Entscheidung / öffentliche Begründung im Export.
-- [ ] Hinweis „unverbindliche Ersteinschätzung“ im Export.
+- [x] PDF-Export ist nur für `ELIGIBLE` und `NOT_ELIGIBLE` serverseitig verfügbar.
+- [x] Förderbereich der abgeschlossenen Liste stammt aus dem Submission-Snapshot.
+- [x] Bericht verwendet Submission-Snapshots, Entscheidung und Entscheidungszeitpunkt derselben Submission.
+- [x] Bericht enthält öffentliche Begründung, jedoch niemals `internal_note` oder Blob-Pfade.
+- [x] Bericht enthält Prüfzeitpunkt, Human-in-the-Loop-Hinweis und Unverbindlichkeits-Hinweis.
+- [x] Endpunkt verlangt serverseitig `case_worker` oder `case_worker_admin`.
+- [ ] Produktive UAT eines grünen und eines roten PDF-Berichts durch den Product Owner.
 
 Siehe #33.
 

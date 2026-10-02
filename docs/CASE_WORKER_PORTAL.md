@@ -138,7 +138,11 @@ Technisch getrennt:
 
 Interne Vermerke werden ausschließlich im Sachbearbeiterkontext verarbeitet. In abgeschlossenen Akten werden Entscheidung, öffentliche Anmerkungen und interne Vermerke zur Nachvollziehbarkeit angezeigt.
 
-Sie dürfen niemals über Schulportal-Endpunkte ausgegeben werden.
+Sie dürfen niemals über Schulportal-Endpunkte oder in PDF-Prüfberichten ausgegeben werden.
+
+## PDF-Prüfbericht
+
+Abgeschlossene Vorgänge (`ELIGIBLE`, `NOT_ELIGIBLE`) können in „Abgeschlossen“ als PDF-Prüfbericht heruntergeladen werden. Der geschützte Endpunkt `GET /api/review/cases/:caseId/report.pdf` verwendet ausschließlich die gespeicherten Submission-Snapshots und die Entscheidung derselben Submission. Der Bericht enthält öffentliche Anmerkungen, aber niemals interne Vermerke, technische IDs oder Blob-Pfade.
 
 ## Submission-Versionierung
 

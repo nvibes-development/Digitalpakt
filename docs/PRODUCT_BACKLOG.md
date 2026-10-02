@@ -152,7 +152,7 @@ Product Items:
 - #30 PI-10 – In Progress
 - #31 PI-11 – nicht geplant / ersetzt
 - #32 PI-12 – In Progress
-- #33 PI-13 – Open
+- #33 PI-13 – In Review (PDF-Export implementiert; produktive Grün-/Rot-Abnahme offen)
 
 Offene Kernthemen:
 
@@ -196,7 +196,7 @@ Die Seite „Meine Maßnahmen“ stellt mehrere Maßnahmen mit Förderbereich un
 | PI-10 | Fehlende Voraussetzungen / Nachweise kommunizieren | #30 | In Progress |
 | PI-11 | Automatische Förderregeln anzeigen | #31 | Nicht geplant / ersetzt |
 | PI-12 | Nächste Schritte kommunizieren | #32 | In Progress |
-| PI-13 | Prüfergebnis speichern und exportieren | #33 | Open |
+| PI-13 | Prüfergebnis speichern und exportieren | #33 | In Review – PDF-Export implementiert; produktive Grün-/Rot-Abnahme offen |
 | PI-14 | Weitere Maßnahme anlegen | #34 | Done |
 | PI-15 | Maßnahmenübersicht bereitstellen | #35 | Done |
 | PI-16 | Maßnahme erneut prüfen / einreichen | #36 | Done |
