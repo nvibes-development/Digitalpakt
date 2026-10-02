@@ -1,55 +1,252 @@
-# KLARFÖRDERN Architektur
+# KLARFÖRDERN – Technische Architektur
 
-## Phase-1-Grundlage
+**Stand:** 02.10.2026  
+**Status:** produktiver MVP-Abschluss
 
-KLARFÖRDERN bleibt eine React/Vite-PWA unter `https://digitalpakt.nvibes.de`. Die öffentliche Landingpage wird durch React Router von den künftigen geschützten App-Routen getrennt.
+## Gesamtarchitektur
 
 ```text
-Internet → Cloudflare → Nginx
-                         ├── /       React-PWA (statischer Vite-Build)
-                         └── /api/*  Node.js REST API (localhost:3000)
-                                      └── PostgreSQL
+Internet
+  ↓
+Cloudflare
+  ↓
+Nginx
+  ├── /          React/Vite PWA
+  └── /api/*     Fastify API auf 127.0.0.1:3000
+                   ↓
+                PostgreSQL
+
+Dokumente
+  ↓
+Azure Blob Storage (privat)
+  ↓
+Managed Identity
 ```
+
+KLARFÖRDERN wird als monolithische Webanwendung mit klar getrenntem Frontend, REST-API und PostgreSQL-Persistenz betrieben. Für den MVP wurden bewusst keine Microservices, kein Kubernetes und keine externe Reporting-Plattform eingeführt.
 
 ## Frontend
 
-- React 19, TypeScript, Vite und `vite-plugin-pwa`
-- React Router verwaltet öffentliche, Legal-, Auth- und `/app/*`-Routen.
-- `/app/*` ist durch die Cookie-basierte Session-Abfrage geschützt. In Phase 1 antwortet `/api/auth/me` bewusst mit `401`, bis die Authentifizierung implementiert ist.
-- Das App-Shell-Navigationsgerüst enthält keine fachlichen Daten und wird in den zugeordneten PBIs erweitert.
+- React 19
+- TypeScript
+- Vite
+- React Router
+- PWA
+- öffentliche Landingpage
+- Auth-Routen
+- geschütztes Schulportal unter `/app/*`
+- geschütztes Sachbearbeiterportal unter `/review/*`
+
+Die Rollenprüfung erfolgt nicht nur im Frontend. Geschützte API-Endpunkte validieren Berechtigungen serverseitig.
 
 ## API
 
-Die API liegt unter `api/` und wird als einzelner Fastify-Node-Prozess betrieben. Sie lauscht ausschließlich auf `127.0.0.1:3000`; Nginx ist der einzige öffentliche Einstieg.
+Die API liegt unter `api/` und wird als einzelner Fastify-Prozess betrieben.
 
-- `GET /api/health` liefert eine nicht-sensitive Verfügbarkeitsantwort.
-- Einheitliche API-Fehler enthalten einen technischen Code und eine Request-ID, aber keine Secrets.
-- Cookie- und Authorization-Header werden in Fastify-Logs redigiert.
+- Bindung: `127.0.0.1:3000`
+- öffentliche Erreichbarkeit ausschließlich via Nginx unter `/api/*`
+- `GET /api/health` als nicht-sensitiver Healthcheck
+- einheitliche Fehlerobjekte
+- Request-IDs
+- redigierte Cookie-/Authorization-Logs
 
-## Datenbank und Migrationen
+## Authentifizierung und Rollen
 
-PostgreSQL ist die verbindliche Persistenzbasis. Versionierte SQL-Migrationen liegen in `api/migrations/`; `npm run db:migrate` führt sie transaktional aus und protokolliert sie in `schema_migrations`.
+Authentifizierung:
 
-Die Phase-1-Migration legt nur die technische Migrationsbasis und `application_metadata` an. Fachliche Tabellen werden ausschließlich in den zugehörigen PBIs ergänzt.
+- E-Mail / Passwort
+- Argon2id
+- serverseitige Sessions
+- HttpOnly / Secure / SameSite Cookie
 
-`DATABASE_URL` liegt ausschließlich außerhalb des Repositorys in `/etc/klarfoerdern/api.env`. Die Beispieldatei `api/.env.example` enthält keinen verwendbaren Wert.
+Rollen:
 
-## School Eligibility Rule Set Pending
+- `school_admin`
+- `case_worker`
+- `case_worker_admin` technisch vorbereitet
 
-**Fachlicher Blocker:** Für Kombinationen aus Bundesland, `educationType`, Schulart, Trägerschaft und Anerkennungsstatus liegt noch kein verbindliches, freigegebenes Regelwerk vor. Vor einer positiven oder negativen Entscheidung wird eine versionierte Regeldefinition mit Ergebnis (`eligible`, `needs_information`, `not_eligible`), Begründung und Regelreferenz benötigt. Bis dahin werden keine Regeln erfunden.
+Öffentliche Registrierung erzeugt ausschließlich `school_admin`.
 
-## School Eligibility – technische Vorbereitung ohne Fachregel
+Initialer produktiver Master-Sachbearbeiter:
 
-Die Phase zur Erfassung der Schuldaten speichert `schools` und autorisierte `school_memberships` in PostgreSQL. Alle Zugriffe auf die aktuelle Schule werden serverseitig über die aktive Sitzung und diese Membership eingeschränkt; eine Anmeldung allein erlaubt keinen Zugriff auf fremde Schuldaten.
+`sachbearbeiter@nvibes.de`
 
-`schoolEligibilityService` wertet aktuell ausschließlich Vollständigkeit, formale Eingabevalidität und die bedingte Relevanz des Anerkennungsstatus bei freier/privater Trägerschaft aus. Seine stabile Ausgabe enthält `status`, `reasons`, `missingFields`, `evaluatedAt` und `ruleVersion`. Der aktuelle technische Regelstand ist bewusst `school-eligibility-pending`.
+Zugangsdaten werden nicht versioniert.
 
-Solange kein verbindliches, fachlich freigegebenes Regelwerk dokumentiert ist, gibt der Service **ausschließlich** `needs_information` aus — auch bei vollständigen Schuldaten. Die technisch vorbereiteten Status `eligible` und `not_eligible` werden durch keinen aktuellen Codepfad ausgelöst. Es wurden ausdrücklich keine Förder- oder Eligibility-Regeln erfunden.
+## Mandantentrennung
+
+Schulzugriffe werden serverseitig über `school_memberships` und die aktive Sitzung eingeschränkt.
+
+Eine Anmeldung allein berechtigt nicht zum Zugriff auf fremde Schulen oder Maßnahmen.
+
+## Datenbank
+
+PostgreSQL ist die verbindliche Persistenzbasis.
+
+Versionierte Migrationen:
+
+- `001_phase_1_foundation.sql`
+- `002_authentication.sql`
+- `003_school_eligibility_foundation.sql`
+- `004_measures_and_funding_areas.sql`
+- `005_measure_implementation_dates.sql`
+- `006_measure_documents.sql`
+- `007_user_profiles.sql`
+- `008_measure_question_answers.sql`
+- `009_measure_submission.sql`
+- `010_case_worker_portal.sql`
+
+Migrationen werden über `schema_migrations` nachvollzogen.
+
+## Fachliches Datenmodell
+
+Zentrale Konzepte:
+
+- User
+- Session
+- School
+- SchoolMembership
+- Measure
+- Question Answers
+- Measure Documents
+- Measure Submission
+- Case Decision
+- Case Request
+- Audit Event
+
+## School Eligibility
+
+Die technische Eligibility-Komponente prüft Vollständigkeit und formale Eingabevalidität.
+
+Da im Projektzeitraum kein belastbares, freigegebenes und versioniertes Förderregelwerk vorlag, erzeugt sie bewusst keine automatische positive oder negative Förderentscheidung.
+
+Die ursprünglich geplante automatische Förderlogik wurde durch Product-Owner-Entscheidung durch den Human-in-the-Loop-Prozess ersetzt.
+
+## Submission-Versionierung
+
+Bei jeder Einreichung wird eine unveränderliche Submission-Version erzeugt.
+
+Snapshot-Inhalte:
+
+- Antragsteller
+- Schule
+- Maßnahme
+- Antworten
+- Dokumentmetadaten
+
+Eine Wiedereinreichung erzeugt eine neue Version. Historische Versionen bleiben erhalten.
 
 ## Sachbearbeiterportal
 
-Die gemeinsame React-PWA enthält zusätzlich `/review/*`; die Fastify-API schützt `/api/review/*` serverseitig über die bestehende Sitzung und die Rolle `case_worker`. Neue Tabellen speichern versionierte Submission-Snapshots, Entscheidungen, Nachforderungen und unveränderbare Audit-Ereignisse. Private Blob-Dokumente bleiben über die bestehende Managed-Identity-Integration erreichbar; der Review-Download autorisiert den Zugriff serverseitig. Fachentscheidungen werden ausschließlich durch den zugewiesenen Sachbearbeiter gespeichert, nicht aus Antworten abgeleitet. Details: [CASE_WORKER_PORTAL.md](CASE_WORKER_PORTAL.md).
+Geschützter Bereich:
 
-## Produktion
+`/review/*`
 
-`deploy/deploy.sh` führt Typecheck, Tests, beide Builds und die Migration aus, aktiviert den statischen Release atomar und startet anschließend `klarfoerdern-api.service` neu. Die Systemd-Unit und Nginx-Konfiguration sind versioniert unter `deploy/`; Secrets werden nicht versioniert.
+Geschützte API:
+
+`/api/review/*`
+
+Funktionen:
+
+- Posteingang
+- Suche und Sortierung
+- digitale Akte
+- atomare Übernahme
+- Nachforderungen
+- Grün / Gelb / Rot
+- öffentliche Nachricht
+- interner Vermerk
+- Wiedereinreichung
+- Audit
+- PDF-Prüfbericht
+
+Fachentscheidungen werden ausschließlich durch einen autorisierten Sachbearbeiter gespeichert.
+
+## Statusmaschine
+
+```text
+DRAFT
+→ SUBMITTED
+→ UNDER_REVIEW
+→ ELIGIBLE
+   oder NEEDS_CHANGES
+   oder NOT_ELIGIBLE
+
+NEEDS_CHANGES
+→ Bearbeitung durch Schule
+→ RESUBMITTED
+→ UNDER_REVIEW
+```
+
+## Dokumente
+
+Dokumente werden in privatem Azure Blob Storage gespeichert.
+
+Zugriff:
+
+- serverseitige Autorisierung
+- Managed Identity
+- keine Storage Keys im Browser
+- keine öffentliche Blob-Freigabe
+
+Sachbearbeiter können Dokumente über einen gesondert autorisierten Review-Endpunkt lesen bzw. herunterladen.
+
+## PDF-Prüfbericht
+
+Serverseitiger Endpunkt:
+
+`GET /api/review/cases/:caseId/report.pdf`
+
+Technik:
+
+- PDFKit
+- Erzeugung aus gespeicherten Submission-Snapshots und der zugehörigen Entscheidung
+- nur für `ELIGIBLE` und `NOT_ELIGIBLE`
+- nur für autorisierte Sachbearbeiter
+
+Nicht exportiert:
+
+- `internal_note`
+- Blob-Pfade
+- technische IDs
+- Secrets
+
+## Sicherheit
+
+- Argon2id
+- HttpOnly / Secure / SameSite Cookies
+- serverseitige Rollenprüfung
+- SchoolMembership-basierte Zugriffsprüfung
+- CSRF-Origin-Prüfung für schreibende Requests
+- Rate Limits für Auth
+- private Blob-Ablage
+- Managed Identity
+- keine Secrets im Repository
+- redigierte Logs
+- Trennung `public_reason` / `internal_note`
+- sichere PDF-Dateinamen
+
+## Deployment
+
+Der reproduzierbare Releaseprozess liegt unter `deploy/`.
+
+`deploy/deploy.sh` führt aus:
+
+1. sauberen Git-Stand prüfen
+2. Dependencies installieren
+3. Typecheck
+4. Tests
+5. Frontend-/API-Build
+6. Datenbankmigrationen
+7. atomaren Release aktivieren
+8. API-Service neu starten
+9. Nginx validieren / reloaden
+10. Healthchecks
+
+Produktions-Secrets liegen außerhalb des Repositorys.
+
+## Abschlussstatus
+
+Die Architektur unterstützt den vollständigen freigegebenen MVP-End-to-End-Prozess einschließlich Sachbearbeiterportal, versionierter Aktenführung und PDF-Prüfbericht.
+
+Details: [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md).
