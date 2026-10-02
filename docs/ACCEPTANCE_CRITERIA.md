@@ -1,287 +1,234 @@
-# Fachliche Akzeptanzkriterien und Definition of Done
+# Fachliche Akzeptanzkriterien und Definition of Done – Abschlussstand
 
-**Stand:** 1. Oktober 2026  
-**Product-Owner-Refinement:** Human-in-the-Loop-Prüfmodell
+**Stand:** 02.10.2026  
+**Status:** Product-Owner-Abschlussreview abgeschlossen
 
-## Übergreifendes Produktprinzip
+## Produktprinzip
 
-KLARFÖRDERN sammelt und strukturiert die für eine Vorprüfung relevanten Daten. Die fachliche Entscheidung wird im aktuellen MVP **nicht automatisch** aus einem Förderregelwerk erzeugt.
+> **KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein autorisierter Sachbearbeiter.**
 
-Verbindlich gilt:
+Die Anwendung erzeugt keine automatische Förderentscheidung aus einem unvollständigen oder erfundenen Regelwerk.
 
-> KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein autorisierter Sachbearbeiter.
+## 1. Schuldaten
 
-Die ursprünglichen automatischen Förderregel-Akzeptanzkriterien wurden durch Product-Owner-Entscheidung für den MVP ersetzt.
+- [x] Bundesland erfassbar
+- [x] allgemeinbildende / berufsbildende Schule erfassbar
+- [x] Schulart erfassbar
+- [x] Trägerschaft erfassbar
+- [x] Anerkennungsstatus bei privaten Schulen berücksichtigt
+- [x] Pflichtfelder gekennzeichnet
+- [x] verständliche Validierung
+- [x] persistente Speicherung
+- [x] spätere Wiederaufnahme möglich
+- [x] keine erfundene automatische Antragsberechtigung
 
----
+## 2. Maßnahme
 
-# 1. Schuldaten
+- [x] Maßnahme anlegen
+- [x] Bezeichnung und Beschreibung
+- [x] Rahmendaten
+- [x] Kosten
+- [x] Zeitraum
+- [x] Umsetzungsstatus
+- [x] genau ein MVP-Förderbereich
+- [x] mehrere Maßnahmen je Schule
+- [x] fachlich und technisch getrennte Maßnahmen
 
-## Akzeptanzkriterien
-
-- [x] Bundesland kann erfasst werden.
-- [x] Allgemeinbildende oder berufsbildende Schule kann erfasst werden.
-- [x] Schulart kann erfasst werden.
-- [x] Trägerschaft kann erfasst werden.
-- [x] Anerkennungsstatus wird bei privaten Schulen berücksichtigt.
-- [x] Pflichtfelder sind gekennzeichnet.
-- [x] Fehlende oder ungültige Angaben werden verständlich angezeigt.
-- [x] Schuldaten werden persistent gespeichert.
-- [x] Schuldaten können später erneut geöffnet werden.
-- [x] Ohne verbindliches Fachregelwerk wird keine automatische positive oder negative Förderentscheidung erfunden.
-
----
-
-# 2. Maßnahme
-
-## Akzeptanzkriterien
-
-- [x] Maßnahme kann angelegt werden.
-- [x] Bezeichnung und Beschreibung können erfasst werden.
-- [x] relevante Rahmendaten können gespeichert werden.
-- [x] Kosten können erfasst werden.
-- [x] Zeitraum kann erfasst werden.
-- [x] Umsetzungsstatus kann erfasst werden.
-- [x] genau ein MVP-Förderbereich kann ausgewählt werden.
-- [x] mehrere Maßnahmen können einer Schule zugeordnet werden.
-- [x] jede Maßnahme bleibt fachlich und technisch getrennt.
-
----
-
-# 3. Förderbereiche
-
-Unterstützt:
+## 3. Förderbereiche
 
 - [x] IT-Infrastruktur, Netzwerk und WLAN
 - [x] Digitale Endgeräte
 - [x] Bildungssoftware und digitale Lernplattformen
+- [x] genau ein Förderbereich pro Maßnahme
 
-Pro Maßnahme:
+## 4. Förderfragen
 
-- [x] genau ein Förderbereich
+- [x] neun verbindliche Fragen
+- [x] Ja / Nein / Nicht bekannt
+- [x] maßnahmenbezogene Speicherung
+- [x] gespeicherte Antworten erneut laden
+- [x] vollständige Antworten vor Einreichung
+- [x] Sperre nach Einreichung
+- [x] Wiederfreigabe bei Nachforderung
+- [x] Anzeige in digitaler Akte
+- [x] keine automatische Förderentscheidung
 
----
+## 5. Dokumente
 
-# 4. Förderfragen
+- [x] maßnahmenbezogen
+- [x] PDF
+- [x] Word
+- [x] Excel
+- [x] maximal 10 MB
+- [x] Upload
+- [x] Liste
+- [x] Download
+- [x] Löschen vor Einreichung
+- [x] Sperre nach Einreichung
+- [x] Wiederfreigabe bei Nachforderung
+- [x] privater Azure Blob Storage
+- [x] serverseitige Autorisierung
+- [x] Sachbearbeiterdownload
 
-Der aktuelle MVP verwendet neun verbindliche Förderfragen.
+## 6. Einreichung und Versionierung
 
-## Akzeptanzkriterien
+- [x] Einreichung erst nach neun Antworten
+- [x] mindestens ein Dokument erforderlich
+- [x] Vorgangsnummer
+- [x] Submission-Version
+- [x] Antragsteller-Snapshot
+- [x] Schul-Snapshot
+- [x] Maßnahmen-Snapshot
+- [x] Antworten-Snapshot
+- [x] Dokumentmetadaten-Snapshot
+- [x] historische Submission bleibt unverändert
+- [x] Wiedereinreichung erzeugt neue Version
 
-- [x] Antwortmöglichkeiten: Ja / Nein / Nicht bekannt.
-- [x] alle neun Fragen werden angezeigt.
-- [x] Antworten werden maßnahmenbezogen gespeichert.
-- [x] bereits gespeicherte Antworten werden erneut geladen.
-- [x] alle neun Fragen müssen vor Einreichung beantwortet sein.
-- [x] Antworten werden nach Einreichung gesperrt.
-- [x] bei einer Nachforderung werden Antworten wieder bearbeitbar.
-- [x] Sachbearbeiter sieht die Antworten in der digitalen Akte.
-- [x] Antworten erzeugen keine automatische Förderentscheidung.
+## 7. Sachbearbeiterzugang
 
----
+- [x] `case_worker`
+- [x] öffentliche Registrierung erzeugt keinen Case Worker
+- [x] `/review` geschützt
+- [x] `/api/review/*` serverseitig geschützt
+- [x] Schulbenutzer besitzt keinen Review-Zugriff
+- [x] Master-Sachbearbeiter `sachbearbeiter@nvibes.de`
+- [x] keine Self-Service-Rollenerhöhung
 
-# 5. Dokumente
+## 8. Posteingang und digitale Akte
 
-## Akzeptanzkriterien
+- [x] neue Einreichungen im Posteingang
+- [x] Wiedereinreichungen im Posteingang
+- [x] Suche
+- [x] Sortierung
+- [x] Vorgangsnummer
+- [x] Antragsteller
+- [x] Schule
+- [x] Maßnahme
+- [x] Förderbereich
+- [x] Antworten
+- [x] Dokumente
+- [x] Submission-Version
+- [x] Verlauf
 
-- [x] Dokumente sind einer Maßnahme zugeordnet.
-- [x] PDF wird unterstützt.
-- [x] Word wird unterstützt.
-- [x] Excel wird unterstützt.
-- [x] maximale Dateigröße 10 MB.
-- [x] Upload.
-- [x] Liste.
-- [x] Download.
-- [x] Löschen vor Einreichung.
-- [x] Sperre nach Einreichung.
-- [x] Wiederfreigabe bei Nachforderung.
-- [x] Blob Storage ist privat.
-- [x] Zugriff wird serverseitig autorisiert.
-- [x] Sachbearbeiter kann Dokumente aus der digitalen Akte herunterladen.
+## 9. Vorgangsübernahme
 
----
+- [x] Übernahme möglich
+- [x] atomare Zuweisung
+- [x] Sachbearbeiter gespeichert
+- [x] Übernahmezeitpunkt gespeichert
+- [x] Entscheidung nur im vorgesehenen Review-Zustand
 
-# 6. Einreichung
+## 10. Menschliche Entscheidung
 
-## Akzeptanzkriterien
+### Grün
 
-- [x] Einreichung erst nach neun Antworten.
-- [x] Einreichung erst mit mindestens einem Dokument.
-- [x] Vorgangsnummer wird erzeugt.
-- [x] Submission-Version wird gespeichert.
-- [x] Antragsteller-Snapshot wird gespeichert.
-- [x] Schul-Snapshot wird gespeichert.
-- [x] Maßnahmen-Snapshot wird gespeichert.
-- [x] Antworten-Snapshot wird gespeichert.
-- [x] Dokumentmetadaten-Snapshot wird gespeichert.
-- [x] historische Submission bleibt unverändert.
+- [x] `ELIGIBLE`
+- [x] Sachbearbeiterzuordnung
+- [x] Submission-Zuordnung
+- [x] optionale öffentliche Nachricht
+- [x] unverbindliche Ersteinschätzung
 
----
+### Gelb
 
-# 7. Sachbearbeiterzugang
+- [x] `NEEDS_CHANGES`
+- [x] Pflichtnachricht
+- [x] betroffene Bereiche technisch markierbar
+- [x] Bearbeitung wieder freigegeben
+- [x] Wiedereinreichung
 
-## Akzeptanzkriterien
+### Rot
 
-- [x] `case_worker`-Rolle vorhanden.
-- [x] öffentliche Registrierung erzeugt keinen Case Worker.
-- [x] `/review` ist geschützt.
-- [x] `/api/review/*` ist serverseitig geschützt.
-- [x] Schulbenutzer besitzt keinen berechtigten Review-Zugriff.
-- [x] initialer Master-Sachbearbeiter ist `sachbearbeiter@nvibes.de`.
-- [x] Rollen können nicht über das normale Profil selbst erhöht werden.
+- [x] `NOT_ELIGIBLE`
+- [x] öffentliche Begründung Pflicht
+- [x] interner Vermerk getrennt
 
----
+## 11. Rückkanal
 
-# 8. Posteingang und digitale Akte
+- [x] Status in „Meine Maßnahmen“
+- [x] Grün sichtbar
+- [x] Gelb sichtbar
+- [x] Rot sichtbar
+- [x] Bearbeitungszeitpunkt sichtbar
+- [x] gelbe Nachforderung sichtbar
+- [x] rote Begründung sichtbar
+- [x] optionale grüne Nachricht sichtbar
+- [x] Schul-API liefert keine internen Vermerke
 
-## Akzeptanzkriterien
+## 12. Audit und Historie
 
-- [x] neue Einreichungen erscheinen im Posteingang.
-- [x] erneut eingereichte Vorgänge erscheinen im Posteingang.
-- [x] Suche vorhanden.
-- [x] Sortierung vorhanden.
-- [x] Vorgangsnummer sichtbar.
-- [x] Antragsteller sichtbar.
-- [x] Schule sichtbar.
-- [x] Maßnahme sichtbar.
-- [x] Antworten sichtbar.
-- [x] Dokumente sichtbar.
-- [x] Submission-Version sichtbar.
-- [x] Verlauf sichtbar.
+- [x] Einreichung protokolliert
+- [x] Öffnen / Übernahme protokolliert
+- [x] Nachforderung protokolliert
+- [x] Wiedereinreichung protokolliert
+- [x] Entscheidung protokolliert
+- [x] Submission-Versionen erhalten
+- [x] keine Dokumentinhalte / Zugangsdaten im Audit
+- [x] interne Vermerke nicht im Schulportal
 
----
+## 13. PDF-Prüfbericht
 
-# 9. Übernahme
+- [x] Ergebnis persistent gespeichert
+- [x] Entscheidung und Zeitpunkt gespeichert
+- [x] historische Submission erhalten
+- [x] Export nur für `ELIGIBLE` und `NOT_ELIGIBLE`
+- [x] Förderbereich aus Submission-Snapshot
+- [x] PDF enthält Vorgangsnummer
+- [x] PDF enthält Submission-Version
+- [x] PDF enthält Antragsteller
+- [x] PDF enthält Schuldaten
+- [x] PDF enthält Maßnahmendaten
+- [x] PDF enthält Förderbereich
+- [x] PDF enthält neun Fragen und Antworten
+- [x] PDF enthält Dokumentliste
+- [x] PDF enthält Sachbearbeitung
+- [x] PDF enthält menschliche Entscheidung
+- [x] PDF enthält öffentliche Begründung
+- [x] PDF enthält Prüfzeitpunkt
+- [x] PDF enthält Human-in-the-Loop-Hinweis
+- [x] PDF enthält Unverbindlichkeits-Hinweis
+- [x] PDF enthält keinen internen Vermerk
+- [x] PDF enthält keine Blob-Pfade / technischen IDs
+- [x] serverseitige Sachbearbeiterautorisierung
+- [x] grüner Bericht produktiv getestet
+- [x] roter Bericht produktiv getestet
+- [x] lange Texte und mehrere Dokumente produktiv getestet
 
-## Akzeptanzkriterien
+## 14. Bewusst ersetzte Automatik
 
-- [x] Sachbearbeiter kann Vorgang übernehmen.
-- [x] Übernahme erfolgt atomar.
-- [x] zugewiesener Sachbearbeiter wird gespeichert.
-- [x] Bearbeitungszeitpunkt wird gespeichert.
-- [x] Entscheidung ist nur im vorgesehenen Review-Zustand möglich.
+Nicht Bestandteil des freigegebenen MVP:
 
----
-
-# 10. Menschliche Entscheidung
-
-## Grün
-
-- [x] „Grundsätzlich förderfähig“ kann gespeichert werden.
-- [x] Entscheidung ist einem Sachbearbeiter zugeordnet.
-- [x] Entscheidung ist einer Submission zugeordnet.
-- [x] öffentliche Nachricht ist technisch optional speicherbar.
-- [x] Ergebnis bleibt unverbindliche Ersteinschätzung.
-
-## Gelb
-
-- [x] Nachforderung ist möglich.
-- [x] öffentliche Nachricht ist Pflicht.
-- [x] betroffene Bereiche können technisch markiert werden.
-- [x] Maßnahme wird für die Schule wieder bearbeitbar.
-- [x] erneute Einreichung erzeugt neue Submission-Version.
-
-## Rot
-
-- [x] „Derzeit nicht förderfähig“ ist möglich.
-- [x] öffentliche Begründung ist Pflicht.
-- [x] interner Vermerk bleibt getrennt.
-
----
-
-# 11. Rückkanal zur Schule
-
-## Bereits umgesetzt
-
-- [x] Bearbeitungsstatus wird in „Meine Maßnahmen“ angezeigt.
-- [x] Grün wird als grundsätzlich förderfähig angezeigt.
-- [x] Gelb wird als Nachbearbeitung erforderlich angezeigt.
-- [x] Rot wird als derzeit nicht grundsätzlich förderfähig angezeigt.
-- [x] Bearbeitungszeitpunkt wird angezeigt.
-
-## Noch offen
-
-- [ ] Gelbe Sachbearbeiternachricht wird im Schulportal angezeigt.
-- [ ] Rote Begründung wird im Schulportal angezeigt.
-- [ ] optionale grüne Nachricht wird bei Vorhandensein angezeigt.
-- [ ] School-API liefert nur öffentliche Nachricht, niemals internen Vermerk.
-
-Siehe #117, #29, #30, #32.
-
----
-
-# 12. Audit und Historie
-
-## Akzeptanzkriterien
-
-- [x] Einreichung wird protokolliert.
-- [x] Öffnen / Übernahme wird protokolliert.
-- [x] Nachforderung wird protokolliert.
-- [x] Wiedereinreichung wird protokolliert.
-- [x] Entscheidung wird protokolliert.
-- [x] Submission-Versionen bleiben erhalten.
-- [x] Audit enthält keine Dokumentinhalte oder Zugangsdaten.
-- [x] interne Vermerke werden nicht im Schulportal ausgeliefert.
-
----
-
-# 13. Ergebnisexport
-
-## Bereits umgesetzt
-
-- [x] Ergebnis wird persistent gespeichert.
-- [x] Entscheidung und Zeitpunkt werden gespeichert.
-- [x] Submission-Daten bleiben historisch erhalten.
-
-## Implementiert – produktive Abnahme offen
-
-- [x] PDF-Export ist nur für `ELIGIBLE` und `NOT_ELIGIBLE` serverseitig verfügbar.
-- [x] Förderbereich der abgeschlossenen Liste stammt aus dem Submission-Snapshot.
-- [x] Bericht verwendet Submission-Snapshots, Entscheidung und Entscheidungszeitpunkt derselben Submission.
-- [x] Bericht enthält öffentliche Begründung, jedoch niemals `internal_note` oder Blob-Pfade.
-- [x] Bericht enthält Prüfzeitpunkt, Human-in-the-Loop-Hinweis und Unverbindlichkeits-Hinweis.
-- [x] Endpunkt verlangt serverseitig `case_worker` oder `case_worker_admin`.
-- [ ] Produktive UAT eines grünen und eines roten PDF-Berichts durch den Product Owner.
-
-Siehe #33.
-
----
-
-# 14. Bewusst nicht umgesetzte automatische Regel-Engine
-
-Die folgenden Anforderungen sind für den aktuellen MVP nicht mehr Teil der Definition of Done:
-
-- automatische Förderregeln auswerten,
-- automatisch antragsberechtigt / nicht antragsberechtigt entscheiden,
-- automatisch Förderstatus bestimmen,
-- automatischen Regelstand als Entscheidungsgrundlage anzeigen.
-
-Diese Punkte wurden durch den Human-in-the-Loop-Prozess ersetzt.
+- automatische Förderregel-Engine
+- automatische Förderstatusentscheidung
+- automatische Regelversionsanzeige
 
 GitHub:
 
-- #27 – not planned
-- #28 – not planned
-- #31 – not planned
+- #27 – Not planned
+- #28 – Not planned
+- #31 – Not planned
 
----
+Ersatz:
 
-# Projektweite Definition of Done
+Human-in-the-Loop-Sachbearbeiterworkflow.
 
-Ein Product Backlog Item gilt als Done, wenn:
+## Projektweite Definition of Done – final erfüllt
 
-- [ ] alle für den aktuellen freigegebenen Scope vereinbarten Akzeptanzkriterien erfüllt sind,
-- [ ] Umsetzung vollständig und funktionsfähig ist,
-- [ ] notwendige fachliche und technische Tests durchgeführt wurden,
-- [ ] keine bekannten kritischen Fehler bestehen,
-- [ ] Funktion in den Hauptentwicklungsstand integriert ist,
-- [ ] relevante Dokumentation aktualisiert wurde,
-- [ ] GitHub-Status nachvollziehbar ist,
-- [ ] Product Owner die Funktion abgenommen hat.
+- [x] alle freigegebenen Akzeptanzkriterien erfüllt
+- [x] Umsetzung vollständig und funktionsfähig
+- [x] notwendige fachliche und technische Tests durchgeführt
+- [x] keine bekannten kritischen Fehler
+- [x] Funktionen in `main` integriert
+- [x] relevante Dokumentation aktualisiert
+- [x] GitHub-Status nachvollziehbar
+- [x] Product-Owner-Abnahme durchgeführt
+- [x] keine offenen Checkboxen in Done-Issues
+- [x] keine Secrets / privaten Schlüssel im Repository
+- [x] Datenbankänderungen versioniert
+- [x] geschützte Funktionen serverseitig autorisiert
+- [x] Deployment reproduzierbar
 
-Für technische Änderungen zusätzlich:
+## Abschluss
 
-- [ ] Secrets, Passwörter und private Schlüssel befinden sich nicht im Repository,
-- [ ] Datenbankänderungen sind versioniert,
-- [ ] geschützte Funktionen prüfen Berechtigungen serverseitig,
-- [ ] die bestehende Anwendung wird nicht erkennbar beschädigt.
+Der freigegebene MVP erfüllt die Definition of Done.
+
+Siehe [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md).
