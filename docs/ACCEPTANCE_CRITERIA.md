@@ -183,7 +183,7 @@ Der aktuelle MVP verwendet neun verbindliche Förderfragen.
 
 ## Rot
 
-- [x] „Derzeit nicht grundsätzlich förderfähig“ ist möglich.
+- [x] „Derzeit nicht förderfähig“ ist möglich.
 - [x] öffentliche Begründung ist Pflicht.
 - [x] interner Vermerk bleibt getrennt.
 
