@@ -26,21 +26,21 @@ Die Bewertung gewichtet **40 % Inkremente / Endprodukt** und **60 % Scrum-Prozes
 |---|---|---|---|
 | Team & Scrum-Rollen | umgesetzt | **gut** | Reflexion der tatsächlich gelebten Rollen noch stärker dokumentieren |
 | 3 vollständige Sprints | fachlich/technisch umgesetzt | **mittel** | Events pro Sprint nicht vollständig protokolliert |
-| Vision Kick-off | Product Goal vorhanden | **mittel** | kein eigenständiger Vision-Kick-off-Nachweis |
+| Vision Kick-off | am ersten Projekttag mit Denny durchgeführt | **nachträglich verschriftlicht** | konkreter Event-Nachweis jetzt dokumentiert |
 | Sprint Planning | Sprintstruktur vorhanden | **mittel** | konkrete Sprint Goals, Planning-Entscheidungen und Sprint Backlogs nicht vollständig als Event dokumentiert |
 | Product Backlog | sehr gut | **sehr gut** | kaum Gap |
 | Refinement | Scope-Änderung gut dokumentiert | **gut** | konkrete Refinement-Termine / Entscheidungen nur teilweise sichtbar |
-| Dailys | im Repo nicht nachweisbar | **kritische Lücke** | konkrete Daily-Dokumentation fehlt |
-| Sprint Reviews | im Repo kaum nachweisbar | **kritische Lücke** | Stakeholder, Feedback und daraus resultierende Änderungen fehlen als Event-Nachweis |
-| Retrospektiven | nur allgemein erwähnt | **kritische Lücke** | pro Sprint konkrete Retro + Maßnahmen fehlen |
+| Dailys | täglich durchgeführt | **mündlich durchgeführt, jetzt nachträglich verschriftlicht** | Einzelprotokolle fehlen; Prozessnachweis jetzt in `SCRUM_PROCESS_EVIDENCE.md` |
+| Sprint Reviews | Sprint 1 und 2 durchgeführt | **nachträglich verschriftlicht** | Denny und Sergey als Review-Teilnehmer dokumentiert; Sprint 3 erst nach tatsächlichem Sprintende ergänzen |
+| Retrospektiven | Sprint 1 und 2 durchgeführt | **nachträglich verschriftlicht** | konkrete Retro-Ergebnisse nur aus realer Erinnerung/Notizen ergänzen; Sprint 3 noch nicht fällig |
 | Stakeholder-Feedback | indirekt in Scope-Änderungen erkennbar | **schwach** | Quelle, Zeitpunkt, Feedback und Verarbeitung fehlen |
-| agile Schätzung | Story Points im aktuellen Repo nicht dokumentiert | **Lücke** | Schätzmethode / Ergebnis nachweisen |
+| agile Schätzung | Fibonacci-Story-Points im Team verwendet und im Daily re-evaluiert | **inhaltlich erfüllt** | Board-/Dokumentnachweis noch als Screenshot/Artefakt einbinden |
 | Kanban / GitHub Project | Projektstruktur vorhanden | **gut, aber außerhalb Repo schwer sichtbar** | Screenshots / Board-Zustände in Abschlussdokumentation aufnehmen |
-| Burndown / Velocity | kein Repo-Nachweis | **Lücke** | Chart oder begründete alternative Metrik ergänzen |
+| Burn-up / Velocity | GitHub Burn-up vorhanden; Story Points zur Velocity-Betrachtung genutzt | **inhaltlich erfüllt** | vorhandenen Burn-up-Screenshot/Dokumentnachweis in Abschlussunterlagen einbinden |
 | Definition of Done | sehr gut | **sehr gut** | final erfüllt |
 | Inkremente | sehr gut | **sehr gut** | Zwischenstände mit Screenshots noch expliziter als Increment 1/2/Release präsentieren |
 | Endprodukt / Release | produktiv umgesetzt | **sehr gut** | kaum Gap |
-| KI-Nutzung / Prompts | technisch offensichtlich KI-gestützt, aber nicht dokumentiert | **kritische Lücke** | wichtigste Prompts, Zweck, Kontrolle und Grenzen dokumentieren |
+| KI-Nutzung / Prompts | pi.dev eingesetzt | **teilweise dokumentiert** | repräsentative Master-LLM-Prompts als Anhang ergänzen |
 | Risiken | einzelne technische Risiken implizit sichtbar | **schwach** | explizites Risikoregister / Umgang dokumentieren |
 | Reflexion / Learnings | Product-Entscheidungen dokumentiert | **mittel** | persönliche/teambezogene Learnings stärker ausarbeiten |
 
@@ -105,12 +105,7 @@ Technische und fachliche Ergebnisse sind in README, Product Backlog, GitHub-Hier
 
 Der Projektauftrag bewertet nicht nur Sprint-Ergebnisse, sondern vollständige Scrum-Sprints mit Events.
 
-Im Repository fehlen derzeit strukturierte Nachweise für:
-
-- Sprint Planning je Sprint
-- Daily Scrum je Arbeitstag
-- Sprint Review je Sprint
-- Retrospektive je Sprint
+Die Events wurden durchgeführt, aber nicht als einzelne GitHub-Protokolle gespeichert. Der Prozessnachweis ist jetzt in `SCRUM_PROCESS_EVIDENCE.md` verschriftlicht. Für Sprint 3 gilt: Review und Retro dürfen erst nach dem tatsächlichen Sprintende 05.10.2026 als durchgeführt dokumentiert werden.
 
 Das ist eine der wichtigsten verbleibenden Dokumentationslücken.
 
@@ -198,13 +193,13 @@ Für maximale Transparenz sollte dokumentiert werden:
 
 ## Vorhandener Nachweis
 
-**Kein belastbarer Daily-Nachweis im Repository gefunden.**
+**Daily Scrums wurden täglich im LearnSpace 3D durchgeführt und sind nun in `SCRUM_PROCESS_EVIDENCE.md` nachträglich verschriftlicht.**
 
 ## Bewertung
 
-**Kritische Dokumentationslücke**
+**Durchführung belegt, historische Einzelprotokolle fehlen.**
 
-Der Projektauftrag fordert regelmäßige Dailys und bewertet die zweckmäßige Durchführung.
+Der Projektauftrag fordert regelmäßige Dailys und bewertet die zweckmäßige Durchführung. Die reale Arbeitsweise ist jetzt transparent dokumentiert.
 
 ## Benötigter Nachweis
 
@@ -577,3 +572,22 @@ Die wichtigsten noch zu belegenden Punkte sind:
 - KI-Prompts
 
 Bis diese Nachweise ergänzt sind, sollten sie nicht als vollständig erfüllt dargestellt werden.
+
+
+# Aktualisierung vom 02.10.2026 – Scrum-Prozessnachweise
+
+Nach zusätzlicher Product-Owner-/Team-Auskunft wurden folgende bislang nur unzureichend dokumentierte Punkte geklärt und in `docs/SCRUM_PROCESS_EVIDENCE.md` verschriftlicht:
+
+- [x] Daily Scrums täglich im LearnSpace 3D durchgeführt
+- [x] Product Owner regelmäßig beteiligt
+- [x] Board-/PBI-Status gemeinsam gesichtet
+- [x] Stopper, Sprintfortschritt und Timebox täglich geprüft
+- [x] Story Points nach Fibonacci verwendet
+- [x] Story Points bei Bedarf im Daily neu bewertet
+- [x] Sprint Reviews mit Denny und Sergey für bereits abgeschlossene Sprints durchgeführt
+- [x] Retrospektiven am Sprintende durchgeführt
+- [x] Vision Kick-off am ersten Projekttag mit Denny durchgeführt
+- [x] GitHub Burn-up als Fortschrittsnachweis vorhanden
+- [x] pi.dev als KI-Entwicklungsagent verwendet
+
+Verbleibende Dokumentationsarbeit ist damit vor allem das **Einbinden vorhandener Nachweise** (Burn-up/Board-Screenshots, ggf. Story-Point-Ansichten) sowie die **Auswahl repräsentativer Master-LLM-Prompts**. Sprint-3-Review und Sprint-3-Retrospektive sind am Stand 02.10.2026 noch nicht fällig und werden erst nach tatsächlicher Durchführung dokumentiert.
