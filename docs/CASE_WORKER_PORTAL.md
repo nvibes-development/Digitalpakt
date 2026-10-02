@@ -101,7 +101,7 @@ Darstellung:
 
 **Grundsätzlich förderfähig**
 
-Eine öffentliche Nachricht kann technisch gespeichert werden.
+Eine öffentliche Nachricht kann technisch gespeichert werden. Wenn sie hinterlegt ist, wird sie der Schule über den Button „Anmerkungen“ angezeigt.
 
 ### Gelb
 
