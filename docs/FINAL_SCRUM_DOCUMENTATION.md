@@ -85,7 +85,9 @@ Verantwortlich für:
 
 ## Teamreflexion
 
-**[NACHWEIS ERGÄNZEN]**
+Die Scrum-Events wurden überwiegend im LearnSpace 3D durchgeführt. Der Product Owner war regelmäßig in die Sichtung der PBIs, Priorisierung und Statusentscheidungen eingebunden. Developer, Scrum Master und QA/UAT besprachen täglich Fortschritt, Stopper und Sprint-Ziel.
+
+Die detaillierte nachträgliche Verschriftlichung der real durchgeführten Scrum-Events befindet sich in [SCRUM_PROCESS_EVIDENCE.md](SCRUM_PROCESS_EVIDENCE.md).
 
 Hier vor Abgabe konkrete Beispiele ergänzen:
 
@@ -137,7 +139,18 @@ Das finale Product Goal ist im README und in der Product Definition dokumentiert
 
 ## Vision-Kick-off-Event
 
-**[NACHWEIS ERGÄNZEN]**
+Der Vision Kick-off wurde am ersten Projekttag gemeinsam mit **Denny** durchgeführt. Das Team stellte die Produktvision und das konkrete Nutzerproblem im Kontext DigitalPakt 2.0 vor.
+
+Im Kick-off wurden insbesondere behandelt:
+
+- Problem des Nutzers
+- Produktvision
+- Product Goal
+- initialer Lösungsweg
+- Risiken und Annahmen
+- erste Backlog-Struktur
+
+Der spätere Wechsel von automatischer Förderlogik zu Human-in-the-Loop wurde nicht im Kick-off vorweggenommen, sondern entstand erst im Refinement.
 
 Vor Abgabe ergänzen:
 
@@ -183,7 +196,11 @@ Verwendete Status:
 
 ## Story Points / Schätzung
 
-**[NACHWEIS ERGÄNZEN]**
+Das Team verwendete **Fibonacci-basierte Story Points** als relative Aufwandsmetrik.
+
+Die PBIs wurden gemeinsam diskutiert und bewertet. Im Daily wurden Schätzungen bei Bedarf erneut betrachtet, um neue Erkenntnisse, technische Unsicherheiten und die Team Velocity einzubeziehen.
+
+Als visueller Nachweis soll die vorhandene GitHub-Project-/Board-Darstellung mit Story Points in den Anhang aufgenommen werden.
 
 Falls Story Points tatsächlich gepflegt wurden:
 
@@ -194,9 +211,13 @@ Falls Story Points tatsächlich gepflegt wurden:
 
 Falls nicht belastbar belegt, offen als nur teilweise eingesetzt dokumentieren.
 
-## Burndown / Velocity
+## Burn-up / Velocity
 
-**[NACHWEIS ERGÄNZEN ODER OFFEN REFLEKTIEREN]**
+GitHub stellte für das Projekt automatisch einen **Burn-up-Chart** bereit. Dieser wurde genutzt, um Fortschritt und Scope-Entwicklung zu beobachten.
+
+Die Team Velocity wurde zusätzlich anhand der Story-Point-Bewertungen und der täglichen Fortschrittskontrolle betrachtet.
+
+Der vorhandene Burn-up-Dokumentnachweis / Screenshot wird in den Präsentations- bzw. Anhangsteil aufgenommen.
 
 Nur echte historische Daten verwenden.
 
@@ -291,7 +312,20 @@ Benötigt:
 
 ## Dailys
 
-**[NACHWEIS ERGÄNZEN]**
+Daily Scrums wurden **täglich** im LearnSpace 3D durchgeführt.
+
+Regelmäßige Inhalte:
+
+- Fortschritt seit dem letzten Daily
+- nächste Arbeitsschritte
+- Stopper / Impediments
+- Sprintfortschritt
+- Prüfung der Timebox
+- gemeinsame Sichtung der PBIs
+- Abstimmung von Backlog → Ready → In review → Done
+- Re-Evaluation von Story Points bei neuen Erkenntnissen
+
+Der Product Owner war regelmäßig beteiligt. Die Dailys wurden mündlich am digitalen Board durchgeführt und nicht als einzelne GitHub-Protokolle gespeichert. Die Arbeitsweise ist transparent in [SCRUM_PROCESS_EVIDENCE.md](SCRUM_PROCESS_EVIDENCE.md) nachträglich verschriftlicht.
 
 Mindestens als Tabelle:
 
@@ -300,7 +334,9 @@ Mindestens als Tabelle:
 
 ## Sprint Review
 
-**[NACHWEIS ERGÄNZEN]**
+Das Review wurde am Sprintende durchgeführt. **Denny** wurde eingeladen und sah sich das Increment live an. **Sergey** nahm als Reviewer teil, stellte proaktiv Fragen und wirkte an der Diskussion mit.
+
+Gezeigt wurden die im Sprint fertiggestellten Funktionen. Feedback und Fragen wurden gemeinsam mit dem Product Owner bewertet und bei Bedarf in Backlog-/Refinement-Entscheidungen überführt.
 
 Dokumentieren:
 
@@ -312,7 +348,19 @@ Dokumentieren:
 
 ## Retrospektive
 
-**[NACHWEIS ERGÄNZEN]**
+Am Sprintende fand ein größeres Teammeeting als Retrospektive statt.
+
+Besprochen wurden:
+
+- was gut lief
+- was schlecht lief
+- Gaps und Probleme
+- Stopper
+- Qualität der Zeiteinschätzung
+- Abweichungen zwischen erwarteter und tatsächlicher Komplexität
+- Verbesserungen für den nächsten Sprint
+
+Konkrete Retro-Ergebnisse werden nur soweit ergänzt, wie sie aus realen Teamnotizen oder belastbarer Erinnerung rekonstruiert werden können.
 
 - Was lief gut?
 - Was lief schlecht?
@@ -465,7 +513,7 @@ Produktiv getestet wurden:
 
 ## Retrospektive
 
-**[NACHWEIS ERGÄNZEN]**
+**Status am 02.10.2026:** noch nicht fällig. Die Sprint-3-Retrospektive wird erst am tatsächlichen Sprintende durchgeführt und danach dokumentiert.
 
 ---
 
@@ -480,9 +528,15 @@ Der Projektauftrag verlangt konkrete Reviews mit Stakeholdern und sichtbare Vera
 - Scope-Änderungen
 - UI-/Workflow-Nachbesserungen
 
-## Noch nicht ausreichend als Event dokumentiert
+## Event-Nachweis
 
-**[NACHWEIS ERGÄNZEN]**
+Für die bereits abgeschlossenen Sprints wurden Reviews tatsächlich durchgeführt:
+
+- Denny war eingeladen und sah die Ergebnisse live.
+- Sergey nahm als Reviewer teil, stellte Fragen und wirkte proaktiv mit.
+- Der Product Owner bewertete Feedback und mögliche Backlog-Auswirkungen.
+
+Die genaue Zuordnung einzelner Feedbackaussagen zu konkreten Items wird nur ergänzt, wenn sie aus realen Notizen oder Team-Erinnerungen belastbar rekonstruiert werden kann.
 
 Pro Sprint:
 
@@ -622,6 +676,9 @@ Beispiele für bewusste menschliche Entscheidungen:
 
 ## Wichtige Prompts
 
+Als KI-Entwicklungsagent wurde **pi.dev** verwendet. Für die Abschlussdokumentation werden repräsentative Master-LLM-Prompts als Muster der tatsächlichen Arbeitsweise aufgenommen.
+
+
 ### Prompt 1 – Sachbearbeiterportal
 
 **Zweck:** vollständige Umsetzung des Human-in-the-Loop-Prüfworkflows.
@@ -742,21 +799,21 @@ Vor finalem Upload ergänzen:
 
 - [ ] Screenshot Vision Kick-off / initiales Backlog
 - [ ] Sprint-1-Planning-Nachweis
-- [ ] Sprint-1-Dailys
-- [ ] Sprint-1-Review
-- [ ] Sprint-1-Retro
+- [x] Sprint-1-Dailys – nachträglich als tatsächlich durchgeführter Prozess verschriftlicht
+- [x] Sprint-1-Review – mit Denny und Sergey durchgeführt
+- [x] Sprint-1-Retro – durchgeführt, konkrete Ergebnisse nur belastbar ergänzen
 - [ ] Sprint-2-Planning-Nachweis
-- [ ] Sprint-2-Dailys
-- [ ] Sprint-2-Review
-- [ ] Sprint-2-Retro
+- [x] Sprint-2-Dailys – nachträglich als tatsächlich durchgeführter Prozess verschriftlicht
+- [x] Sprint-2-Review – mit Denny und Sergey durchgeführt
+- [x] Sprint-2-Retro – durchgeführt, konkrete Ergebnisse nur belastbar ergänzen
 - [ ] Sprint-3-Planning-Nachweis
 - [ ] Sprint-3-Dailys
 - [ ] Sprint-3-Review
 - [ ] Sprint-3-Retro
 - [ ] Stakeholder-Feedback
 - [ ] Board-Screenshot
-- [ ] Story-Point-/Schätzungsnachweis, falls vorhanden
-- [ ] Burndown / alternative Metrik, falls vorhanden
+- [x] Story-Point-Methode dokumentiert; Board-/Screenshot-Nachweis noch einzubinden
+- [x] GitHub Burn-up als verwendete Metrik dokumentiert; Screenshot/Dokumentnachweis noch einzubinden
 - [ ] Increment-1-Screenshots
 - [ ] Increment-2-Screenshots
 - [ ] Final-Release-Screenshots
