@@ -507,6 +507,11 @@ h2 {
 
 .profile-page h2 { margin-top: 2.5rem; }
 .measure-actions { align-items:center; display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }.measure-actions .primary-button,.measure-actions .secondary-button { margin:0; min-height:2.875rem; width:auto; }
+.review-comment-button { margin-top: .75rem; }
+.review-comment-backdrop { align-items: center; background: rgb(0 0 0 / .45); display: flex; inset: 0; justify-content: center; padding: 1rem; position: fixed; z-index: 20; }
+.review-comment-dialog { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 1rem; box-shadow: 0 1rem 3rem rgb(0 0 0 / .25); max-width: 38rem; padding: 1.5rem; width: 100%; }
+.review-comment-dialog p { line-height: 1.55; white-space: pre-wrap; }
+.review-comment-dialog .primary-button { cursor: pointer; }
 .question-catalog { margin-top:1.5rem; }.question-row { align-items:center; border-top:1px solid var(--color-border); display:grid; gap:1rem; grid-template-columns:2.5rem minmax(12rem,1fr) auto; padding:1rem 0; }.question-row p { margin:0; }.question-number { align-items:center; background:var(--color-tint); border:1px solid var(--color-border); border-radius:50%; display:inline-flex; font-weight:700; height:2rem; justify-content:center; width:2rem; }.answer-button { background:transparent; border:1px solid var(--color-primary); border-radius:.375rem; color:var(--color-primary); cursor:pointer; font:inherit; margin-left:.4rem; padding:.5rem .625rem; }.answer-button.selected { background:var(--color-primary); color:#fff; } @media(max-width:760px){.question-row{align-items:start;grid-template-columns:2.5rem 1fr}.question-row>div{grid-column:2}.answer-button{margin:0 .35rem .35rem 0;}}
 
 .help-page h2 { margin-top: 2.5rem; }
