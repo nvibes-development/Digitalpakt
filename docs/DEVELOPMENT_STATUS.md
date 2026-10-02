@@ -1,14 +1,13 @@
 # Entwicklungsstand – KLARFÖRDERN
 
-**Stand:** 1. Oktober 2026  
-**Autoritative Quelle:** GitHub `main`  
-**Product-Owner-Abgleich:** vollständig gegen den aktuellen Repository-Stand durchgeführt
+**Stand:** 02.10.2026  
+**Status:** ✅ MVP abgeschlossen und Product-Owner-abgenommen  
+**Produktions-URL:** https://digitalpakt.nvibes.de  
+**Implementierungsbaseline:** `eb8379f24277adbe14a0558f9cf2a714dcbcf96a`
 
 ## Produktstatus
 
-KLARFÖRDERN bildet den vollständigen Erfassungs-, Einreichungs- und menschlichen Prüfprozess für schulische Digitalisierungsmaßnahmen ab.
-
-Der aktuelle Kernprozess lautet:
+Der vollständige freigegebene End-to-End-Prozess ist produktiv umgesetzt:
 
 ```text
 Registrierung / Login
@@ -18,155 +17,130 @@ Registrierung / Login
 → neun Förderfragen
 → Dokumente
 → Einreichung
+→ Submission-Snapshot
 → Sachbearbeiter-Posteingang
 → digitale Akte
 → menschliche Prüfung
 → Grün / Gelb / Rot
-→ Nachforderung oder Abschluss
-→ bei Gelb: Bearbeitung und Wiedereinreichung
+→ Rückmeldung
+→ ggf. Nachbearbeitung und Wiedereinreichung
+→ Abschluss
+→ PDF-Prüfbericht
 ```
 
-KLARFÖRDERN trifft **keine automatische verbindliche Förderentscheidung**. Die fachliche Bewertung erfolgt durch einen autorisierten Sachbearbeiter.
+## Zugang und Rollen
 
-## Produktiver Sachbearbeiter
+### Schule
 
-Für die produktive Sachbearbeitung ist folgender initialer Master-Sachbearbeiter eingerichtet:
+`school_admin`
 
-`sachbearbeiter@nvibes.de`
-
-Rolle:
+### Sachbearbeitung
 
 `case_worker`
 
-Der Zugang dient ausschließlich der Bearbeitung eingereichter Maßnahmen. Zugangsdaten werden nicht im Repository dokumentiert. Öffentliche Registrierung erzeugt ausschließlich `school_admin`.
+Initialer Master-Sachbearbeiter:
 
-## Zugang, Profil und Rechtliches
+`sachbearbeiter@nvibes.de`
+
+Öffentliche Registrierung erzeugt ausschließlich `school_admin`.
+
+## Authentifizierung und Profil
 
 Umgesetzt und getestet:
 
 - Registrierung
-- Anmeldung
-- serverseitige Sitzung
-- Abmeldung
+- Login
+- Logout
+- serverseitige Sessions
 - rollenabhängige Weiterleitung
-- Profildaten
+- Profilverwaltung
 - E-Mail-Änderung
-- Passwortänderung mit aktuellem Passwort
-- sichere Kontolöschung mit Bestätigung
-- Schutz bei geteilten Schuldaten
+- Passwortänderung
+- Kontolöschung
+- Schutz geteilter Schuldaten
 - Impressum
-- Datenschutzerklärung
+- Datenschutz
 - In-App-Hilfe
 
-## Schule
+## Schuldaten
 
-Umgesetzt und getestet:
+Umgesetzt:
 
-- persistente Schuldaten
-- Schulmitgliedschaften
-- serverseitige Mandantentrennung
+- SchoolMemberships
+- Mandantentrennung
 - Bundesland
-- Schulform / educationType
+- Schulform
 - Schulart
-- öffentliche oder private Trägerschaft
-- Anerkennungsstatus bei privaten Schulen
+- Trägerschaft
+- Anerkennungsstatus
 - Validierung
-- Pflichtfelder
-- Wiederaufnahme eines begonnenen Checks
+- Persistenz
 
-### Fachliche Entscheidung zur Antragsberechtigung
-
-Das ursprünglich vorgesehene automatische Förderregelwerk wird im aktuellen MVP nicht verwendet.
-
-Der technische School-Eligibility-Dienst erzeugt keine erfundene positive oder negative fachliche Entscheidung. Die abschließende fachliche Bewertung erfolgt im Human-in-the-Loop-Prüfprozess.
+Die technische Eligibility-Komponente erzeugt ohne freigegebenes Regelwerk keine automatische fachliche Entscheidung.
 
 ## Maßnahmen
 
-Umgesetzt und getestet:
+Umgesetzt:
 
 - mehrere Maßnahmen je Schule
-- Maßnahme anlegen
-- Maßnahme bearbeiten
-- Kurzbeschreibung
+- Bezeichnung
+- Beschreibung
 - Kosten
 - Zeitraum
 - Umsetzungsstatus
 - technische Ausstattung
-- frühere Digitalisierungsmaßnahmen
-- frühere Förderungen
-- drei MVP-Förderbereiche
+- frühere Maßnahmen
+- frühere Fördermittel
+- drei Förderbereiche
 - Maßnahmenübersicht
-- Bearbeitungs-/Förderstatus
-- Wiedereinreichung nach Nachforderung
-- versionierte Submission-Historie
+- Status
+- Wiedereinreichung
+- Submission-Historie
 
 ## Förderbereiche
-
-MVP:
 
 1. IT-Infrastruktur, Netzwerk und WLAN
 2. Digitale Endgeräte
 3. Bildungssoftware und digitale Lernplattformen
 
-Pro Maßnahme wird genau ein MVP-Förderbereich gespeichert.
-
 ## Förderfragen
 
-Der aktuelle MVP verwendet neun verbindliche Förderfragen.
+- neun verbindliche Fragen
+- Ja / Nein / Nicht bekannt
+- persistente Antworten
+- Sperre nach Einreichung
+- Wiederfreigabe bei Nachforderung
+- Anzeige in Sachbearbeiterakte
 
-Antwortwerte:
-
-- Ja
-- Nein
-- Nicht bekannt
-
-Alle neun Antworten sind vor einer Einreichung erforderlich.
-
-Die Antworten werden:
-
-- maßnahmenbezogen gespeichert,
-- nach Wiederanmeldung erneut geladen,
-- nach Einreichung gesperrt,
-- bei Nachforderung wieder freigegeben,
-- in der digitalen Sachbearbeiterakte dargestellt.
-
-Die Antworten erzeugen **keine automatische Förderentscheidung**.
+Keine automatische Förderentscheidung.
 
 ## Dokumente
 
-Umgesetzt und getestet:
-
-- PDF
-- Word
-- Excel
+- PDF / Word / Excel
 - maximal 10 MB
 - Upload
 - Liste
 - Download
 - Löschen
-- maßnahmengebundene Autorisierung
-- privater Azure Blob Storage
+- private Azure Blob Storage Ablage
 - Managed Identity
-- keine Storage Keys oder Connection Strings im Repository
-- Review-Dokumentdownload für Sachbearbeiter
+- serverseitige Autorisierung
+- Review-Download
 - Sperre nach Einreichung
 - Wiederfreigabe bei Nachforderung
 
-Der Blob-Container `digitalpakt` ist privat.
-
 ## Einreichung
 
-Eine Maßnahme kann zur Überprüfung eingereicht werden, wenn:
+Voraussetzungen:
 
-- alle neun Förderfragen beantwortet sind,
-- mindestens ein Dokument vorhanden ist.
+- neun beantwortete Fragen
+- mindestens ein Dokument
 
-Bei Einreichung:
+Erzeugt:
 
-- wird eine Vorgangsnummer erzeugt,
-- wird die Maßnahme gesperrt,
-- wird eine unveränderliche Submission-Version erzeugt,
-- werden Schule, Antragsteller, Maßnahme, Antworten und Dokumentmetadaten als Snapshot gespeichert.
+- Vorgangsnummer
+- Submission-Version
+- Snapshots von Antragsteller, Schule, Maßnahme, Antworten und Dokumentmetadaten
 
 ## Sachbearbeiterportal
 
@@ -174,12 +148,8 @@ Route:
 
 `/review`
 
-Umgesetzt und getestet:
+Umgesetzt:
 
-- Rolle `case_worker`
-- optional vorbereitete Rolle `case_worker_admin`
-- serverseitiger Review-Guard
-- rollenabhängige Login-Weiterleitung
 - Posteingang
 - Suche
 - Sortierung
@@ -187,166 +157,120 @@ Umgesetzt und getestet:
 - Nachforderungen
 - Abgeschlossen
 - digitale Akte
-- Antragstellerdaten
-- Schuldaten
-- Maßnahmendaten
-- Förderfragen
+- Vorgangsübernahme
+- Förderbereich
 - Dokumente
-- Version und Vorgangsnummer
-- Audit-Verlauf
-- atomare Vorgangsübernahme
-- menschliche Grün-/Gelb-/Rot-Entscheidung
-- öffentliche Nachricht / Begründung
+- öffentliche Nachricht
 - interner Vermerk
-- Nachforderung
+- Grün / Gelb / Rot
+- Rückkanal
 - Wiedereinreichung
 - Submission-Versionierung
+- Audit
+- PDF-Prüfbericht
 
-### Entscheidungsstatus
+## Rückkanal
 
-- `ELIGIBLE` → grundsätzlich förderfähig
-- `NEEDS_CHANGES` → Nachbearbeitung erforderlich
-- `NOT_ELIGIBLE` → derzeit nicht grundsätzlich förderfähig
+Produktiv getestet:
 
-## Human-in-the-Loop
+- Gelb: Nachforderung sichtbar
+- Rot: Begründung sichtbar
+- Grün: optionale öffentliche Nachricht möglich
 
-Verbindliches Produktprinzip:
+Interne Vermerke werden nicht an das Schulportal ausgeliefert.
 
-> KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein autorisierter Sachbearbeiter.
+## PDF-Prüfbericht
 
-Die automatische Förderregel-Engine aus der ursprünglichen Planung wurde für den aktuellen MVP bewusst ersetzt.
+Endpunkt:
 
-## Datenmodell Sachbearbeitung
+`GET /api/review/cases/:caseId/report.pdf`
 
-Migration `010_case_worker_portal.sql` ergänzt unter anderem:
+Nur für:
 
+- `ELIGIBLE`
+- `NOT_ELIGIBLE`
+
+Nur für autorisierte Sachbearbeiter.
+
+Enthält:
+
+- historische Submission
+- Förderbereich
+- Entscheidung
+- öffentliche Begründung
+- Sachbearbeiter
+- Prüfzeitpunkt
+- neun Antworten
+- Dokumentliste
+- Unverbindlichkeits-Hinweis
+
+Ausgeschlossen:
+
+- `internal_note`
+- Blob-Pfade
+- technische IDs
+
+Produktiv abgenommen:
+
+- [x] grüner PDF-Bericht
+- [x] roter PDF-Bericht
+- [x] lange Texte
+- [x] mehrere Dokumente
+
+## Datenmodell
+
+Versionierte Migrationen `001` bis `010`.
+
+Wichtige Bestandteile:
+
+- Benutzer / Sessions
+- Profile
+- Schulen / Memberships
+- Maßnahmen
+- Fragen / Antworten
+- Dokumente
+- Submission
 - `measure_submissions`
 - `case_decisions`
 - `case_requests`
 - `audit_events`
-- Review-Status an Maßnahmen
-- Case-Worker-Zuweisung
 
-## Statusmaschine
+## Sicherheit
 
-```text
-DRAFT
-→ SUBMITTED
-→ UNDER_REVIEW
-→ ELIGIBLE
-   oder NEEDS_CHANGES
-   oder NOT_ELIGIBLE
+- Argon2id
+- HttpOnly/Secure/SameSite Cookie
+- serverseitige Rollenprüfung
+- CSRF-Origin-Prüfung
+- Rate Limits
+- private Blob-Dokumente
+- Managed Identity
+- keine Secrets im Repository
+- redigierte Auth-Logs
+- öffentliche / interne Sachbearbeitertexte getrennt
 
-NEEDS_CHANGES
-→ Bearbeitung durch Schule
-→ RESUBMITTED
-→ UNDER_REVIEW
-```
+## Bewusst ersetzt
 
-## Audit und Nachvollziehbarkeit
+Als Not planned geschlossen:
 
-Umgesetzt:
-
-- Einreichung
-- Öffnen
-- Übernahme
-- Nachforderung
-- Wiedereinreichung
-- Entscheidung
-- Submission-Versionen
-
-Interne Vermerke werden nicht über Schulportal-Endpunkte ausgeliefert.
-
-## Product-Owner-Abnahme
-
-Der Product Owner hat den im Repository vorhandenen Funktionsumfang getestet und die erledigten Product Items entsprechend in GitHub als Done markiert.
-
-Insbesondere geprüft:
-
-- Schulportal
-- mehrere Maßnahmen
-- Fragen
-- Dokumente
-- Einreichung
-- Sachbearbeiterzugang
-- Posteingang
-- digitale Akte
-- Grün / Gelb / Rot
-- Nachforderung
-- Wiedereinreichung
-- Statuswechsel
-- Dokumentzugriff
-
-## Noch offene Product-Backlog-Punkte
-
-### 1. Öffentliche Sachbearbeiternachricht im Schulportal
-
-Technischer Restpunkt:
-
-Die Sachbearbeiternachricht / öffentliche Begründung wird in `case_decisions` gespeichert, aber im aktuellen Schulportal noch nicht vollständig ausgelesen und dargestellt.
-
-Betroffene Issues:
-
-- #117
-- #29
-- #30
-- #32
-
-Erforderlich:
-
-- Gelb: konkrete Nachforderung für Nutzer sichtbar
-- Rot: Begründung sichtbar
-- Grün: optionale öffentliche Nachricht sichtbar
-
-Interne Notizen dürfen niemals mit ausgeliefert werden.
-
-### 2. Ergebnisexport / Prüfbericht
-
-Issue:
-
-- #33
-
-Implementiert – produktive Grün-/Rot-UAT offen:
-
-- serverseitiger PDF-Export für abgeschlossene Vorgänge über `GET /api/review/cases/:caseId/report.pdf`
-- historisch korrekter Submission-Snapshot einschließlich Förderbereich und Dokumentliste
-- Prüfzeitpunkt, menschliche Entscheidung und öffentliche Begründung
-- Hinweis auf unverbindliche Ersteinschätzung sowie Human-in-the-Loop-Verfahren
-- serverseitige Sachbearbeiterautorisierung und Ausschluss von `internal_note`
-
-Der Förderbereich in „Abgeschlossen“ wird aus `measure_snapshot.fundingArea` angezeigt.
-
-## Bewusst nicht umgesetzt
-
-Die folgenden ursprünglich geplanten Funktionen wurden durch Product-Owner-Entscheidung ersetzt und als `not planned` geschlossen:
-
-- automatische Förderregeln (#27)
-- automatische Förderstatusbildung (#28)
-- Anzeige automatischer Förderregelversionen (#31)
+- #27 automatische Förderregeln
+- #28 automatischer Förderstatus
+- #31 automatische Regelanzeige
 
 Ersatz:
 
-Human-in-the-Loop-Sachbearbeiterportal.
+Human-in-the-Loop.
 
-## Technische Architektur
+## GitHub-Abschluss
 
-- React 19
-- TypeScript
-- Vite
-- PWA
-- React Router
-- Fastify
-- PostgreSQL
-- Nginx
-- Azure VM
-- Azure Blob Storage
-- Managed Identity
-- Cloudflare
-- HTTPS
-- versionierte SQL-Migrationen
+Am 02.10.2026 erneut geprüft:
 
-## Repository-Stand
+- alle umgesetzten Issues geschlossen
+- alle Done-Issues ohne offene Checkboxen
+- bewusst ersetzte Issues korrekt als Not planned
+- keine offenen Product-Backlog-Issues im MVP-Scope
 
-Das Sachbearbeiterportal wurde mit PR #106 integriert. Danach wurden weitere UX-/Darstellungsanpassungen bis einschließlich des aktuellen `main` vorgenommen und vom Product Owner getestet.
+## Abschluss
 
-GitHub `main` bleibt die verbindliche Source of Truth.
+Der aktuelle Stand ist für die Abschlusspräsentation freigegeben.
+
+Details: [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md).
