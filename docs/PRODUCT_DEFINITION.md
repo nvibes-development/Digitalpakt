@@ -1,67 +1,213 @@
-# Produktdefinition – DigitalPakt Check
+# Produktdefinition – KLARFÖRDERN
+
+**Stand:** 02.10.2026  
+**Status:** finaler MVP-Scope abgeschlossen und Product-Owner-abgenommen
 
 ## Produktziel
 
-Der Prototyp prüft zunächst die **Antragsberechtigung der Schule** und anschließend die **Förderfähigkeit einer geplanten Digitalisierungsmaßnahme**.
+KLARFÖRDERN unterstützt Schulen bei der strukturierten Vorbereitung und Einreichung schulischer Digitalisierungsvorhaben.
 
-Die Anwendung führt die Schulleitung durch einen strukturierten Fragenprozess und erzeugt anschließend eine nachvollziehbare Auswertung. Die Ergebnisse dienen als **unverbindliche Ersteinschätzung**.
+Die Anwendung sammelt Schuldaten, Maßnahmendaten, Förderfragen und Dokumente und stellt diese Informationen einem autorisierten Sachbearbeiter als versionierte digitale Akte zur Verfügung.
+
+Die fachliche Entscheidung wird bewusst durch einen Menschen getroffen.
+
+> **KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein autorisierter Sachbearbeiter.**
+
+Das Ergebnis ist eine **unverbindliche Ersteinschätzung** und keine Förderzusage.
 
 ## Kernprozess
 
-**Schuldaten erfassen → Antragsberechtigung prüfen → Maßnahme und Rahmendaten erfassen → Förderbereich auswählen → Förderkriterien beantworten → Maßnahme auswerten → Gesamtergebnis erhalten → nächste Schritte erkennen**
+```text
+Registrierung / Login
+→ Schuldaten
+→ Maßnahme
+→ Förderbereich
+→ neun Förderfragen
+→ Dokumente
+→ Einreichung
+→ digitale Akte
+→ Sachbearbeiterprüfung
+→ Grün / Gelb / Rot
+→ Rückmeldung
+→ ggf. Nachbearbeitung und Wiedereinreichung
+→ Abschluss
+→ PDF-Prüfbericht
+```
 
-## Teilprüfung 1 – Antragsberechtigung der Schule
+## Zielgruppen
 
-Mögliche Ergebnisse:
+- Schulen
+- Schulträger
+- Projektverantwortliche für schulische Digitalisierung
+- IT- und Medienverantwortliche
+- autorisierte Sachbearbeiter
 
-- **antragsberechtigt**
-- **nicht abschließend prüfbar**
-- **nicht antragsberechtigt**
+## Rollen
 
-Die Prüfung berücksichtigt insbesondere Bundesland, Schulart, allgemeinbildend/berufsbildend, Trägerschaft und – bei privaten Schulen – den Anerkennungsstatus.
+### Schuladministrator
 
-## Teilprüfung 2 – Förderfähigkeit der Maßnahme
+`school_admin`
 
-Die Schulleitung erfasst die geplante Digitalisierungsmaßnahme und die dafür relevanten Rahmendaten. Anschließend wird genau ein Förderbereich für die Prüfung ausgewählt.
+Kann:
 
-### Förderbereiche im MVP
+- Schuldaten verwalten
+- Maßnahmen anlegen
+- Förderbereich auswählen
+- Förderfragen beantworten
+- Dokumente verwalten
+- Maßnahmen einreichen
+- Status und öffentliche Rückmeldungen lesen
+- bei Nachforderung nacharbeiten
+- erneut einreichen
+
+### Sachbearbeiter
+
+`case_worker`
+
+Kann:
+
+- Posteingang bearbeiten
+- digitale Akten lesen
+- Dokumente herunterladen
+- Vorgänge übernehmen
+- öffentliche Hinweise und interne Vermerke erfassen
+- menschliche Grün-/Gelb-/Rot-Entscheidung dokumentieren
+- abgeschlossene Vorgänge als PDF exportieren
+
+## Förderbereiche im MVP
 
 1. **IT-Infrastruktur, Netzwerk und WLAN**
 2. **Digitale Endgeräte**
 3. **Bildungssoftware und digitale Lernplattformen**
 
-Weitere Förderbereiche werden im Prototyp als **außerhalb des MVP** gekennzeichnet.
+Pro Maßnahme wird genau ein Förderbereich gewählt.
 
-Die Förderkriterien werden mit **Ja / Nein / Nicht bekannt** beantwortet.
+## Förderfragen
 
-## Gesamtergebnis
+Der MVP verwendet neun verbindliche Fragen.
 
-Beide Teilprüfungen werden zu einem Gesamtergebnis verknüpft:
+Antwortmöglichkeiten:
 
-- **Antrag grundsätzlich möglich**
-- **weitere Angaben oder Nachweise erforderlich**
-- **Antrag derzeit nicht möglich**
+- Ja
+- Nein
+- Nicht bekannt
 
-Zusätzlich werden dargestellt:
+Alle Fragen müssen vor Einreichung beantwortet sein.
 
-- erfüllte Voraussetzungen
-- nicht erfüllte Voraussetzungen
-- fehlende Angaben
-- erforderliche Nachweise
-- verwendete Förderkriterien
-- verständliche Begründung
-- empfohlene nächste Schritte
+Die Antworten strukturieren die fachliche Akte, führen aber nicht automatisch zu einer Förderentscheidung.
 
-## MVP
+## Dokumente
 
-Der erste Produktkern lautet:
+Unterstützt:
 
-> **„Ich bin Schulleitung. Ist unsere Schule grundsätzlich antragsberechtigt und kann für unsere geplante Digitalisierungsmaßnahme nach den hinterlegten Kriterien grundsätzlich ein Förderantrag möglich sein?“**
+- PDF
+- Word
+- Excel
+- maximal 10 MB
 
-## Sachbearbeitung
+Dokumente werden maßnahmenbezogen in privatem Azure Blob Storage gespeichert.
 
-KLARFÖRDERN erweitert den Schulbereich um ein rollenbasiertes Sachbearbeiterportal. Autorisierte Sachbearbeiter lesen eine versionierte digitale Akte, übernehmen Vorgänge, stellen Nachforderungen und dokumentieren eine menschliche positive, negative oder nachbearbeitungsbedürftige Ersteinschätzung. Die Anwendung trifft dabei keine automatische Fachentscheidung.
+## Einreichung und Versionierung
 
-## Abgrenzung
+Eine Maßnahme kann eingereicht werden, wenn:
 
-Der DigitalPakt Check liefert ausschließlich eine **unverbindliche Ersteinschätzung**. Das Ergebnis ist keine rechtsverbindliche Förderentscheidung oder Förderzusage.
+- alle neun Förderfragen beantwortet sind,
+- mindestens ein Dokument vorhanden ist.
+
+Bei jeder Einreichung wird eine unveränderliche Submission-Version erzeugt.
+
+Gespeichert werden Snapshots von:
+
+- Antragsteller
+- Schule
+- Maßnahme
+- Antworten
+- Dokumentmetadaten
+
+Nach einer Nachforderung erzeugt die erneute Einreichung eine neue Version. Frühere Versionen bleiben erhalten.
+
+## Menschliche Entscheidung
+
+### Grün
+
+**Grundsätzlich förderfähig**  
+Technischer Status: `ELIGIBLE`
+
+### Gelb
+
+**Nachbearbeitung erforderlich**  
+Technischer Status: `NEEDS_CHANGES`
+
+Die Schule erhält eine öffentliche Nachforderung und kann Daten sowie Dokumente ergänzen.
+
+### Rot
+
+**Derzeit nicht förderfähig**  
+Technischer Status: `NOT_ELIGIBLE`
+
+Eine öffentliche Begründung ist Pflicht.
+
+## Rückkanal
+
+Öffentliche Sachbearbeitertexte werden dem Schulbenutzer angezeigt.
+
+Interne Vermerke bleiben ausschließlich im Sachbearbeiterkontext und werden weder im Schulportal noch im PDF-Prüfbericht ausgegeben.
+
+## PDF-Prüfbericht
+
+Abgeschlossene grüne und rote Vorgänge können als PDF exportiert werden.
+
+Der Bericht basiert auf der historisch geprüften Submission und enthält:
+
+- Vorgangsnummer
+- Submission-Version
+- Prüfzeitpunkt
+- Antragsteller
+- Schuldaten
+- Maßnahmendaten
+- Förderbereich
+- neun Fragen und Antworten
+- Dokumentenliste
+- Sachbearbeitung
+- menschliche Entscheidung
+- öffentliche Begründung
+- Human-in-the-Loop-Hinweis
+- Unverbindlichkeits-Hinweis
+
+## Bewusste Scope-Entscheidung
+
+Die ursprünglich geplante automatische Förderregel-Engine wurde nicht umgesetzt.
+
+Grund:
+
+Im Projektzeitraum lag kein belastbares, freigegebenes und versioniertes Förderregelwerk vor.
+
+Ersetzt wurden:
+
+- #27 – Förderregeln auf Antworten anwenden
+- #28 – Förderstatus automatisch bestimmen
+- #31 – automatische Förderregeln anzeigen
+
+Der Ersatz ist der freigegebene Human-in-the-Loop-Prüfprozess.
+
+## MVP-Abgrenzung
+
+Nicht Bestandteil des abgeschlossenen MVP:
+
+- automatische Förderentscheidung
+- automatische Rechtsentscheidung
+- KI-Entscheidung
+- förmlicher Verwaltungsakt
+- echte Förderzusage
+- behördlicher Bewilligungsbescheid
+
+## Abschlussstatus
+
+Der freigegebene MVP-Scope ist abgeschlossen.
+
+Alle Product-Backlog-Issues sind entweder:
+
+- **Done / completed**, oder
+- bewusst **Not planned / ersetzt**.
+
+Siehe [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md).
