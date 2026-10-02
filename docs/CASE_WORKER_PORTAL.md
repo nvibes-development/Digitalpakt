@@ -123,7 +123,7 @@ Die Maßnahme wird anschließend für die Schule wieder bearbeitbar.
 
 Darstellung:
 
-**Derzeit nicht grundsätzlich förderfähig**
+**Derzeit nicht förderfähig**
 
 Pflicht:
 
