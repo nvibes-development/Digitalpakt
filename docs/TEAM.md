@@ -1,88 +1,92 @@
-# Projektteam und Rollen
+# Projektteam und Rollen – Abschlussstand
+
+**Stand:** 02.10.2026
 
 ## Teamübersicht
 
 | Teammitglied | Scrum-/Projektrolle | Fachlicher Schwerpunkt |
 |---|---|---|
-| **Anelia Zhilisbayev** | Product Owner | Marketing, Markt- und Zielgruppenperspektive, Product Backlog |
+| **Anelia Zhilisbayev** | Product Owner | Product Backlog, Marketing, Zielgruppenperspektive |
 | **Mohamad Feras Arman** | Developer | Automatisierung, technische Umsetzung, Workflows |
-| **Viktoriia Iakobchuk** | UAT & QA | User Acceptance Testing, Qualitätssicherung, Test und Abnahme |
-| **Christian Schreiber** | Scrum Master & Developer | Azure Architecture, technische Infrastruktur, Entwicklung |
+| **Viktoriia Iakobchuk** | UAT & QA | User Acceptance Testing, Qualitätssicherung |
+| **Christian Schreiber** | Scrum Master & Developer | Azure Architecture, Infrastruktur, Entwicklung |
 
 ## Anelia Zhilisbayev
 
-### Rolle
+**Rolle:** Product Owner & Marketingspezialistin
 
-**Product Owner & Marketingspezialistin**
+Verantwortlichkeiten:
 
-### Verantwortlichkeiten
-
-- Product Goal vertreten und weiterentwickeln
-- Product Backlog priorisieren
-- fachliche Anforderungen verständlich formulieren
-- Stakeholder-Perspektive einbringen
-- Markt- und Zielgruppenanforderungen berücksichtigen
-- Produktnutzen und Nutzerwert bewerten
-- Product Backlog Items für das Team transparent und verständlich halten
+- Product Goal
+- Priorisierung des Product Backlogs
+- fachliche Anforderungen
+- Stakeholder-Perspektive
+- Markt- und Zielgruppenanforderungen
+- Bewertung des Produktnutzens
 
 ## Mohamad Feras Arman
 
-### Rolle
+**Rolle:** Automatisierungsexperte & Developer
 
-**Automatisierungsexperte & Developer**
+Verantwortlichkeiten:
 
-### Verantwortlichkeiten
-
-- Automatisierung technischer Abläufe
-- Entwicklung und technische Umsetzung
-- Unterstützung bei Integrationen und Workflows
-- Mitarbeit an Sprint-Zielen und Increments
-- technische Qualität der umgesetzten Funktionen sicherstellen
-- technische Lösungsansätze im Team einbringen
+- technische Umsetzung
+- Automatisierung
+- Integrationen
+- Workflows
+- Mitarbeit an Sprint-Zielen und Inkrementen
 
 ## Viktoriia Iakobchuk
 
-### Rolle
+**Rolle:** UAT & QA
 
-**UAT & QA**
+Verantwortlichkeiten:
 
-### Verantwortlichkeiten
-
-- User Acceptance Testing (UAT)
+- User Acceptance Testing
 - Qualitätssicherung
-- Akzeptanzkriterien gegen das umgesetzte Increment prüfen
-- funktionale Tests durchführen
-- Fehler und Abweichungen nachvollziehbar dokumentieren
-- Reproduzierbarkeit von Fehlern unterstützen
-- Sprint Reviews und fachliche Abnahme unterstützen
+- Prüfung von Akzeptanzkriterien
+- funktionale Tests
+- Dokumentation von Fehlern und Abweichungen
+- Unterstützung der Abnahme
 
 ## Christian Schreiber
 
-### Rolle
+**Rolle:** Scrum Master, Azure Architect & Developer
 
-**Scrum Master, Azure Architect & Developer**
+Verantwortlichkeiten:
 
-### Verantwortlichkeiten
-
-- Scrum-Prozess unterstützen
-- Scrum Events moderieren und organisatorisch unterstützen
-- Hindernisse sichtbar machen und bei deren Beseitigung unterstützen
-- Selbstorganisation und kontinuierliche Verbesserung fördern
-- Azure-Architektur und technische Infrastruktur verantworten
-- Entwicklung und technische Integration unterstützen
-- technische Abhängigkeiten zwischen Hosting, Deployment und Anwendung koordinieren
+- Scrum-Prozess
+- Moderation und Organisation der Scrum Events
+- Hindernisse und kontinuierliche Verbesserung
+- Azure-Architektur
+- technische Infrastruktur
+- Entwicklung und Integration
+- Deployment-Koordination
 
 ## Gemeinsame Teamverantwortung
 
-Das Team arbeitet gemeinsam an:
+Das Team arbeitete gemeinsam an:
 
 - Sprint Planning
 - Backlog Refinement
-- Story-Point-Schätzung
-- Umsetzung der Sprint-Ziele
-- technische und fachliche Qualität
-- Review der Inkremente
+- Schätzung
+- Sprint Goals
+- Inkrementen
+- Reviews
 - Retrospektiven
 - kontinuierlicher Verbesserung
 
-Die Rollen beschreiben primäre Verantwortungsbereiche. Die Umsetzung der Sprint-Ziele bleibt eine gemeinsame Teamaufgabe.
+## Projektabschluss
+
+Zum Abschluss des freigegebenen MVP wurden Product Backlog, Akzeptanzkriterien, GitHub-Issues, Produktdokumentation und produktiver Funktionsumfang erneut abgeglichen.
+
+Abschlussstand:
+
+- Sprint 1: Done
+- Sprint 2: Done
+- Sprint 3: Done im freigegebenen MVP-Scope
+- alle umgesetzten Issues: Done / completed
+- bewusst ersetzte Automatik-Issues: Not planned
+- Product-Owner-UAT des vollständigen Kernprozesses abgeschlossen
+
+Details: [PROJECT_CLOSURE.md](PROJECT_CLOSURE.md).
