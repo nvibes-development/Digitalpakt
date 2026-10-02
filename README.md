@@ -1,386 +1,382 @@
 # KLARFÖRDERN
 
-**KLARFÖRDERN – Förderfähigkeit. Einfach klar.** ist eine Web-App zur strukturierten Erfassung und menschlich verantworteten Vorprüfung von Digitalisierungsvorhaben im Kontext des **DigitalPakts 2.0**.
+**Förderfähigkeit. Einfach klar.**
 
-> **Projektkontext:** Abschlussarbeit „Agiles Projekt mit Scrum“
+KLARFÖRDERN ist eine PWA zur strukturierten Erfassung, Einreichung und menschlich verantworteten Vorprüfung schulischer Digitalisierungsvorhaben im Kontext des DigitalPakts 2.0.
 
-## Ziel der App
-
-KLARFÖRDERN führt Schulen durch einen vollständigen digitalen Prozess von der Erfassung der Schuldaten über Maßnahme, Förderbereich, Förderfragen und Dokumente bis zur Einreichung.
-
-Eingereichte Maßnahmen werden einem autorisierten Sachbearbeiter als versionierte digitale Akte bereitgestellt. Der Sachbearbeiter prüft die Angaben und trifft eine menschliche Ersteinschätzung:
-
-- **grundsätzlich förderfähig**
-- **Nachbearbeitung erforderlich**
-- **derzeit nicht grundsätzlich förderfähig**
-
-Bei einer Nachforderung kann die Schule Angaben und Dokumente ergänzen und die Maßnahme erneut einreichen. Historische Einreichungen bleiben nachvollziehbar.
-
-KLARFÖRDERN trifft **keine automatische verbindliche Förderentscheidung**. Die Anwendung dient als **Orientierungs- und Vorbereitungshilfe** und ersetzt keine rechtsverbindliche Förderentscheidung durch die zuständigen Stellen.
-
-## Sachbearbeiterportal
-
-Neben dem Schulportal gibt es einen geschützten Arbeitsbereich für autorisierte Sachbearbeiter. Er stellt eingereichte Angaben, Antworten und Dokumente als digitale Akte zusammen, ermöglicht Nachforderungen und dokumentiert eine menschliche Ersteinschätzung. KLARFÖRDERN selbst trifft keine verbindliche Förderentscheidung.
-
-## Problemstellung
-
-Die Vorbereitung eines Digitalisierungsvorhabens kann für Schulen und Schulträger komplex sein. Anforderungen, Zuständigkeiten, technische Rahmenbedingungen, pädagogische Zielsetzungen und Förderbedingungen müssen zusammengeführt werden.
-
-**KLARFÖRDERN** vereinfacht diesen Prozess und führt Nutzer Schritt für Schritt durch Erfassung, Einreichung, menschliche Prüfung und Rückmeldung.
-
-## Zielgruppen
-
-- Schulen
-- Schulträger
-- Projektverantwortliche für schulische Digitalisierung
-- Verantwortliche für IT, Medienentwicklung und Beschaffung
+> **Projektkontext:** Abschlussarbeit „Agiles Projekt mit Scrum“  
+> **Projektabschluss:** 02.10.2026  
+> **Produktions-URL:** https://digitalpakt.nvibes.de  
+> **Status:** ✅ MVP abgeschlossen und produktiv abgenommen
 
 ## Product Goal
 
-> Schulen können Digitalisierungsvorhaben vollständig erfassen und zur Prüfung einreichen. Ein autorisierter Sachbearbeiter erhält eine strukturierte digitale Akte und dokumentiert eine nachvollziehbare menschliche Ersteinschätzung.
+> Schulen können Digitalisierungsvorhaben vollständig erfassen und zur Prüfung einreichen. Ein autorisierter Sachbearbeiter erhält eine strukturierte, versionierte digitale Akte und dokumentiert eine nachvollziehbare menschliche Ersteinschätzung.
 
-## Fachliche Projektdokumentation
+KLARFÖRDERN trifft **keine automatische verbindliche Förderentscheidung**.
 
-Die detaillierte, vom Team erarbeitete Produktdefinition und Backlog-Struktur ist zusätzlich in folgenden Dokumenten festgehalten:
+Verbindliches Produktprinzip:
 
-- [Produktdefinition](docs/PRODUCT_DEFINITION.md)
-- [Product Backlog](docs/PRODUCT_BACKLOG.md)
-- [Fachliche Akzeptanzkriterien & Definition of Done](docs/ACCEPTANCE_CRITERIA.md)
-- [Projektteam & Rollen](docs/TEAM.md)
-- [Branding und Design-System](docs/BRANDING.md)
-- [Technische Architektur](docs/ARCHITECTURE.md)
-- [Sachbearbeiterportal](docs/CASE_WORKER_PORTAL.md)
-- [Aktueller Entwicklungsstand](docs/DEVELOPMENT_STATUS.md)
+> **KLARFÖRDERN unterstützt die Prüfung. Die fachliche Entscheidung trifft ein autorisierter Sachbearbeiter.**
 
-## Projekt-Kick-off
+## End-to-End-Prozess
 
-### Ausgangslage
+```text
+Registrierung / Login
+→ Schuldaten
+→ Maßnahme
+→ Förderbereich
+→ neun Förderfragen
+→ Dokumente
+→ Einreichung
+→ versionierte Submission
+→ Sachbearbeiter-Posteingang
+→ digitale Akte
+→ menschliche Prüfung
+→ Grün / Gelb / Rot
+→ Rückmeldung
+→ ggf. Nachbearbeitung und Wiedereinreichung
+→ Abschluss
+→ PDF-Prüfbericht
+```
 
-Im Rahmen des DigitalPakts 2.0 soll eine Web-App entwickelt werden, mit der Schulen und Schulträger geplante Digitalisierungsvorhaben strukturiert erfassen und vorprüfen können.
+## Rollen
 
-Das Projekt wird als Scrum-Abschlussprojekt innerhalb eines kurzen, fest vorgegebenen Zeitraums umgesetzt. Deshalb liegt der Schwerpunkt auf klaren Sprint-Zielen, nutzbaren Inkrementen, transparenter Zusammenarbeit und nachvollziehbarer Dokumentation.
+### Schulportal
 
-### Ziel
+Rolle:
 
-Ziel ist eine PWA, die Nutzer von der Erfassung eines Vorhabens über eine erste Kriterienprüfung bis zu einer verständlichen Auswertung mit Handlungsempfehlungen führt.
+`school_admin`
 
-Die Anwendung soll unter folgender Adresse bereitgestellt werden:
+Funktionen:
 
-**https://digitalpakt.nvibes.de**
+- Registrierung und Anmeldung
+- Profilverwaltung
+- Schuldaten erfassen
+- mehrere Maßnahmen anlegen
+- Förderbereich auswählen
+- neun Förderfragen beantworten
+- Dokumente hochladen und verwalten
+- Maßnahme zur Prüfung einreichen
+- Bearbeitungsstatus verfolgen
+- Anmerkungen der Sachbearbeitung lesen
+- bei Nachforderung weiterbearbeiten
+- erneut einreichen
+- Ergebnis einsehen
 
-### Stakeholder
+### Sachbearbeiterportal
 
-- Schulen
-- Schulträger
-- Projektteam
-- Trainer bzw. fachliche Ansprechpartner
-- potenzielle Anwender der Anwendung
+Rolle:
 
-### Risiken
+`case_worker`
 
-- begrenzter Projektzeitraum
-- unklare oder sich ändernde fachliche Anforderungen
-- Abhängigkeiten von Azure, DNS und Cloudflare
-- mögliche Verzögerungen bei Infrastruktur oder Deployment
-- unterschiedliche Förderbedingungen und Richtlinien der Bundesländer
-- fachliche Kriterien dürfen nicht als verbindliche Förderentscheidung dargestellt werden
-- technische Abhängigkeiten zwischen Infrastruktur, Anwendung und Deployment
+Geschützter Bereich:
 
-### Vorgehensweise
+`/review`
 
-Das Projekt wird in **genau drei Sprints** umgesetzt:
+Initialer produktiver Master-Sachbearbeiter:
 
-1. **Sprint 1 – Infrastruktur**
-2. **Sprint 2 – Erfassen & Prüfen**
-3. **Sprint 3 – Auswerten & Handeln**
+`sachbearbeiter@nvibes.de`
 
-Jeder Sprint liefert ein funktionsfähiges und demonstrierbares Increment.
+Funktionen:
 
-## Scrum-Team und Accountabilities
+- Posteingang
+- In Bearbeitung
+- Nachforderungen
+- Abgeschlossen
+- Suche und Sortierung
+- digitale Akte
+- Dokumentdownload
+- atomare Vorgangsübernahme
+- interne Vermerke
+- öffentliche Anmerkungen
+- menschliche Grün-/Gelb-/Rot-Entscheidung
+- Audit-Verlauf
+- PDF-Prüfbericht
 
-Das Projektteam besteht aus vier Mitgliedern mit klar verteilten Scrum- und Fachverantwortlichkeiten.
+Zugangsdaten werden nicht im Repository dokumentiert.
 
-### Product Owner & Marketingspezialistin
+## Entscheidungsmodell
 
-**Anelia Zhilisbayev**
+### 🟢 Grundsätzlich förderfähig
 
-Verantwortlich für:
+Status:
 
-- Product Goal
-- Priorisierung des Product Backlogs
-- fachliche Anforderungen
-- Stakeholder-Abstimmung
-- Transparenz und Verständlichkeit der Product Backlog Items
-- Markt- und Zielgruppenperspektive
-- Kommunikation des Produktnutzens
+`ELIGIBLE`
 
-### Scrum Master, Azure Architect & Developer
+Die Maßnahme wurde durch die Sachbearbeitung als grundsätzlich förderfähig eingeschätzt.
 
-**Christian Schreiber**
+### 🟡 Nachbearbeitung erforderlich
 
-Verantwortlich für:
+Status:
 
-- Unterstützung des Scrum-Prozesses
-- Moderation und Unterstützung der Scrum Events
-- Sichtbarmachung und Beseitigung von Hindernissen
-- Förderung der Selbstorganisation des Teams
-- Unterstützung kontinuierlicher Verbesserung
-- Azure-Architektur und technische Infrastruktur
-- Entwicklung und Integration des Produkts
+`NEEDS_CHANGES`
 
-### Automatisierungsexperte & Developer
+Die Schule erhält eine öffentliche Nachforderung, kann Angaben und Dokumente ergänzen und anschließend erneut einreichen.
 
-**Mohamad Feras Arman**
+### 🔴 Derzeit nicht förderfähig
 
-Verantwortlich für:
+Status:
 
-- Automatisierung von Abläufen und technischen Prozessen
-- Entwicklung und technische Umsetzung
-- Unterstützung bei Integrationen und Workflows
-- Mitarbeit an Sprint-Zielen und Increments
-- technische Qualität der umgesetzten Funktionen
+`NOT_ELIGIBLE`
 
-### UAT & QA
+Eine öffentliche Begründung ist Pflicht und wird der Schule angezeigt.
 
-**Viktoriia Iakobchuk**
+Alle Ergebnisse bleiben **unverbindliche Ersteinschätzungen**.
 
-Verantwortlich für:
+## Förderbereiche im MVP
 
-- User Acceptance Testing (UAT)
-- Qualitätssicherung
-- Prüfung der Akzeptanzkriterien
-- funktionale Tests der Inkremente
-- Dokumentation von Fehlern und Abweichungen
-- Unterstützung bei Sprint Reviews und Abnahme der umgesetzten Funktionen
+1. **IT-Infrastruktur, Netzwerk und WLAN**
+2. **Digitale Endgeräte**
+3. **Bildungssoftware und digitale Lernplattformen**
 
-### Gemeinsame Verantwortung des Teams
+Pro Maßnahme wird genau ein Förderbereich gespeichert.
 
-Alle Teammitglieder wirken gemeinsam an:
+## Förderfragen
 
-- Sprint Planning
-- Backlog Refinement
-- Aufwandsschätzung
-- Umsetzung der Sprint-Ziele
-- Qualität des jeweiligen Increments
-- Sprint Review
-- Retrospektive
-- kontinuierlicher Verbesserung
+Der MVP verwendet neun verbindliche Fragen.
 
-Eine ausführlichere Rollenübersicht befindet sich in [docs/TEAM.md](docs/TEAM.md).
+Antwortmöglichkeiten:
 
-## Kernprozess
+- Ja
+- Nein
+- Nicht bekannt
 
-**Schuldaten erfassen → Antragsberechtigung prüfen → Maßnahme erfassen → Förderbereich auswählen → Förderkriterien beantworten → Maßnahme auswerten → Gesamtergebnis erhalten → nächste Schritte erkennen**
+Alle neun Fragen müssen vor Einreichung beantwortet sein.
 
-Der MVP unterstützt zunächst drei Förderbereiche:
+Die Antworten dienen der strukturierten Akte und erzeugen **keine automatische Förderentscheidung**.
 
-1. IT-Infrastruktur, Netzwerk und WLAN
-2. Digitale Endgeräte
-3. Bildungssoftware und digitale Lernplattformen
+## Dokumente
 
-Pro Prüfung wird genau ein Förderbereich ausgewählt. Weitere Förderbereiche werden als außerhalb des MVP gekennzeichnet.
+Unterstützt:
 
-## Geplante Kernfunktionen
+- PDF
+- Word
+- Excel
+- maximal 10 MB
 
-### Vorhabenerfassung
+Die Dokumente werden maßnahmenbezogen gespeichert.
 
-Ein Nutzer kann ein geplantes Digitalisierungsvorhaben strukturiert anlegen und die wichtigsten Eckdaten erfassen.
+Sicherheit:
 
-### DigitalPakt-Check
+- privater Azure Blob Storage
+- Managed Identity
+- serverseitige Autorisierung
+- keine Storage Keys im Frontend
 
-Die Anwendung prüft das Vorhaben anhand eines definierten Kriterienkatalogs und kennzeichnet den jeweiligen Status, zum Beispiel:
+## Submission-Versionierung
 
-- Erfüllt
-- Noch zu prüfen
-- Fehlende Angabe
-- Handlungsbedarf
+Bei jeder Einreichung wird ein historischer Snapshot gespeichert.
 
-### Ergebnisübersicht
+Enthalten:
 
-Die Ergebnisse werden verständlich zusammengefasst, damit Nutzer schnell erkennen können, wo das Vorhaben bereits gut vorbereitet ist und wo noch Arbeit erforderlich ist.
+- Antragsteller
+- Schule
+- Maßnahme
+- Antworten
+- Dokumentmetadaten
 
-### Maßnahmen und nächste Schritte
+Eine Wiedereinreichung erzeugt eine neue Submission-Version. Alte Einreichungen werden nicht überschrieben.
 
-Aus den Prüfergebnissen werden konkrete nächste Schritte abgeleitet, damit die Nutzer ihr Vorhaben gezielt weiterentwickeln können.
+## PDF-Prüfbericht
 
-### Prüfbericht
+Abgeschlossene Vorgänge können aus dem Sachbearbeiterbereich als PDF exportiert werden.
 
-Eine kompakte Zusammenfassung des Vorhabens und der Prüfergebnisse soll als druckbare Ansicht bzw. Prüfbericht bereitgestellt werden.
+Exportierbar:
 
-## Scrum-Projekt und Sprint-Struktur
+- `ELIGIBLE`
+- `NOT_ELIGIBLE`
+
+Der Prüfbericht enthält:
+
+- KLARFÖRDERN-Branding
+- Vorgangsnummer
+- Submission-Version
+- Prüfzeitpunkt
+- Antragsteller
+- Schuldaten
+- Maßnahmendaten
+- Förderbereich
+- neun Förderfragen und Antworten
+- Dokumentenliste
+- Sachbearbeitung
+- menschliche Entscheidung
+- öffentliche Begründung / Anmerkung
+- Hinweis auf Human-in-the-Loop
+- Unverbindlichkeits-Hinweis
+
+Nicht enthalten:
+
+- interne Vermerke
+- Blob-Pfade
+- technische IDs
+- Secrets
+
+## Bewusste Scope-Entscheidung
+
+Die ursprüngliche Projektplanung enthielt eine automatische Förderregel-Engine.
+
+Im Projektzeitraum lag dafür kein belastbares, freigegebenes und versioniertes Förderregelwerk vor.
+
+Deshalb wurden folgende Product Items bewusst ersetzt und als **Not planned** abgeschlossen:
+
+- #27 – Förderregeln auf Antworten anwenden
+- #28 – Förderstatus automatisch bestimmen
+- #31 – automatische Förderregeln anzeigen
+
+Der Ersatz ist das produktiv umgesetzte Human-in-the-Loop-Sachbearbeiterportal.
+
+Dies ist eine bewusste Product-Owner-Scope-Entscheidung und kein offener Implementierungsmangel.
+
+## Technische Architektur
+
+```text
+Internet
+  ↓
+Cloudflare
+  ↓
+Nginx
+  ├── React/Vite PWA
+  └── /api/*
+        ↓
+     Fastify
+        ↓
+     PostgreSQL
+
+Dokumente
+  ↓
+Azure Blob Storage
+  ↓
+Managed Identity
+```
+
+Technologien:
+
+- React 19
+- TypeScript
+- Vite
+- PWA
+- React Router
+- Node.js
+- Fastify
+- PostgreSQL
+- PDFKit
+- Azure VM
+- Azure Blob Storage
+- Managed Identity
+- Nginx
+- Cloudflare
+- HTTPS/TLS
+
+## Sicherheit
+
+Umgesetzt:
+
+- Argon2id
+- serverseitige Sessions
+- HttpOnly/Secure/SameSite-Cookies
+- serverseitige Rollenprüfung
+- SchoolMembership-basierte Mandantentrennung
+- CSRF-Origin-Prüfung
+- Rate Limits
+- private Dokumentablage
+- Managed Identity
+- keine Secrets im Repository
+- redigierte Auth-/Cookie-Logs
+- Trennung öffentlicher und interner Sachbearbeitertexte
+
+## Scrum-Team
+
+| Teammitglied | Rolle | Schwerpunkt |
+|---|---|---|
+| **Anelia Zhilisbayev** | Product Owner | Product Backlog, Marketing, Zielgruppenperspektive |
+| **Mohamad Feras Arman** | Developer | Automatisierung, Entwicklung, Workflows |
+| **Viktoriia Iakobchuk** | UAT & QA | User Acceptance Testing, Qualitätssicherung |
+| **Christian Schreiber** | Scrum Master & Developer | Azure Architecture, Infrastruktur, Entwicklung |
+
+Details: [docs/TEAM.md](docs/TEAM.md)
+
+## Sprint-Abschluss
 
 ### Sprint 1 – Infrastruktur
 
-**Zeitraum:** 28.09.2026 – 29.09.2026
+**28.09.–29.09.2026**  
+**Status:** ✅ abgeschlossen
 
-**Epic:** Azure-App-Architektur bereitstellen
+Geliefert:
 
-**Sprint Goal:**  
-Die technische Basis der Anwendung wird bereitgestellt, sodass die PWA öffentlich unter **https://digitalpakt.nvibes.de** erreichbar ist.
-
-**Sprint-Increment:**
-
-- Azure-Hosting-Basis
-- Linux-System
+- Azure VM
+- Linux-Basis
 - Nginx
-- Node.js-/React-PWA-Build-Umgebung
-- GitHub-Anbindung
-- DNS und Cloudflare
-- HTTPS/TLS
-- öffentlich erreichbare Landingpage **„DigitalPakt 2.0“**
+- Node-/React-Build
+- GitHub Deployment
+- DNS
+- Cloudflare
+- TLS
+- Landingpage
 
-### Sprint 2 – Erfassen & Prüfen
+### Sprint 2 – Erfassen & Einreichen
 
-**Zeitraum:** 30.09.2026 – 02.10.2026
+**30.09.–02.10.2026**  
+**Status:** ✅ abgeschlossen
 
-**Epic:** Digitalisierungsvorhaben erfassen und vorprüfen
+Geliefert:
 
-**Sprint Goal:**  
-Die Schulleitung kann zunächst die grundsätzliche Antragsberechtigung der Schule prüfen und anschließend eine geplante Digitalisierungsmaßnahme anhand der MVP-Förderkriterien vorprüfen.
-
-**Sprint-Increment:**
-
-- förderrelevante Schuldaten erfassen
-- Antragsberechtigung prüfen
-- Digitalisierungsmaßnahme und Rahmendaten erfassen
-- einen MVP-Förderbereich auswählen
-- Förderkriterien mit Ja / Nein / Nicht bekannt beantworten
-- fehlende Informationen erkennen
-- hinterlegte Förderregeln anwenden
-- vorläufiges Maßnahmenergebnis anzeigen
+- Authentifizierung
+- Profile
+- Schuldaten
+- Maßnahmen
+- Förderbereiche
+- Förderfragen
+- Dokumente
+- Persistenz
+- Einreichung
 
 ### Sprint 3 – Auswerten & Handeln
 
-**Zeitraum:** 03.10.2026 – 05.10.2026
+**03.10.–05.10.2026**  
+**fachlicher MVP bereits am 02.10.2026 vollständig abgenommen**  
+**Status:** ✅ abgeschlossen im freigegebenen MVP-Scope
 
-**Epic:** Auswertung, Handlungsempfehlungen und Prüfbericht bereitstellen
+Geliefert:
 
-**Sprint Goal:**  
-Aus der Vorprüfung entsteht eine verständliche Auswertung mit konkreten nächsten Schritten.
+- Sachbearbeiterportal
+- digitale Akte
+- Human-in-the-Loop
+- Grün / Gelb / Rot
+- Nachforderungen
+- Rückkanal
+- Wiedereinreichung
+- Submission-Historie
+- Audit
+- PDF-Prüfbericht
 
-**Sprint-Increment:**
+## GitHub-Abschlussstatus
 
-- Ergebnisübersicht
-- erfüllte, offene und kritische Punkte
-- Handlungsempfehlungen
-- priorisierte nächste Schritte
-- Prüfbericht bzw. Druckansicht
-- UX-Feinschliff
-- Umsetzung relevanten Stakeholder-Feedbacks
+Zum Product-Owner-Abschlussreview am 02.10.2026:
 
-## Inkrementelles Produktverständnis
+- alle umgesetzten Issues: **Done / completed**
+- alle bewusst ersetzten Automatik-Issues: **Not planned**
+- keine offenen Product-Backlog-Issues im freigegebenen MVP-Scope
+- keine offenen Checkboxen in abgeschlossenen Done-Issues
 
-Jeder Sprint liefert ein **funktionsfähiges und nutzbares Increment**.
+## Dokumentation
 
-Der Produktfortschritt folgt dem Prinzip:
-
-**Infrastruktur → Erfassen & Prüfen → Auswerten & Handeln**
-
-Am Ende von Sprint 3 ist der vollständige Nutzerfluss nutzbar:
-
-**Erfassen → Prüfen → Auswerten → Handeln**
-
-## Definition of Done
-
-Die folgende Definition of Done gilt **zentral für das gesamte Projekt**.
-
-Ein Product Backlog Item gilt als **Done**, wenn:
-
-- [ ] alle vereinbarten Akzeptanzkriterien erfüllt sind,
-- [ ] die Umsetzung vollständig und funktionsfähig ist,
-- [ ] notwendige Tests durchgeführt wurden,
-- [ ] keine bekannten kritischen Fehler bestehen,
-- [ ] die Funktion in das aktuelle Increment integriert ist,
-- [ ] relevante Dokumentation aktualisiert wurde,
-- [ ] die Umsetzung im GitHub Project nachvollziehbar dokumentiert ist,
-- [ ] das Ergebnis im Sprint Review demonstriert werden kann.
-
-Für technische Änderungen gilt zusätzlich:
-
-- [ ] Secrets, Passwörter und private Schlüssel befinden sich nicht im Repository,
-- [ ] Änderungen sind versioniert und reproduzierbar,
-- [ ] die bestehende Anwendung wird durch die Änderung nicht erkennbar beschädigt.
-
-Die Definition of Done kann im Projektverlauf durch Erkenntnisse aus den Retrospektiven gemeinsam weiterentwickelt werden. Änderungen werden transparent dokumentiert.
-
-## Product Backlog und Refinement
-
-Das Product Backlog wird bewusst **nicht vollständig im Voraus festgelegt**.
-
-Product Backlog Items werden gemeinsam im Team:
-
-- vorgeschlagen,
-- diskutiert,
-- fachlich präzisiert,
-- priorisiert,
-- mit Akzeptanzkriterien versehen,
-- geschätzt,
-- und geeigneten Sprints zugeordnet.
-
-Damit bleibt ausreichend Raum für Team-Ownership, Stakeholder-Feedback und Erkenntnisse aus Reviews und Retrospektiven.
-
-## Scrum Events
-
-### Sprint Planning
-
-Zu Beginn jedes Sprints werden Sprint Goal, relevante Product Backlog Items und der geplante Arbeitsumfang gemeinsam festgelegt.
-
-### Daily Scrum
-
-Während der Sprints stimmt sich das Development Team regelmäßig über Fortschritt, nächste Schritte und Hindernisse ab.
-
-### Backlog Refinement
-
-Das Product Backlog wird während des Projekts kontinuierlich präzisiert und an neue Erkenntnisse angepasst.
-
-### Sprint Review
-
-Nach jedem Sprint wird das entstandene Increment demonstriert. Stakeholder-Feedback wird dokumentiert und bei Bedarf in das Product Backlog übernommen.
-
-### Sprint Retrospektive
-
-Nach jedem Sprint reflektiert das Team die Zusammenarbeit und legt mindestens eine konkrete Verbesserungsmaßnahme für den folgenden Sprint fest.
-
-## Scrum-Artefakte und Dokumentation
-
-Im Projekt werden unter anderem folgende Artefakte gepflegt:
-
-- Product Goal
-- Product Backlog
-- Sprint Backlogs
-- Sprint Goals
-- Epics
-- User Stories und Tasks
-- Akzeptanzkriterien
-- Definition of Done
-- Story Points
-- Prioritäten
-- Sprint Reviews
-- Retrospektiven
-- Stakeholder-Feedback
-- Entscheidungen und Änderungen am Backlog
-- Screenshots der jeweiligen Inkremente
-- GitHub Project Board und Sprint-Visualisierung
-
-Die Dokumentation soll nachvollziehbar zeigen, **wie sich Produkt und Arbeitsweise über die drei Sprints entwickeln**.
-
-## KI-Nutzung und Quellen
-
-Der Einsatz von KI-Werkzeugen im Projekt ist zulässig und wird transparent dokumentiert.
-
-Dokumentiert werden insbesondere:
-
-- verwendetes KI-Werkzeug,
-- Zweck der Nutzung,
-- relevante Prompts bzw. Aufgabenstellungen,
-- wesentliche übernommene oder angepasste Ergebnisse,
-- fachliche Prüfung durch das Team.
-
-Fachliche Quellen zum DigitalPakt 2.0 werden ebenfalls nachvollziehbar dokumentiert.
+- [Produktdefinition](docs/PRODUCT_DEFINITION.md)
+- [Product Backlog](docs/PRODUCT_BACKLOG.md)
+- [Akzeptanzkriterien & Definition of Done](docs/ACCEPTANCE_CRITERIA.md)
+- [Architektur](docs/ARCHITECTURE.md)
+- [Sachbearbeiterportal](docs/CASE_WORKER_PORTAL.md)
+- [GitHub-/Scrum-Hierarchie](docs/GITHUB_HIERARCHY.md)
+- [Branding](docs/BRANDING.md)
+- [Team & Rollen](docs/TEAM.md)
+- [Entwicklungsstand](docs/DEVELOPMENT_STATUS.md)
+- [Projektabschluss](docs/PROJECT_CLOSURE.md)
+- [Sprint-1 Deployment](docs/SPRINT_1_DEPLOYMENT.md)
 
 ## Projektzeitraum
 
-Bearbeitungszeitraum der Abschlussarbeit:
+Bearbeitungszeitraum:
 
 **28.09.2026 – 05.10.2026**
 
@@ -388,24 +384,14 @@ Projektvorstellung:
 
 **06.10.2026**
 
-## Fachlicher Hintergrund
+## Abgrenzung
 
-Das Projekt orientiert sich am **DigitalPakt 2.0** und dessen Ziel, die digitale Entwicklung von Schulen weiter zu unterstützen.
+KLARFÖRDERN ist kein offizielles Angebot des Bundes, eines Bundeslandes oder einer Förderstelle.
 
-Offizielle Informationen:
-
-https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html
-
-Für konkrete Förderbedingungen sind die jeweils gültigen Vorgaben und Richtlinien der zuständigen Stellen und Bundesländer maßgeblich.
-
-## Hinweis
-
-**DigitalPakt Check ist kein offizielles Angebot des Bundes, eines Bundeslandes oder einer Förderstelle.**
-
-Die Anwendung liefert ausschließlich eine strukturierte Vorprüfung und Orientierung. Ein positives Ergebnis stellt keine Förderzusage und keine verbindliche Aussage über die Förderfähigkeit eines Vorhabens dar.
+Das Ergebnis ist eine **unverbindliche Ersteinschätzung** und stellt keine Förderzusage, keinen Bewilligungsbescheid und keine rechtsverbindliche Förderentscheidung dar.
 
 ## Projektstatus
 
-🚧 **In Entwicklung**
+✅ **MVP abgeschlossen und Product-Owner-abgenommen**
 
-Das Repository wird im Rahmen des Scrum-Projekts schrittweise mit jedem Sprint erweitert.
+Weitere Funktionen sind mögliche Produktweiterentwicklungen und keine offenen Restpunkte der Abschlussarbeit.
