@@ -136,7 +136,7 @@ Technisch getrennt:
 - öffentliche Nachricht / `public_reason`
 - interner Vermerk / `internal_note`
 
-Interne Vermerke werden ausschließlich im Sachbearbeiterkontext verarbeitet.
+Interne Vermerke werden ausschließlich im Sachbearbeiterkontext verarbeitet. In abgeschlossenen Akten werden Entscheidung, öffentliche Anmerkungen und interne Vermerke zur Nachvollziehbarkeit angezeigt.
 
 Sie dürfen niemals über Schulportal-Endpunkte ausgegeben werden.
 
